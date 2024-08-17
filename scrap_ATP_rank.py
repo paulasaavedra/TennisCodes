@@ -35,8 +35,9 @@ source = body.get_attribute('innerHTML')
 soup = BeautifulSoup(source, "html.parser")
 
 # all ranking weeks
-dates = soup.find_all('div','dropdown') 
-dates=dates[3].find_all('li')
+select_element = soup.find_all('div', 'atp_filters-dropdown')[2].find('select')
+options = select_element.find_all('option')
+dates = [option['value'] for option in options]
 date_week = []
 i=0
 while len(dates)>i:
