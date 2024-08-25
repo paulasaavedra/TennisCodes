@@ -37,20 +37,16 @@ soup = BeautifulSoup(source, "html.parser")
 # all ranking weeks
 select_element = soup.find_all('div', 'atp_filters-dropdown')[2].find('select')
 options = select_element.find_all('option')
-dates = [option['value'] for option in options]
-date_week = []
-i=0
-while len(dates)>i:
-    date = dates[i].text
-    date_week.append(date.replace('.','-'))
-    i = i + 1
+dates = [option_tag.get_text(strip=True) for option_tag in options]
+dates = [fecha.replace('.', '-') for fecha in dates]
 driver.close()
 time.sleep(5)
-date_week.remove('1985-03-03')
-date_week.remove('1978-01-02')
-date_week.remove('1976-03-01')
 
-for actual_week in date_week:
+dates.remove('1985-03-03')
+dates.remove('1978-01-02')
+dates.remove('1976-03-01')
+# revisar 1992-06-01
+for actual_week in dates:
     finish_part_time = time.time()
     print('start scraping week', actual_week)
     
@@ -60,26 +56,38 @@ for actual_week in date_week:
 
     #we create the driver specifying the origin of chrome browser
     driver = webdriver.Chrome(options=option)
-
+    
     url = 'https://www.atptour.com/en/rankings/singles?RankRange=1-5000&Region=all&DateWeek=' + actual_week
-
+    
     driver.get(url)
     time.sleep(5)
-
+    
     #we get the internal html code of the body
     body = driver.execute_script("return document.body")
     source = body.get_attribute('innerHTML')
-
     soup = BeautifulSoup(source, "html.parser")
-    df = pd.DataFrame()
-    head = ['date','rank', 'rank_change', 'country', 'player', 'age', 'points']
+
+    table = soup.find('table', class_='mega-table desktop-table non-live')
+    table_data = []
+    if table:
+        rows = table.find_all('tr')
+        for row in rows:
+            # Extrae todas las celdas de la fila (pueden ser <td> o <th>)
+            cells = row.find_all(['td', 'th'])
+            # Verifica si hay celdas en la fila y si la fila tiene más de un elemento para evitar propag
+            if cells and len(cells) > 1:
+                row_data = [cell.get_text(strip=True) for cell in cells]
+                table_data.append(row_data)
+    df = pd.DataFrame(table_data)
+    df = df.drop(df.index[0])
+    df.columns = ['rank','player','age','points','points change','tourn played','dropping','next best','']
     
-    elements = soup.find_all('tr','lower-row')  
-    df = pd.DataFrame(columns=['date', 'rank', 'rank_change', 'country', 'player_id', 'player_name', 'points'])
-    
-    # acá armo una lista por semana con los datos anteriores para luego armar un dataframe      
+    # Ahora tengo que buscar las nacionalidades
+    elements = soup.find_all('tr','lower-row')    
+    elements = elements[:(df.shape[0]-1)]   
+    i = 0
+    df_all_data = pd.DataFrame()
     for element in elements:
-        
         # rank
         rank_element = element.find('td', class_= 'rank bold heavy tiny-cell').text.rstrip().lstrip()
         if "T" in rank_element:
@@ -93,55 +101,24 @@ for actual_week in date_week:
             rank_change_element = int (rank_change_element)
         
         # country
-        country_element = element.find('img', class_= 'flag')['src'].split('/')[-1][:-4]
-
+        try: 
+            country_element = element.find('svg', class_= 'flag').find('use')['href'][-3:].upper()
+        except:
+            country_element = 'no hay pais'
         # player
         link_player = element.find('li', class_= 'name').find('a')['href']
         player_id_element = link_player.split('/')[-2]
         player_name_element = link_player.split('/')[-3].replace('-',' ').title()
         
-        # age
-        # age_element = int(element.find('td', class_= 'age small-cell').text)
-        # la edad me interesa mucho pero no puedo extaerla
-        
-        # points cuando hay un error
-        
-        
-        try:
-            points_element = int(element.find('td', class_= 'points center bold extrabold small-cell').find('a').text.replace('\n','').rstrip().lstrip().replace(',',''))
-        except:
-            points_element = 0    
-        
-        ''' 
-        # points cuando todo esta ok
-        points_element = int(element.find('td', class_= 'points center bold extrabold small-cell').find('a').text.replace('\n','').rstrip().lstrip().replace(',',''))
-        '''
-        # points_change
-        # no se puede obtener de una manera relativamente sencilla y no se si lo vale
-
-        # tourneyPlayed
-        # tourneyPlayed_element = int(element.find('td', class_= 'tourns center small-cell').text)
-
-        # dropping
-        #dropping_element = element.find('td', class_= 'drop center small-cell').text.replace(',','')
-        #if dropping_element == '-':
-        #    dropping_element = 0
-        #else:
-        #    dropping_element = int(dropping_element)
-
-        # nextBest
-        #nextBest_element = element.find('td', class_= 'best center small-cell').text
-        #if nextBest_element == '-':
-        #    nextBest_element = 0 # cuando tienen - reemplazo con 0
-        #else:
-        #    nextBest_element = int(nextBest_element)
-
-        
         fila = [actual_week, rank_element, rank_change_element, country_element, player_id_element,
-                        player_name_element, points_element]
-        fila_df = pd.DataFrame([fila],columns=['date', 'rank', 'rank_change', 'country', 'player_id', 'player_name', 'points'])
-        df = pd.concat([df, fila_df], ignore_index=True)
+                        player_name_element, df.iloc[i]['points'], df.iloc[i]['points change'], df.iloc[i]['tourn played'],
+                        df.iloc[i]['dropping'], df.iloc[i]['next best']]
         
+        fila_df = pd.DataFrame([fila],columns=['date', 'rank', 'rank_change', 'country', 'player_id', 'player_name', 'points', 
+                                               'points change', 'tourn played', 'dropping', 'next best'])
+        df_all_data = pd.concat([df_all_data, fila_df], ignore_index=True)
+        i = i + 1
+            
     finish_part_time = time.time() - finish_part_time
     print('finish reading week',actual_week)
     print(finish_part_time)
@@ -149,8 +126,9 @@ for actual_week in date_week:
 
     # Probar si funciona eliminar duplicados con la siguiente linea
     # df.drop_duplicates()
-    df.to_csv('weeks_rank/ranking_' + actual_week + '.csv', header=False, index=False)
+    file_path = 'C:/Users/Paula/Documents/Projects/TennisData/ATP_ranking/rank_weeks/'
+    actual_week = actual_week.replace('-','')
+    df_all_data.to_csv(file_path + 'ranking_' + actual_week + '.csv', header=False, index=False)
 
 finish_time = time.time() - start_time
 print(f'Stop reading: {int(finish_time)}.')
-
