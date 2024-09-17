@@ -45,8 +45,9 @@ time.sleep(5)
 dates.remove('1985-03-03')
 dates.remove('1978-01-02')
 dates.remove('1976-03-01')
-# revisar 1992-06-01
-for actual_week in dates:
+
+
+for actual_week in dates[1678:]:
     finish_part_time = time.time()
     print('start scraping week', actual_week)
     
@@ -111,11 +112,11 @@ for actual_week in dates:
         player_name_element = link_player.split('/')[-3].replace('-',' ').title()
         
         fila = [actual_week, rank_element, rank_change_element, country_element, player_id_element,
-                        player_name_element, df.iloc[i]['points'], df.iloc[i]['points change'], df.iloc[i]['tourn played'],
+                        player_name_element, df.iloc[i]['age'], df.iloc[i]['points'], df.iloc[i]['points change'], df.iloc[i]['tourn played'],
                         df.iloc[i]['dropping'], df.iloc[i]['next best']]
         
-        fila_df = pd.DataFrame([fila],columns=['date', 'rank', 'rank_change', 'country', 'player_id', 'player_name', 'points', 
-                                               'points change', 'tourn played', 'dropping', 'next best'])
+        fila_df = pd.DataFrame([fila],columns=['date', 'rank', 'rank_change', 'country', 'player_id', 'player_name', 'age',
+                                               'points', 'points change', 'tourn played', 'dropping', 'next best'])
         df_all_data = pd.concat([df_all_data, fila_df], ignore_index=True)
         i = i + 1
             

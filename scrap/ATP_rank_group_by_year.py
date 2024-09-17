@@ -1,25 +1,29 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Dec 27 21:44:01 2022
+
+@author: Paula
+
+This code take all ranking week into ranking years.
+"""
 import os
+import glob
 import pandas as pd
 
-directorio = 'C:/Users/Paula/Documents/Projects/TennisData/ATP_ranking/rank_weeks/'
-archivos_por_anio = {}
+os.chdir('C:/Users/Paula/Documents/Projects/TennisData/ATP_ranking/rank_weeks/')
 
-for archivo in os.listdir(directorio):
-    if archivo.startswith("ranking_") and archivo.endswith(".csv"):
-        # Extraer el año del nombre del archivo, asumiendo que está en formato 'ranking_aaaa....csv'
-        anio = archivo.split('_')[1][:4]
-        if anio not in archivos_por_anio:
-            archivos_por_anio[anio] = []
-        archivos_por_anio[anio].append(os.path.join(directorio, archivo))
+list_data = []
+for year in range(1973,2024):
+    name = 'ranking_' + str(year) + '*.csv'
+    csv_files = glob.glob(name)   
+    #list_data = []
+    for filename in csv_files:
+        data = pd.read_csv(filename, header = None)
+        list_data.append(data)
+        
+data = pd.concat(list_data, ignore_index = True)
+data = data.fillna(0)
 
-# Procesar archivos por año y crear archivos concatenados
-for anio, archivos in archivos_por_anio.items():
-    df_list = []
-    for archivo in archivos:
-        df_temp = pd.read_csv(archivo)
-        df_list.append(df_temp)
-        print(f"Procesando archivo {archivo} para el año {anio}")
-    df_anual = pd.concat(df_list, ignore_index=True)
-    archivo_salida = os.path.join('C:/Users/Paula/Documents/Projects/TennisData/ATP_ranking/rank_years/', f'{anio}.csv')
-    df_anual.to_csv(archivo_salida, index=False)
-    print(f"Archivo anual guardado: {archivo_salida}")
+data.columns = ['date','rank', 'rank_change', 'country', 'player_id','player', 'points', 'points_change', 'age', , 'tourneyPlayed', 'dropping', 'nextBest']
+data.to_csv('ATP_' + name[:-5] + '.csv', header=True, index=False)
+
