@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Dec 27 21:44:01 2022
-
 @author: Paula
-
 This code take all ranking week into ranking years.
 """
+
+
+'''
 import os
 import glob
 import pandas as pd
@@ -47,8 +48,8 @@ for year, files in files_per_year.items():
         # Leer el archivo CSV
         df = pd.read_csv(file, names=columns_names, header=None)
         
-        # Agregar la columna de fecha
-        df['date'] = pd.to_datetime(date_str, format='%Y%m%d')
+        # Agregar la columna de fecha como cadena en formato 'yyyymmdd'
+        df['date'] = date_str
         
         # Reordenar las columnas para que 'date' sea la primera
         df = df[['date'] + columns_names]
@@ -63,3 +64,4 @@ for year, files in files_per_year.items():
     year_df.to_csv(os.path.join(years_path, f'{year}.csv'), index=False)
 
     print(f'Archivo para el año {year} creado con éxito.')
+'''
