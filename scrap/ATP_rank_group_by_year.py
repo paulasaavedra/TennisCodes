@@ -5,8 +5,6 @@ Created on Tue Dec 27 21:44:01 2022
 This code take all ranking week into ranking years.
 """
 
-
-'''
 import os
 import glob
 import pandas as pd
@@ -64,4 +62,3 @@ for year, files in files_per_year.items():
     year_df.to_csv(os.path.join(years_path, f'{year}.csv'), index=False)
 
     print(f'Archivo para el año {year} creado con éxito.')
-'''

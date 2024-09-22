@@ -26,7 +26,7 @@ date = '1984-05-21'
 url = 'https://www.atptour.com/en/rankings/singles?rankRange=1-5000&rankDate=' + date
 
 driver.get(url)
-time.sleep(5)
+time.sleep(3)
 
 #we get the internal html code of the body
 body = driver.execute_script("return document.body")
@@ -40,14 +40,14 @@ options = select_element.find_all('option')
 dates = [option_tag.get_text(strip=True) for option_tag in options]
 dates = [fecha.replace('.', '-') for fecha in dates]
 driver.close()
-time.sleep(5)
+time.sleep(2)
 
 dates.remove('1985-03-03')
 dates.remove('1978-01-02')
 dates.remove('1976-03-01')
 
 
-for actual_week in dates[1678:]:
+for actual_week in dates:
     finish_part_time = time.time()
     print('start scraping week', actual_week)
     
@@ -61,7 +61,7 @@ for actual_week in dates[1678:]:
     url = 'https://www.atptour.com/en/rankings/singles?RankRange=1-5000&Region=all&DateWeek=' + actual_week
     
     driver.get(url)
-    time.sleep(5)
+    time.sleep(3)
     
     #we get the internal html code of the body
     body = driver.execute_script("return document.body")
