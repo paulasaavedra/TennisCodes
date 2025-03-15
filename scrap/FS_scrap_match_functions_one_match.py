@@ -1035,8 +1035,8 @@ def scrap_match (ides, URL):
 os.chdir('C:/Users/Paula/')
 
 
-ides = '2981'
-link_one_match = 'https://www.flashscore.com/match/C8yoF4Ij/#/match-summary/match-summary'
+ides = '398'
+link_one_match = 'https://www.flashscore.com/match/lO1hBeKc/#/match-summary/match-summary'
 
 try:
     d_round_match, d_h_player, d_a_player = scrap_match (ides, link_one_match)
