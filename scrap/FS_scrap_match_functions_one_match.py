@@ -37,20 +37,20 @@ def test_download(driver):
         index += 1
     return page1
 
-def scrap_match (URL, id, year_scrap):
+def scrap_match (ides, URL):
     # Service al final creo que no se usa
     global d_simple_check
     global d_stat_check
     global d_pbyp_check
     OPTIONS = webdriver.ChromeOptions()
     OPTIONS.add_argument('user-agent=Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, '
-                         'like Gecko) Chrome/103.0.0.0 Mobile Safari/537.36')
+                     'like Gecko) Chrome/103.0.0.0 Mobile Safari/537.36')
     OPTIONS.add_argument('--disable-blink-features=AutomationControlled')
-    TZ_PARAMS = {'timezoneId': 'America/Rosario'}
+    TZ_PARAMS = {'timezoneid': 'America/Rosario'}
     OPTIONS.add_argument('--headless=new')
     
     driver = webdriver.Chrome(options=OPTIONS)
-    driver.execute_cdp_cmd('Emulation.setTimezoneOverride', TZ_PARAMS)
+    #    driver.execute_cdp_cmd('Emulation.setTimezoneOverride', TZ_PARAMS)
     driver.get(url=URL)
     time.sleep(5)
     
@@ -184,13 +184,13 @@ def scrap_match (URL, id, year_scrap):
             except:
                 surface = 'Completar'
             round_match = title.split(' ')[-1] #Dato
-
         
         try:
             anotations = soup.find(class_='infoBox__wrapper infoBoxModule').text
         except:
             anotations = ''
         
+
         time_date = soup.find('div', class_='duelParticipant__startTime').text
         date_match = time_date.split(' ')[0]
         date_match = date_match.split('.')
@@ -792,10 +792,10 @@ def scrap_match (URL, id, year_scrap):
                         h_list, h_1list, h_2list, h_3list, h_4list, h_5list, timestart, score, status, best, time_total,
                         time_1s, time_2s, time_3s, time_4s, time_5s,  t_list,  t_1list,  t_2list,  t_3list, t_4list,
                         t_5list, pointbypoint, anotations, winner]
-    name_file = str(id) + '_' + tourney_name + '_'  +str(date_match)[:-4] + '_' + h_player + '_' + a_player + '_' + datetime.now().strftime("%H:%M:%S").replace(':','') +'.csv' 
+    name_file = str(ides) + '_' + tourney_name + '_'  +str(date_match)[:-4] + '_' + h_player + '_' + a_player + '_' + datetime.now().strftime("%H:%M:%S").replace(':','') +'.csv' 
     data_simple = pd.DataFrame(elements[:12] + elements [24:34] + elements[-2:]).T
     d_simple_check = 'SI'
-    data_simple.to_csv("C:/Users/Paula/Documents/Projects/TennisData/FS_matches/"+ year_scrap + "/simple/" + name_file, index=False, header=None)
+    data_simple.to_csv("C:/Users/Paula/Documents/Projects/TennisData/FS_matches/2025/simple/" + name_file, index=False, header=None)
     print('Se guardo data_simple de ' + tourney_name + ' ' + h_player + '_' + a_player)
     # arranca stats
     if status.lower() == 'walkover':
@@ -832,7 +832,7 @@ def scrap_match (URL, id, year_scrap):
         df_data_stat = pd.DataFrame(columns=labels_concat_double)
         df_data_stat.loc[0] = values_concat
     d_stat_check = 'SI'
-    df_data_stat.to_csv("C:/Users/Paula/Documents/Projects/TennisData/FS_matches/"+ year_scrap + "/stats/" + name_file, index=False, header=True)
+    df_data_stat.to_csv("C:/Users/Paula/Documents/Projects/TennisData/FS_matches/2025/stats/" + name_file, index=False, header=True)
     print('Se guardo data_stat de ' + tourney_name + ' ' + h_player + '_' + a_player)
     # arranca pbyp
     if status.lower() == 'walkover':
@@ -849,7 +849,7 @@ def scrap_match (URL, id, year_scrap):
             service = valor.pop('service', [])
             if elements[-1]=='home':
                 df_servicio = pd.DataFrame(service, columns=['Servicio'])
-                # Dividir los elementos en las columnas "recibe" y "saca"
+                # Dividesir los elementos en las columnas "recibe" y "saca"
                 df_servicio[['home', 'away']] = df_servicio['Servicio'].str.split('-', expand=True)
                 df_servicio = df_servicio.drop('Servicio', axis=1)
                 # Reemplazar los valores 'r' por 'home' y 's' por 'away'
@@ -857,14 +857,14 @@ def scrap_match (URL, id, year_scrap):
                 # Cambiar los nombres de las columnas
                 df_servicio.rename(columns={'home': 'r', 'away': 's'}, inplace=True)
                 
-                # Reemplazar 'r' por "recibidor" en la columna "recibe"
+                # Reemplazar 'r' por "recibidesor" en la columna "recibe"
                 df_servicio['r'] = df_servicio['r'].replace('home', elements[6])
                 df_servicio['r'] = df_servicio['r'].replace('away', elements[9])
                 df_servicio['s'] = df_servicio['s'].replace('home', elements[6])
                 df_servicio['s'] = df_servicio['s'].replace('away', elements[9])
             else:
                 df_servicio = pd.DataFrame(service, columns=['Servicio'])
-                # Dividir los elementos en las columnas "recibe" y "saca"
+                # Dividesir los elementos en las columnas "recibe" y "saca"
                 df_servicio[['home', 'away']] = df_servicio['Servicio'].str.split('-', expand=True)
                 df_servicio = df_servicio.drop('Servicio', axis=1)
                 # Reemplazar los valores 'r' por 'home' y 's' por 'away'
@@ -872,7 +872,7 @@ def scrap_match (URL, id, year_scrap):
                 # Cambiar los nombres de las columnas
                 df_servicio.rename(columns={'home': 'r', 'away': 's'}, inplace=True)
                 
-                # Reemplazar 'r' por "recibidor" en la columna "recibe"
+                # Reemplazar 'r' por "recibidesor" en la columna "recibe"
                 df_servicio['r'] = df_servicio['r'].replace('home', elements[9])
                 df_servicio['r'] = df_servicio['r'].replace('away', elements[6])
                 df_servicio['s'] = df_servicio['s'].replace('home', elements[9])
@@ -1026,125 +1026,24 @@ def scrap_match (URL, id, year_scrap):
             pbyp = {}
     
     d_pbyp_check = 'SI'
-    pbyp.to_csv("C:/Users/Paula/Documents/Projects/TennisData/FS_matches/" + year_scrap + "/pbyp/" + name_file, index=False, header=None)
+    pbyp.to_csv("C:/Users/Paula/Documents/Projects/TennisData/FS_matches/2025/pbyp/" + name_file, index=False, header=None)
     print('Se guardo data_pbyp de ' + tourney_name + ' ' + h_player + '_' + a_player)
 
     return round_match, h_player, a_player
 
-def tourney_to_matchs(URL, more_matches):
-    # Service al final creo que no se usa
-    OPTIONS = webdriver.ChromeOptions()
-    OPTIONS.add_argument('user-agent=Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, '
-                         'like Gecko) Chrome/103.0.0.0 Mobile Safari/537.36')
-    OPTIONS.add_argument('--disable-blink-features=AutomationControlled')
-    OPTIONS.add_argument('--disable-blink-features=AutomationControlled')
-    OPTIONS.add_argument('--headless')  # Modo headless para evitar que se abra la ventana
-    OPTIONS.add_argument('--disable-gpu')  # Opcional, recomendado en modo headless
-    OPTIONS.add_argument('--no-sandbox')  # Opcional, útil en ciertos entornos
-    TZ_PARAMS = {'timezoneId': 'America/Rosario'}
-    driver = webdriver.Chrome(options=OPTIONS)
-    driver.execute_cdp_cmd('Emulation.setTimezoneOverride', TZ_PARAMS)
-    driver.get(url=URL)
-    time.sleep(5)
-    
-    if more_matches == True :
-        try:
-            trying = 2
-            while trying > 0:
-                morematches_button = driver.find_element(By.XPATH, '//*[@id="live-table"]/div[1]/div/div/a')
-                driver.execute_script('arguments[0].click();', morematches_button)
-                driver.implicitly_wait(5)
-                time.sleep(5)     
-                trying = trying -1
-        except:
-            print('revisar partidos de gs')
-            '''trying = 1
-            while trying > 0:
-                morematches_button = driver.find_element(By.XPATH, '//*[@id="live-table"]/div[1]/div/div/a')
-                driver.execute_script('arguments[0].click();', morematches_button)
-                driver.implicitly_wait(5)
-            
-                trying = trying -1
-        finally:
-            print('torneo sin qualy')'''
-    
-    time.sleep(5)        
-    body = driver.execute_script("return document.body")
-    source = body.get_attribute('innerHTML')
-    
-    soup = BeautifulSoup(source, "html.parser")
-    
-    match_list = []    
-    matches = soup.find_all('div', class_=['event__header', 'event__match'])
-    for match in matches:
-        # New tournament
-        title = match.find('div', class_='event__titleBox')
-        print('leyendo', match.text)
-        if title is None:
-            match_id = match.get('id')[4:]
-            match_link = 'https://www.flashscore.com/match/' + match_id + '/#/match-summary/match-summary'
-            match_list.append(match_link)
+
+os.chdir('C:/Users/Paula/')
 
 
-    return match_list
+ides = '2981'
+link_one_match = 'https://www.flashscore.com/match/C8yoF4Ij/#/match-summary/match-summary'
 
+try:
+    d_round_match, d_h_player, d_a_player = scrap_match (ides, link_one_match)
+    # Escribir en el CSV (sobreescribir en cada iteración)
+except:
+    print('No se puedo leer un archivo')
 
-os.chdir('C:/Users/Paula/Documents/Projects/TennisData/FS_matches/')
-
-name = '*.csv'
-csv_files = glob.glob(name)
-no_scrap = []
-data_simple_list = []
-year_scrap = '2025'
-csv_files = csv_files[0]
-for filename in [csv_files]:
-    csv_file_controller = "C:/Users/Paula/Documents/Projects/TennisData/FS_matches/Check/control_" + filename.split('_')[0] + "_" + filename.split('_')[1] + ".csv"
-
-    links_df = pd.read_csv(filename, delimiter=';')
-    df_controller = pd.DataFrame(columns=['contador_partidos', 'year_df', 'tourney_name_df', 
-                           'd_pbyp_check', 'd_simple_check', 'd_stat_check', 
-                           'd_round_match', 'd_h_player', 'd_a_player'])
-    
-        # Iterar sobre las filas del DataFrame
-    for index, row in links_df.iterrows():
-               
-        id = row.iloc[0]
-        year_df = row.iloc[1]
-        link_df = row.iloc[2]
-    
-        print( 'Comienzo a leer ' + str(year_df) + ' ' + str(id))
-
-        link_df = link_df + 'results/'
-        if 'australian-open' in link_df.split('/')[-3] or 'us-open' in link_df.split('/')[-3] or 'french-open' in link_df.split('/')[-3] or 'wimbledon' in link_df.split('/')[-3]:
-            more_matches = True
-        else:
-            more_matches = False
-
-        list_of_matches = tourney_to_matchs(link_df,more_matches)
-        #list_of_matches = list_of_matches[:-228]
-        contador_partidos = 1
-
-        for one_match in list_of_matches:
-            d_pbyp_check = 'NO'
-            d_simple_check = 'NO'
-            d_stat_check = 'NO'
-            try:
-                d_round_match, d_h_player, d_a_player = scrap_match (one_match, id, year_scrap)
-                # Escribir en el CSV (sobreescribir en cada iteración)
-            except:
-                print('No se puedo leer un archivo')
-
-            if d_pbyp_check == 'NO' or d_simple_check == 'NO' or d_stat_check == 'NO':
-                nueva_fila = [contador_partidos, year_df, id, d_pbyp_check, d_simple_check, d_stat_check, 
-            'Sin ronda', 'sin jugador', one_match]
-            else:
-                nueva_fila = [contador_partidos, year_df, id, d_pbyp_check, d_simple_check, d_stat_check, 
-                d_round_match, d_h_player, d_a_player]
-
-            # Agregar la nueva fila utilizando loc
-            df_controller.loc[len(df_controller)] = nueva_fila
-            df_controller.to_csv(csv_file_controller, index=False)
-            contador_partidos = contador_partidos + 1
     
 
 
