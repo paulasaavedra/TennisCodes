@@ -73,27 +73,17 @@ def scrap_match (URL, id, year_scrap):
         else:
             winner = 'away'
         
-        title = soup.find(class_='tournamentHeader__country').text  
-        if len(title.split(' - ')) < 4:
-            tourney_level = title.split(' ')[0] #Dato
-            tourney_name = title.split(':')[1][1:]
-            if tourney_name.split(' ')[0] != 'Davis' and tourney_name.split(' ')[1] != 'Cup':
-                tourney_name = tourney_name.split('(')[0][:-1] #Dato
-            country = title.split('(')[1]
-            country = country.split(')')[0] #Dato
-            surface = title.split(',')[1]
-            surface = surface.split(' ')[1] #Dato
-            round_match = title.split(' ')[-1] #Dato
-        else:
-            tourney_level = title.split(' ')[0] + ' - ' + title.split(',')[0].split(' ')[-1] #Dato
-            tourney_name = title.split(':')[1][1:]
-            if tourney_name.split(' ')[0] != 'Davis' and tourney_name.split(' ')[1] != 'Cup':
-                tourney_name = tourney_name.split('(')[0][:-1] #Dato
-            country = title.split('(')[1]
-            country = country.split(')')[0] #Dato
-            surface = title.split(',')[1]
-            surface = surface.split(' ')[1] #Dato
-            round_match = title.split(' ')[-1] #Dato
+        breadcrumbs = soup.find_all('li', class_='wcl-breadcrumbItem_CiWQ7')
+
+        tourney_level = breadcrumbs[1].find('span').text.split(' - ')[0]
+        tourney_name = breadcrumbs[2].find('span').text.split(', ')[0]
+
+        if "Qualification" in tourney_name:
+            tourney_name = tourney_name.split(' - ')[0]
+        
+        country = breadcrumbs[2].find('img')['title']
+        surface = breadcrumbs[2].find('span').text.split(', ')[1].split(' - ')[0].capitalize()
+        round_match = breadcrumbs[2].find('span').text.split(' - ')[1]
         
         time_date = soup.find('div', class_='duelParticipant__startTime').text
         date_match = time_date.split(' ')[0]
@@ -156,8 +146,25 @@ def scrap_match (URL, id, year_scrap):
             else:
                 winner = 'away'
         
-         
+        
+        breadcrumbs = soup.find_all('li', class_='wcl-breadcrumbItem_CiWQ7')
+
+        tourney_level = breadcrumbs[1].find('span').text.split(' - ')[0]
+        tourney_name = breadcrumbs[2].find('span').text.split(', ')[0]
+        if "Qualification" in tourney_name:
+            tourney_name = tourney_name.split(' - ')[0]
+        country = breadcrumbs[2].find('img')['title']
+        try:
+            surface = breadcrumbs[2].find('span').text.split(', ')[1].split(' - ')[0].capitalize()
+        except:
+            surface = ""
+        try:
+            round_match = breadcrumbs[2].find('span').text.split(' - ')[1]
+        except:
+            round_match = ""
+        ''' 
         title = soup.find(class_='tournamentHeader__country').text  
+        
         if len(title.split(' - ')) < 4:
             tourney_level = title.split(' ')[0] #Dato
             tourney_name = title.split(':')[1][1:]
@@ -184,7 +191,7 @@ def scrap_match (URL, id, year_scrap):
             except:
                 surface = 'Completar'
             round_match = title.split(' ')[-1] #Dato
-
+        '''
         
         try:
             anotations = soup.find(class_='infoBox__wrapper infoBoxModule').text
@@ -361,9 +368,11 @@ def scrap_match (URL, id, year_scrap):
         tabs = soup.find(class_='filterOver filterOver--indent')
         if tabs != None and ('Stats' in tabs.text or 'stats' in tabs.text):
             try:
-                stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[7]/div/a[2]')
+                stats_button = driver.find_element(By.XPATH, '//button[contains(text(), "Stats")]')
+                '''stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[7]/div/a[2]')
                 if stats_button.text.upper() != 'STATS':
                     stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[2]')
+                '''
                 driver.execute_script('arguments[0].click();', stats_button)
                 driver.implicitly_wait(10)
                 
@@ -374,15 +383,28 @@ def scrap_match (URL, id, year_scrap):
                 soup = BeautifulSoup(page_src, 'lxml')
                 
                 # Statistics overall
-                stats = soup.find_all('div', class_='section')
+                rows = soup.find_all('div', class_='wcl-row_OFViZ')
                 
-                for stat in stats:
-                    t_service = stat.find_all(class_='wcl-simpleText_Asp-0 wcl-scores-simpleText-01_pV2Wk wcl-bold_roH-0')                       
+                for row in rows:
+                    category = row.find('div', class_='wcl-category_ITphf')
+                
+                    # Valor local (puede tener strong solo o strong + span)
+                    h_block = category.find('div', class_='wcl-value_IuyQw wcl-homeValue_-iJBW')
+                    h_strong = h_block.find('strong').text.strip() if h_block else ''
+                    h_span = h_block.find('span').text.strip() if h_block and h_block.find('span') else ''
+                    h_list.append(f"{h_strong} {h_span}".strip())
+                
+                    # Nombre de la estadística
+                    t_block = category.find('div', class_='wcl-category_7qsgP')
+                    t_text = t_block.find('strong').text.strip() if t_block else ''
+                    t_list.append(t_text)
+                
+                    # Valor visitante (puede tener strong solo o strong + span)
+                    a_block = category.find('div', class_='wcl-value_IuyQw wcl-awayValue_rQvxs')
+                    a_strong = a_block.find('strong').text.strip() if a_block else ''
+                    a_span = a_block.find('span').text.strip() if a_block and a_block.find('span') else ''
+                    a_list.append(f"{a_strong} {a_span}".strip())
                     
-                    for ser in range(0,len(t_service),3):
-                        h_list.append(t_service[ser].text)
-                        t_list.append(t_service[ser+1].text)
-                        a_list.append(t_service[ser+2].text)
             except:
                 print('stats total problem')
                 exit() 
@@ -391,26 +413,39 @@ def scrap_match (URL, id, year_scrap):
         
                 if h_1set!='' and a_1set!='' and h_2set!='' and a_2set!='':
                     # open first set stats
-                    stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[2]/button')
-                    if stats_button.text.upper() == 'SET 1':
+                    stats_button = driver.find_element(By.XPATH, '//button[contains(text(), "Set 1")]')
+                    '''if stats_button.text.upper() == 'SET 1':
                         driver.execute_script('arguments[0].click();', stats_button)
                         driver.implicitly_wait(10)  
                     else:
-                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[2]/button')
-                        driver.execute_script('arguments[0].click();', stats_button)
-                        driver.implicitly_wait(10)
+                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[2]/button')'''
+                    
+                    driver.execute_script('arguments[0].click();', stats_button)
+                    driver.implicitly_wait(10)
                     
 
                     soup = BeautifulSoup(driver.page_source, 'lxml')
-                    stats = soup.find_all('div', class_='section')
-                
-                    for stat in stats:
-                        t_service = stat.find_all(class_='wcl-simpleText_Asp-0 wcl-scores-simpleText-01_pV2Wk wcl-bold_roH-0')                       
-                        
-                        for ser in range(0,len(t_service),3):
-                            h_1list.append(t_service[ser].text)
-                            t_1list.append(t_service[ser+1].text)
-                            a_1list.append(t_service[ser+2].text)
+                    rows = soup.find_all('div', class_='wcl-row_OFViZ')
+                    
+                    for row in rows:
+                        category = row.find('div', class_='wcl-category_ITphf')
+                    
+                        # Valor local (puede tener strong solo o strong + span)
+                        h_block = category.find('div', class_='wcl-value_IuyQw wcl-homeValue_-iJBW')
+                        h_strong = h_block.find('strong').text.strip() if h_block else ''
+                        h_span = h_block.find('span').text.strip() if h_block and h_block.find('span') else ''
+                        h_1list.append(f"{h_strong} {h_span}".strip())
+                    
+                        # Nombre de la estadística
+                        t_block = category.find('div', class_='wcl-category_7qsgP')
+                        t_text = t_block.find('strong').text.strip() if t_block else ''
+                        t_1list.append(t_text)
+                    
+                        # Valor visitante (puede tener strong solo o strong + span)
+                        a_block = category.find('div', class_='wcl-value_IuyQw wcl-awayValue_rQvxs')
+                        a_strong = a_block.find('strong').text.strip() if a_block else ''
+                        a_span = a_block.find('span').text.strip() if a_block and a_block.find('span') else ''
+                        a_1list.append(f"{a_strong} {a_span}".strip())
                 else:
                     h_1list = [0] * len(t_list)
                     a_1list = [0] * len(t_list)
@@ -419,29 +454,41 @@ def scrap_match (URL, id, year_scrap):
                 # Second set statistics
                 if h_2set!='' and a_2set!='':
                     # open first set stats
-                    try:
-                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[3]/button')
-                        if stats_button.text.upper() == 'SET 2':
+                    #try:
+                    stats_button = driver.find_element(By.XPATH, '//button[contains(text(), "Set 2")]')
+                    '''if stats_button.text.upper() == 'SET 2':
                             driver.execute_script('arguments[0].click();', stats_button)
                         else:
                             stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[3]/button')
                             driver.execute_script('arguments[0].click();', stats_button)
                             driver.implicitly_wait(10)
                     except:
-                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[3]/button')
-                        driver.execute_script('arguments[0].click();', stats_button)
-                        driver.implicitly_wait(10)
+                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[3]/button')'''
+                    driver.execute_script('arguments[0].click();', stats_button)
+                    driver.implicitly_wait(10)
                         
                     soup = BeautifulSoup(driver.page_source, 'lxml')
-                    stats = soup.find_all('div', class_='section')
+                    rows = soup.find_all('div', class_='wcl-row_OFViZ')
                     
-                    for stat in stats:
-                        t_service = stat.find_all(class_='wcl-simpleText_Asp-0 wcl-scores-simpleText-01_pV2Wk wcl-bold_roH-0')                       
-                        
-                        for ser in range(0,len(t_service),3):
-                            h_2list.append(t_service[ser].text)
-                            t_2list.append(t_service[ser+1].text)
-                            a_2list.append(t_service[ser+2].text)
+                    for row in rows:
+                        category = row.find('div', class_='wcl-category_ITphf')
+                    
+                        # Valor local (puede tener strong solo o strong + span)
+                        h_block = category.find('div', class_='wcl-value_IuyQw wcl-homeValue_-iJBW')
+                        h_strong = h_block.find('strong').text.strip() if h_block else ''
+                        h_span = h_block.find('span').text.strip() if h_block and h_block.find('span') else ''
+                        h_2list.append(f"{h_strong} {h_span}".strip())
+                    
+                        # Nombre de la estadística
+                        t_block = category.find('div', class_='wcl-category_7qsgP')
+                        t_text = t_block.find('strong').text.strip() if t_block else ''
+                        t_2list.append(t_text)
+                    
+                        # Valor visitante (puede tener strong solo o strong + span)
+                        a_block = category.find('div', class_='wcl-value_IuyQw wcl-awayValue_rQvxs')
+                        a_strong = a_block.find('strong').text.strip() if a_block else ''
+                        a_span = a_block.find('span').text.strip() if a_block and a_block.find('span') else ''
+                        a_2list.append(f"{a_strong} {a_span}".strip())
                 else:
                     h_2list = [0] * len(t_list)
                     a_2list = [0] * len(t_list)
@@ -450,9 +497,9 @@ def scrap_match (URL, id, year_scrap):
                 # Third set statistics
                 if h_3set!='' and a_3set!='':
                     # open first set stats
-                    try:
-                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[4]/button')
-                        if stats_button.text.upper() == 'SET 3':
+                    #try:
+                    stats_button = driver.find_element(By.XPATH, '//button[contains(text(), "Set 3")]')
+                    '''if stats_button.text.upper() == 'SET 3':
                             driver.execute_script('arguments[0].click();', stats_button)
                             driver.implicitly_wait(10)  
                         else:
@@ -460,19 +507,31 @@ def scrap_match (URL, id, year_scrap):
                             driver.execute_script('arguments[0].click();', stats_button)
                             driver.implicitly_wait(10)
                     except:
-                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[4]/button')
-                        driver.execute_script('arguments[0].click();', stats_button)
-                        driver.implicitly_wait(10)
+                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[4]/button')'''
+                    driver.execute_script('arguments[0].click();', stats_button)
+                    driver.implicitly_wait(10)
                     soup = BeautifulSoup(driver.page_source, 'lxml')
-                    stats = soup.find_all('div', class_='section')
-            
-                    for stat in stats:
-                        t_service = stat.find_all(class_='wcl-simpleText_Asp-0 wcl-scores-simpleText-01_pV2Wk wcl-bold_roH-0')                       
-                        
-                        for ser in range(0,len(t_service),3):
-                            h_3list.append(t_service[ser].text)
-                            t_3list.append(t_service[ser+1].text)
-                            a_3list.append(t_service[ser+2].text)
+                    rows = soup.find_all('div', class_='wcl-row_OFViZ')
+                    
+                    for row in rows:
+                        category = row.find('div', class_='wcl-category_ITphf')
+                    
+                        # Valor local (puede tener strong solo o strong + span)
+                        h_block = category.find('div', class_='wcl-value_IuyQw wcl-homeValue_-iJBW')
+                        h_strong = h_block.find('strong').text.strip() if h_block else ''
+                        h_span = h_block.find('span').text.strip() if h_block and h_block.find('span') else ''
+                        h_3list.append(f"{h_strong} {h_span}".strip())
+                    
+                        # Nombre de la estadística
+                        t_block = category.find('div', class_='wcl-category_7qsgP')
+                        t_text = t_block.find('strong').text.strip() if t_block else ''
+                        t_3list.append(t_text)
+                    
+                        # Valor visitante (puede tener strong solo o strong + span)
+                        a_block = category.find('div', class_='wcl-value_IuyQw wcl-awayValue_rQvxs')
+                        a_strong = a_block.find('strong').text.strip() if a_block else ''
+                        a_span = a_block.find('span').text.strip() if a_block and a_block.find('span') else ''
+                        a_3list.append(f"{a_strong} {a_span}".strip())
                 else:
                     h_3list = [0] * len(t_list)
                     a_3list = [0] * len(t_list)
@@ -481,9 +540,9 @@ def scrap_match (URL, id, year_scrap):
                 # Fourth set statistics
                 if h_4set!='' and a_4set!='':
                     # open first set stats
-                    try:
-                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[5]/button')
-                        if stats_button.text.upper() == 'SET 4':
+                    #try:
+                    stats_button = driver.find_element(By.XPATH, '//button[contains(text(), "Set 4")]')
+                    '''if stats_button.text.upper() == 'SET 4':
                             driver.execute_script('arguments[0].click();', stats_button)
                             driver.implicitly_wait(10)  
                         else:
@@ -491,20 +550,32 @@ def scrap_match (URL, id, year_scrap):
                             driver.execute_script('arguments[0].click();', stats_button)
                             driver.implicitly_wait(10)
                     except:
-                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[5]/button')
-                        driver.execute_script('arguments[0].click();', stats_button)
-                        driver.implicitly_wait(10)
+                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[5]/button')'''
+                    driver.execute_script('arguments[0].click();', stats_button)
+                    driver.implicitly_wait(10)
                         
                     soup = BeautifulSoup(driver.page_source, 'lxml')
-                    stats = soup.find_all('div', class_='section')
-            
-                    for stat in stats:
-                        t_service = stat.find_all(class_='wcl-simpleText_Asp-0 wcl-scores-simpleText-01_pV2Wk wcl-bold_roH-0')                       
-                        
-                        for ser in range(0,len(t_service),3):
-                            h_4list.append(t_service[ser].text)
-                            t_4list.append(t_service[ser+1].text)
-                            a_4list.append(t_service[ser+2].text)
+                    rows = soup.find_all('div', class_='wcl-row_OFViZ')
+                    
+                    for row in rows:
+                        category = row.find('div', class_='wcl-category_ITphf')
+                    
+                        # Valor local (puede tener strong solo o strong + span)
+                        h_block = category.find('div', class_='wcl-value_IuyQw wcl-homeValue_-iJBW')
+                        h_strong = h_block.find('strong').text.strip() if h_block else ''
+                        h_span = h_block.find('span').text.strip() if h_block and h_block.find('span') else ''
+                        h_4list.append(f"{h_strong} {h_span}".strip())
+                    
+                        # Nombre de la estadística
+                        t_block = category.find('div', class_='wcl-category_7qsgP')
+                        t_text = t_block.find('strong').text.strip() if t_block else ''
+                        t_4list.append(t_text)
+                    
+                        # Valor visitante (puede tener strong solo o strong + span)
+                        a_block = category.find('div', class_='wcl-value_IuyQw wcl-awayValue_rQvxs')
+                        a_strong = a_block.find('strong').text.strip() if a_block else ''
+                        a_span = a_block.find('span').text.strip() if a_block and a_block.find('span') else ''
+                        a_4list.append(f"{a_strong} {a_span}".strip())
                 else:
                     h_4list = [0] * len(t_list)
                     a_4list = [0] * len(t_list)
@@ -513,9 +584,9 @@ def scrap_match (URL, id, year_scrap):
                 # Fifth set statistics
                 if h_5set!='' and a_5set!='':
                     # open first set stats
-                    try:
-                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[6]/button')
-                        if stats_button.text.upper() == 'SET 5':
+                    #try:
+                    stats_button = driver.find_element(By.XPATH, '//button[contains(text(), "Set 5")]')
+                    '''if stats_button.text.upper() == 'SET 5':
                             driver.execute_script('arguments[0].click();', stats_button)
                             driver.implicitly_wait(10)  
                         else:
@@ -523,20 +594,32 @@ def scrap_match (URL, id, year_scrap):
                             driver.execute_script('arguments[0].click();', stats_button)
                             driver.implicitly_wait(10)
                     except:
-                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[6]/button')
-                        driver.execute_script('arguments[0].click();', stats_button)
-                        driver.implicitly_wait(10)
+                        stats_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[6]/button')'''
+                    driver.execute_script('arguments[0].click();', stats_button)
+                    driver.implicitly_wait(10)
                         
                     soup = BeautifulSoup(driver.page_source, 'lxml')
-                    stats = soup.find_all('div', class_='section')
+                    rows = soup.find_all('div', class_='wcl-row_OFViZ')
                     
-                    for stat in stats:
-                        t_service = stat.find_all(class_='wcl-simpleText_Asp-0 wcl-scores-simpleText-01_pV2Wk wcl-bold_roH-0')                       
-                        
-                        for ser in range(0,len(t_service),3):
-                            h_5list.append(t_service[ser].text)
-                            t_5list.append(t_service[ser+1].text)
-                            a_5list.append(t_service[ser+2].text)
+                    for row in rows:
+                        category = row.find('div', class_='wcl-category_ITphf')
+                    
+                        # Valor local (puede tener strong solo o strong + span)
+                        h_block = category.find('div', class_='wcl-value_IuyQw wcl-homeValue_-iJBW')
+                        h_strong = h_block.find('strong').text.strip() if h_block else ''
+                        h_span = h_block.find('span').text.strip() if h_block and h_block.find('span') else ''
+                        h_5list.append(f"{h_strong} {h_span}".strip())
+                    
+                        # Nombre de la estadística
+                        t_block = category.find('div', class_='wcl-category_7qsgP')
+                        t_text = t_block.find('strong').text.strip() if t_block else ''
+                        t_5list.append(t_text)
+                    
+                        # Valor visitante (puede tener strong solo o strong + span)
+                        a_block = category.find('div', class_='wcl-value_IuyQw wcl-awayValue_rQvxs')
+                        a_strong = a_block.find('strong').text.strip() if a_block else ''
+                        a_span = a_block.find('span').text.strip() if a_block and a_block.find('span') else ''
+                        a_5list.append(f"{a_strong} {a_span}".strip())
                 else:
                     h_5list = [0] * len(t_list)
                     a_5list = [0] * len(t_list)
@@ -552,9 +635,9 @@ def scrap_match (URL, id, year_scrap):
                 option_botton = '2'
             try:
                 if h_1set!='' and a_1set!='':
-                    points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[7]/div/a[' + option_botton + ']/button')
-                    if points_button.text.upper() != 'POINT BY POINT':
-                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[' + option_botton + ']/button')
+                    points_button = driver.find_element(By.XPATH, '//button[contains(text(), "Point by Point")]')
+                    '''if points_button.text.upper() != 'POINT BY POINT':
+                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[' + option_botton + ']/button')'''
                     driver.execute_script('arguments[0].click();', points_button)
                     driver.implicitly_wait(10)
                     
@@ -590,9 +673,9 @@ def scrap_match (URL, id, year_scrap):
                                 pointbypoint['1set']['service'] = pointbypoint['1set']['service'] + service_a_tb [: len(games)-13]
                             break
                 if h_2set!='' and a_2set!='' and (h_2set!='0' or a_2set!='0'):
-                    try:
-                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[2]/button')
-                        if points_button.text.upper() == 'SET 2':
+                    #try:
+                    points_button = driver.find_element(By.XPATH, '//button[contains(text(), "Set 2")]')
+                    '''if points_button.text.upper() == 'SET 2':
                             driver.execute_script('arguments[0].click();', points_button)
                             driver.implicitly_wait(10)  
                         else:
@@ -600,9 +683,9 @@ def scrap_match (URL, id, year_scrap):
                             driver.execute_script('arguments[0].click();', points_button)
                             driver.implicitly_wait(10)
                     except:
-                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[2]/button')
-                        driver.execute_script('arguments[0].click();', points_button)
-                        driver.implicitly_wait(10)
+                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[2]/button')'''
+                    driver.execute_script('arguments[0].click();', points_button)
+                    driver.implicitly_wait(10)
                         
                     soup = BeautifulSoup(driver.page_source, 'lxml')
                     points = soup.find_all('div', class_='matchHistoryRowWrapper')
@@ -636,9 +719,9 @@ def scrap_match (URL, id, year_scrap):
             
                        
                 if h_3set!='' and a_3set!='' and (h_3set!='0' or a_3set!='0'):
-                    try:
-                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[3]/button')
-                        if points_button.text.upper() == 'SET 3':
+                    #try:
+                    points_button = driver.find_element(By.XPATH, '//button[contains(text(), "Set 3")]')
+                    '''if points_button.text.upper() == 'SET 3':
                             driver.execute_script('arguments[0].click();', points_button)
                             driver.implicitly_wait(10)  
                         else:
@@ -646,9 +729,9 @@ def scrap_match (URL, id, year_scrap):
                             driver.execute_script('arguments[0].click();', points_button)
                             driver.implicitly_wait(10)
                     except:
-                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[3]/button')
-                        driver.execute_script('arguments[0].click();', points_button)
-                        driver.implicitly_wait(10)
+                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[3]/button')'''
+                    driver.execute_script('arguments[0].click();', points_button)
+                    driver.implicitly_wait(10)
                         
                     soup = BeautifulSoup(driver.page_source, 'lxml')
                     points = soup.find_all('div', class_='matchHistoryRowWrapper')
@@ -681,10 +764,10 @@ def scrap_match (URL, id, year_scrap):
                             break
             
                 if h_4set!='' and a_4set!='' and (h_4set!='0' or a_4set!='0'):
-                    try:
+                    #try:
                         
-                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[4]/button')
-                        if points_button.text.upper() == 'SET 4':
+                    points_button = driver.find_element(By.XPATH, '//button[contains(text(), "Set 4")]')
+                    '''if points_button.text.upper() == 'SET 4':
                             driver.execute_script('arguments[0].click();', points_button)
                             driver.implicitly_wait(10)  
                         else:
@@ -692,9 +775,9 @@ def scrap_match (URL, id, year_scrap):
                             driver.execute_script('arguments[0].click();', points_button)
                             driver.implicitly_wait(10)
                     except:
-                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[4]/button')
-                        driver.execute_script('arguments[0].click();', points_button)
-                        driver.implicitly_wait(10)
+                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[4]/button')'''
+                    driver.execute_script('arguments[0].click();', points_button)
+                    driver.implicitly_wait(10)
                         
                     soup = BeautifulSoup(driver.page_source, 'lxml')
                     points = soup.find_all('div', class_='matchHistoryRowWrapper')
@@ -727,9 +810,9 @@ def scrap_match (URL, id, year_scrap):
                             break
             
                 if h_5set!='' and a_5set!='' and (h_5set!='0' or a_5set!='0'):
-                    try:
-                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[8]/div/a[5]/button')
-                        if points_button.text.upper() == 'SET 5':
+                    #try:
+                    points_button = driver.find_element(By.XPATH, '//button[contains(text(), "Set 5")]')
+                    '''if points_button.text.upper() == 'SET 5':
                             driver.execute_script('arguments[0].click();', points_button)
                             driver.implicitly_wait(10)  
                         else:
@@ -737,9 +820,9 @@ def scrap_match (URL, id, year_scrap):
                             driver.execute_script('arguments[0].click();', points_button)
                             driver.implicitly_wait(10)
                     except:
-                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[5]/button')
-                        driver.execute_script('arguments[0].click();', points_button)
-                        driver.implicitly_wait(10)
+                        points_button = driver.find_element(By.XPATH, '//*[@id="detail"]/div[9]/div/a[5]/button')'''
+                    driver.execute_script('arguments[0].click();', points_button)
+                    driver.implicitly_wait(10)
                         
                     soup = BeautifulSoup(driver.page_source, 'lxml')
                     points = soup.find_all('div', class_='matchHistoryRowWrapper')
@@ -1121,7 +1204,10 @@ for filename in [csv_files]:
             more_matches = False
 
         list_of_matches = tourney_to_matchs(link_df,more_matches)
-        #list_of_matches = list_of_matches[:-228]
+        list_of_matches = list_of_matches[:-108]
+        
+        
+
         contador_partidos = 1
 
         for one_match in list_of_matches:

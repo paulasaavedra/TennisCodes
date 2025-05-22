@@ -3,6 +3,8 @@
 dbm <- db[tourney_level != 'CH' & match_status != 'Walkover']
 #dbm <- dbm [round_match != 'Q1' & round_match != 'Q2' & round_match != 'Q3']
 
+dbm <- dbm [as.Date(date_match, format = "%Y-%m-%d") > as.Date("2024-12-20")]
+
 dbm[, match_id := sub("_\\d+$", "", match_id)]
 
 ganados <- dbm [,.N,by=c('match_id','tourney_name','w_player','w_nac','time_total', 'round_match' )]

@@ -10,7 +10,7 @@ dbm <- dbm[, .(match_id, w_player, w_nac, l_player, l_nac, score)]
 # Me traigo las estadisticas totales del ganador
 dbm <- merge(
   dbm, 
-  db_stats_w_t[, .(match_id, w_t_aces, w_t_double_faults,w_t_service_points_played)],  
+  db_stats_w_t[, .(match_id, w_t_aces, w_t_double_faults,w_t_service_points_played,w_t_average_1st_serve_speed, w_t_average_2nd_serve_speed )],  
   by = "match_id", 
   all.x = TRUE
 )
@@ -18,7 +18,7 @@ dbm <- merge(
 # Me traigo las estadisticas totales del perdedor
 dbm <- merge(
   dbm, 
-  db_stats_l_t[, .(match_id, l_t_aces, l_t_double_faults, l_t_service_points_played)],  
+  db_stats_l_t[, .(match_id, l_t_aces, l_t_double_faults, l_t_service_points_played, l_t_average_1st_serve_speed, l_t_average_2nd_serve_speed)],  
   by = "match_id", 
   all.x = TRUE
 )
@@ -31,7 +31,9 @@ winners <- dbm[, .(
   nac = w_nac,
   aces = w_t_aces,
   df = w_t_double_faults,
-  service_points_plyd = w_t_service_points_played
+  service_points_plyd = w_t_service_points_played,
+  first_speed = w_t_average_1st_serve_speed,
+  sec_speed = w_t_average_2nd_serve_speed
 )]
 
 # Crear un nuevo data.table con las columnas de los perdedores
@@ -40,7 +42,10 @@ losers <- dbm[, .(
   nac = l_nac,
   aces = l_t_aces,
   df = l_t_double_faults,
-  service_points_plyd = l_t_service_points_played
+  service_points_plyd = l_t_service_points_played,
+  first_speed = l_t_average_1st_serve_speed,
+  sec_speed = l_t_average_2nd_serve_speed
+  
   
 )]
 
@@ -48,11 +53,15 @@ losers <- dbm[, .(
 combined <- rbind(winners, losers)
 pj <- combined [,.N,by= player]
 names(pj) [2] <- 'pj'
+
+
 # Calcular promedios por jugador
 player_avg <- combined[, .(
   sum_aces = sum(aces, na.rm = TRUE),
   sum_df = sum(df, na.rm = TRUE),
-  sum_ptos_plyd = sum(service_points_plyd, na.rm = TRUE)
+  sum_ptos_plyd = sum(service_points_plyd, na.rm = TRUE),
+  fist = mean(first_speed),
+  second = mean (sec_speed)
 ), by = player]
 
 

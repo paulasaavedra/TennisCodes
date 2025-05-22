@@ -2,13 +2,15 @@
 library (zoo)
 
 # Filtrar el data.table eliminando ciertos torneos
-dbm <- db[match_status != 'Walkover' & date_match > "2024-12-25"]
+dbm <- db[match_status != 'Walkover' ]
 dbm <- dbm [round_match != 'Q1' & round_match != 'Q2' & round_match != 'Q3']
+dbm <- dbm [w_nac == 'Argentina' | l_nac == 'Argentina']
 
 # Trabajo con el ranking
 rank[, date_rank := as.Date(date_rank, format="%d/%m/%Y")]
 
-rank <- rank [date_rank > "2024-12-01" & rank_position < 101 ]
+#rank <- rank [date_rank > "2024-12-20"]
+rank <- rank [rank_position < 11]
 
 # Expandir el rango de fechas hasta hoy
 rank_expanded <- rank[, .(date_rank = seq(min(date_rank), Sys.Date(), by = "day")), by = player]
@@ -60,9 +62,10 @@ setnames(dbm, "rank_position", "l_rank")
 dbm[, c("w_player_lower", "l_player_lower") := NULL]
 rank_expanded[, player_lower := NULL]
 
+dbm[is.na(dbm)] <- 111
 
-ganados <- dbm[l_rank < 101]
-perdidos <- dbm[w_rank < 101]
+ganados <- dbm[l_rank < 11 & w_nac == 'Argentina']
+perdidos <- dbm[w_rank < 11 & l_nac == 'Argentina']
 
 ganados <- ganados[,.N, by = c('w_player','w_nac')]
 perdidos <- perdidos[,.N, by = c('l_player', 'l_nac')]
@@ -77,7 +80,7 @@ names(perdidos)[3] <- "Perdidos"
 resultados <- merge(ganados, perdidos, by = c("Jugador","Pais"), all=TRUE)
 
 # Poner 0 a los que tienen NA
-resultados[is.na(resultados)] <- 'NO'
+resultados[is.na(resultados)] <- 0
 
 # sumar ganados y perdidos en una misma columna llamada "Jugados"
 resultados <- resultados[, Jugados:=Ganados+Perdidos]

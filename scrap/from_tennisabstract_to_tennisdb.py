@@ -54,7 +54,8 @@ map_tourney_level = {
     'C': 'CH',
     'W': 'WTA',
     'I': 'INTERNATIONAL',
-    'P': 'PREMIER'
+    'P': 'PREMIER',
+    'F': 'FINAL'
 }
 
 df_completo['tourney_level'] = df_completo['tourney_level'].map(map_tourney_level)

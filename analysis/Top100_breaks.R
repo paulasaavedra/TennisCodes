@@ -1,11 +1,11 @@
 # Para saber edad y paises en que ingresaron al top 100
 library(data.table)
 
-dbm <- db [rank < 101]
+dbm <- rank [rank_position < 101]
 
 
 dbm <- dbm[, .SD[c(1)], by=player]
-dbm <- dbm [date > 20000000]
+
 # Reemplazar comas por puntos y convertir a numérico
 dbm[, points := as.numeric(gsub(",", "", points))]
 

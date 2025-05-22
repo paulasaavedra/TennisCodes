@@ -1,17 +1,17 @@
-# Primero me quedo con los argentinos y que fueron top 100
-auxi <- rank
-rank <- rank [country == 'ARG' &  rank_position<101]
+library(dplyr)
 
-library (zoo)
+# Trabajo con el ranking
 rank[, date_rank := as.Date(date_rank, format="%d/%m/%Y")]
 
-# Creamos una lista de todas las fechas posibles para cada jugador
-rank_expanded <- rank[, .(date_rank = seq(min(date_rank), max(date_rank), by = "day")), by = player]
+rank <- rank [age<27 & rank_position<30]
+
+# Expandir el rango de fechas hasta hoy
+rank_expanded <- rank[, .(date_rank = seq(min(date_rank), Sys.Date(), by = "day")), by = player]
 
 # Hacemos un join con el datatable original para obtener los valores de las columnas correspondientes
 rank_expanded <- merge(rank_expanded, rank, by = c("player", "date_rank"), all.x = TRUE)
 
-# Ahora rellenamos las filas faltantes con los valores de la fecha anterior
+# Rellenamos los valores faltantes con la última observación disponible
 rank_expanded[, `:=`(
   rank_position = zoo::na.locf(rank_position, na.rm = FALSE),
   rank_change = zoo::na.locf(rank_change, na.rm = FALSE),
@@ -28,8 +28,19 @@ rank_expanded[, `:=`(
 
 rank_expanded <- as.data.table(rank_expanded)
 
-dias <- rank_expanded[rank_position<26]
-dias <- dias[,.N,by=player]
 
-dias[, semanas := round(N / 7,2)]
-dias[, años := N / 365]
+
+# Suponiendo que rank_expanded es tu DataFrame
+result <- rank_expanded %>%
+  group_by(country, date_rank) %>%
+  filter(rank_position == min(rank_position)) %>%
+  ungroup()
+
+# Suponiendo que rank_expanded es tu DataFrame
+result <- rank_expanded %>%
+  group_by(country, date_rank) %>%
+  ungroup()
+
+
+setDT(result)
+auxi <- result[,.N,by=c('player','country')]
