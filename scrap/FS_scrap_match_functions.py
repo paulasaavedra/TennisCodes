@@ -1204,7 +1204,7 @@ for filename in [csv_files]:
             more_matches = False
 
         list_of_matches = tourney_to_matchs(link_df,more_matches)
-        list_of_matches = list_of_matches[:-108]
+        list_of_matches = list_of_matches[:-130]
         
         
 
