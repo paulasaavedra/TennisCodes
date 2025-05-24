@@ -1849,7 +1849,7 @@ for filename in [csv_files]:
                     one_match, id, year_scrap
                 )
                 # Escribir en el CSV (sobreescribir en cada iteración)
-            except:
+            except Exception:
                 print("No se puedo leer un archivo")
 
             if d_pbyp_check == "NO" or d_simple_check == "NO" or d_stat_check == "NO":

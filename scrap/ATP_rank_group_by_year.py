@@ -9,15 +9,26 @@ import os
 import glob
 import pandas as pd
 
-weeks_path = 'C:/Users/Paula/Documents/Projects/TennisData/ATP_ranking/rank_weeks/'
-years_path = 'C:/Users/Paula/Documents/Projects/TennisData/ATP_ranking/rank_years/'
+weeks_path = "/Users/paula/Documents/TennisData/TennisData/ATP_ranking/rank_weeks/"
+years_path = "/Users/paula/Documents/TennisData/TennisData/ATP_ranking/rank_years/"
 
 # Nombres de las columnas que se quieren agregar (sin 'date' porque la añadiremos aparte)
-columns_names = ['rank', 'rank_change', 'country', 'player_id', 'player', 
-                 'age', 'points', 'points_change', 'tourneyPlayed', 'dropping', 'nextBest']
+columns_names = [
+    "rank",
+    "rank_change",
+    "country",
+    "player_id",
+    "player",
+    "age",
+    "points",
+    "points_change",
+    "tourneyPlayed",
+    "dropping",
+    "nextBest",
+]
 
 # Buscar todos los archivos que coincidan con el formato
-csv_files = glob.glob(os.path.join(weeks_path, 'ranking_*.csv'))
+csv_files = glob.glob(os.path.join(weeks_path, "ranking_*.csv"))
 
 # Diccionario para agrupar los archivos por año
 files_per_year = {}
@@ -40,25 +51,25 @@ for file in csv_files:
 for year, files in files_per_year.items():
     # Lista para almacenar los DataFrames
     df_list = []
-    
+
     # Iterar sobre los archivos y sus fechas
     for file, date_str in files:
         # Leer el archivo CSV
         df = pd.read_csv(file, names=columns_names, header=None)
-        
+
         # Agregar la columna de fecha como cadena en formato 'yyyymmdd'
-        df['date'] = date_str
-        
+        df["date"] = date_str
+
         # Reordenar las columnas para que 'date' sea la primera
-        df = df[['date'] + columns_names]
-        
+        df = df[["date"] + columns_names]
+
         # Agregar el DataFrame a la lista
         df_list.append(df)
-    
+
     # Concatenar los DataFrames del año
     year_df = pd.concat(df_list)
-    
-    # Guardar el archivo concatenado con los datos del año
-    year_df.to_csv(os.path.join(years_path, f'{year}.csv'), index=False)
 
-    print(f'Archivo para el año {year} creado con éxito.')
+    # Guardar el archivo concatenado con los datos del año
+    year_df.to_csv(os.path.join(years_path, f"{year}.csv"), index=False)
+
+    print(f"Archivo para el año {year} creado con éxito.")
