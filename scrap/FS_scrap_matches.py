@@ -251,11 +251,11 @@ def scrap_match(URL, id, year_scrap):
                 .split(" - ")[0]
                 .capitalize()
             )
-        except:
+        except Exception:
             surface = ""
         try:
             round_match = breadcrumbs[2].find("span").text.split(" - ")[1]
-        except:
+        except Exception:
             round_match = ""
         """ 
         title = soup.find(class_='tournamentHeader__country').text  
@@ -290,7 +290,7 @@ def scrap_match(URL, id, year_scrap):
 
         try:
             anotations = soup.find(class_="infoBox__wrapper infoBoxModule").text
-        except:
+        except Exception:
             anotations = ""
 
         time_date = soup.find("div", class_="duelParticipant__startTime").text
@@ -714,9 +714,8 @@ def scrap_match(URL, id, year_scrap):
                     )
                     a_list.append(f"{a_strong} {a_span}".strip())
 
-            except:
+            except Exception:
                 print("stats total problem")
-                exit()
             try:
                 # First set statistics
 
@@ -1023,7 +1022,7 @@ def scrap_match(URL, id, year_scrap):
                     a_5list = [0] * len(t_list)
                     t_5list = t_list.copy()
 
-            except:
+            except Exception:
                 print("stats sets problem")
 
         if tabs != None and ("point" in tabs.text or "Point" in tabs.text):
@@ -1291,9 +1290,8 @@ def scrap_match(URL, id, year_scrap):
                                 )
                             break
 
-            except:
+            except Exception:
                 print("Problem with point by point")
-                exit()
         else:
             driver.close()
             driver.quit()
@@ -1407,7 +1405,7 @@ def scrap_match(URL, id, year_scrap):
     data_simple = pd.DataFrame(elements[:12] + elements[24:34] + elements[-2:]).T
     d_simple_check = "SI"
     data_simple.to_csv(
-        "C:/Users/Paula/Documents/Projects/TennisData/FS_matches/"
+        "/Users/Paula/Documents/TennisData/TennisData/FS_matches/"
         + year_scrap
         + "/simple/"
         + name_file,
@@ -1453,7 +1451,7 @@ def scrap_match(URL, id, year_scrap):
         df_data_stat.loc[0] = values_concat
     d_stat_check = "SI"
     df_data_stat.to_csv(
-        "C:/Users/Paula/Documents/Projects/TennisData/FS_matches/"
+        "/Users/Paula/Documents/TennisData/TennisData/FS_matches/"
         + year_scrap
         + "/stats/"
         + name_file,
@@ -1518,7 +1516,7 @@ def scrap_match(URL, id, year_scrap):
 
             try:
                 tiebreak = valor.pop("tiebreak", [])
-            except:
+            except Exception:
                 continue
 
             df_aux = pd.DataFrame.from_dict(
@@ -1658,7 +1656,7 @@ def scrap_match(URL, id, year_scrap):
                 .str.replace("SP", "")
                 .str.replace("MP", "")
             )
-        except:
+        except Exception:
             pbyp = {}
 
         if elements[-1] == "away":
@@ -1669,7 +1667,7 @@ def scrap_match(URL, id, year_scrap):
                 pbyp["GameScore"] = (
                     pbyp["GameScore"].str.split(":").apply(lambda x: x[1] + ":" + x[0])
                 )
-            except:
+            except Exception:
                 pbyp = {}
 
         try:
@@ -1700,12 +1698,12 @@ def scrap_match(URL, id, year_scrap):
             pbyp = pbyp.reset_index(drop=True)
             pbyp.at[len(pbyp) - 1, "Recibe"] = "Fin partido"
             pbyp.at[len(pbyp) - 1, "Saca"] = "Fin partido"
-        except:
+        except Exception:
             pbyp = {}
 
     d_pbyp_check = "SI"
     pbyp.to_csv(
-        "C:/Users/Paula/Documents/Projects/TennisData/FS_matches/"
+        "/Users/Paula/Documents/TennisData/TennisData/FS_matches/"
         + year_scrap
         + "/pbyp/"
         + name_file,
@@ -1737,7 +1735,7 @@ def tourney_to_matchs(URL, more_matches):
     driver.get(url=URL)
     time.sleep(5)
 
-    if more_matches == True:
+    if more_matches:
         try:
             trying = 2
             while trying > 0:
@@ -1748,7 +1746,7 @@ def tourney_to_matchs(URL, more_matches):
                 driver.implicitly_wait(5)
                 time.sleep(5)
                 trying = trying - 1
-        except:
+        except Exception:
             print("revisar partidos de gs")
             """trying = 1
             while trying > 0:
@@ -1784,7 +1782,7 @@ def tourney_to_matchs(URL, more_matches):
     return match_list
 
 
-os.chdir("C:/Users/Paula/Documents/Projects/TennisData/FS_matches/")
+os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/")
 
 name = "*.csv"
 csv_files = glob.glob(name)
@@ -1794,7 +1792,7 @@ year_scrap = "2025"
 csv_files = csv_files[0]
 for filename in [csv_files]:
     csv_file_controller = (
-        "C:/Users/Paula/Documents/Projects/TennisData/FS_matches/Check/control_"
+        "/Users/paula/Documents/TennisData/TennisData/FS_matches/Check/control_"
         + filename.split("_")[0]
         + "_"
         + filename.split("_")[1]

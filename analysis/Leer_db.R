@@ -10,7 +10,7 @@ con <- dbConnect(
   dbname = "tennis_db",
   host = "localhost", 
   user = "root", 
-  password = "etsol521" 
+  password = "tennis46" 
 )
 
 # Listar tablas disponibles

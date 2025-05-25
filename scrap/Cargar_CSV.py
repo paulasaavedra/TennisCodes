@@ -89,7 +89,7 @@ columnas_stat = []
 
 # Iterar sobre los archivos y cargar los datos en los DataFrames correspondientes
 for carpeta in carpetas:
-    archivos = os.listdir(carpeta)
+    archivos = [f for f in os.listdir(carpeta) if f != ".DS_Store"]
     for archivo in archivos:
         id_torneo, nombre_torneo, anio, ganador, perdedor, id_partido = archivo.split(
             "_"
