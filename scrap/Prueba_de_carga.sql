@@ -372,7 +372,686 @@ SET round_match = 'Q1'
 WHERE tourney_name = 'Piracicaba'
     AND date_match = '2025-01-26'
     AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Skopje'
+    AND date_match = '2025-05-19'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Skopje'
+    AND date_match = '2025-05-18'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Wuxi'
+    AND date_match = '2025-05-05'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Wuxi'
+    AND date_match = '2025-05-04'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Santos'
+    AND date_match = '2025-05-05'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Santos'
+    AND date_match = '2025-05-04'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Tbilisi'
+    AND date_match = '2025-05-19'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Tbilisi'
+    AND date_match = '2025-05-18'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Bordeaux'
+    AND date_match = '2025-05-13'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Bordeaux'
+    AND date_match = '2025-05-12'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Bogota'
+    AND date_match = '2025-05-12'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Bogota'
+    AND date_match = '2025-05-11'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Francavilla'
+    AND date_match = '2025-05-05'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Francavilla'
+    AND date_match = '2025-05-04'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Zagreb'
+    AND date_match = '2025-05-12'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Zagreb'
+    AND date_match = '2025-05-11'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Geneva'
+    AND date_match = '2025-05-18'
+    AND tourney_level = 'ATP';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Geneva'
+    AND date_match = '2025-05-17'
+    AND tourney_level = 'ATP';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Naples'
+    AND date_match = '2025-03-24'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Naples'
+    AND date_match = '2025-03-23'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Kigali'
+    AND date_match = '2025-02-24'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Kigali'
+    AND date_match = '2025-02-23'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Kigali 2'
+    AND date_match = '2025-03-03'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Kigali 2'
+    AND date_match = '2025-02-02'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Merida'
+    AND date_match = '2025-03-17'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Merida'
+    AND date_match = '2025-03-16'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Porto Alegre'
+    AND date_match = '2025-04-28'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Porto Alegre'
+    AND date_match = '2025-04-27'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'San Miguel de Tucuman'
+    AND date_match = '2025-04-22'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'San Miguel de Tucuman'
+    AND date_match = '2025-04-21'
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Rosario'
+    AND date_match = '2025-02-03'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Rosario'
+    AND date_match = '2025-02-02'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Mauthausen'
+    AND date_match = '2025-04-28'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Mauthausen'
+    AND date_match = '2025-04-27'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Madrid'
+    AND date_match = '2025-04-07'
+    AND tourney_level = 'M1000';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Madrid'
+    AND date_match = '2025-04-06'
+    AND tourney_level = 'M1000';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Buenos Aires 2'
+    AND date_match = '2025-01-13'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Buenos Aires 2'
+    AND date_match = '2025-01-12'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Manama'
+    AND date_match = '2025-02-10'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Manama'
+    AND date_match = '2025-02-09'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Tenerife'
+    AND date_match = '2025-02-03'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Tenerife'
+    AND date_match = '2025-02-02'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Lugano'
+    AND date_match = '2025-02-24'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Lugano'
+    AND date_match = '2025-02-23'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Zadar'
+    AND date_match = '2025-03-17'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Zadar'
+    AND date_match = '2025-03-16'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Concepcion'
+    AND date_match = '2025-03-24'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Concepcion'
+    AND date_match = '2025-03-23'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Phoenix'
+    AND date_match = '2025-03-11'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Phoenix'
+    AND date_match = '2025-03-10'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Pau'
+    AND date_match = '2025-02-17'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Pau'
+    AND date_match = '2025-02-16'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Cleveland'
+    AND date_match = '2025-01-27'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Cleveland'
+    AND date_match = '2025-01-26'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Santiago'
+    AND date_match = '2025-02-23'
+    AND tourney_level = 'ATP';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Santiago'
+    AND date_match = '2025-02-22'
+    AND tourney_level = 'ATP';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Mexico City'
+    AND date_match = '2025-04-07'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Mexico City'
+    AND date_match = '2025-04-06'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Glasgow'
+    AND date_match = '2025-02-17'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Glasgow'
+    AND date_match = '2025-02-16'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Lille'
+    AND date_match = '2025-02-03'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Lille'
+    AND date_match = '2025-02-02'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Chennai'
+    AND date_match = '2025-02-03'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Chennai'
+    AND date_match = '2025-02-02'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Bengaluru'
+    AND date_match = '2025-02-24'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Bengaluru'
+    AND date_match = '2025-02-23'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Koblenz'
+    AND date_match = '2025-01-27'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Koblenz'
+    AND date_match = '2025-01-26'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Gwangju'
+    AND date_match = '2025-04-21'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Gwangju'
+    AND date_match = '2025-04-20'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Estoril'
+    AND date_match = '2025-04-29'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Estoril'
+    AND date_match = '2025-04-28'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Pune'
+    AND date_match = '2025-02-17'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Pune'
+    AND date_match = '2025-02-16'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Aix en Provence'
+    AND date_match = '2025-04-29'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Aix en Provence'
+    AND date_match = '2025-04-28'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Guangzhou'
+    AND date_match = '2025-04-28'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Guangzhou'
+    AND date_match = '2025-04-27'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Morelos'
+    AND date_match = '2025-03-31'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Morelos'
+    AND date_match = '2025-03-30'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'New Delhi'
+    AND date_match = '2025-02-10'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'New Delhi'
+    AND date_match = '2025-02-09'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Rio de Janeiro'
+    AND date_match = '2025-02-16'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Rio de Janeiro'
+    AND date_match = '2025-02-15'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Campinas'
+    AND date_match = '2025-03-31'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Campinas'
+    AND date_match = '2025-03-30'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Quimper'
+    AND date_match = '2025-01-21'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Quimper'
+    AND date_match = '2025-01-20'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Sarasota'
+    AND date_match = '2025-04-07'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Sarasota'
+    AND date_match = '2025-04-06'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Savannah'
+    AND date_match = '2025-04-21'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Savannah'
+    AND date_match = '2025-04-20'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Bucharest'
+    AND date_match = '2025-03-31'
+    AND tourney_level = 'ATP';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Bucharest'
+    AND date_match = '2025-03-31'
+    AND tourney_level = 'ATP';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Santiago'
+    AND date_match = '2025-03-10'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Santiago'
+    AND date_match = '2025-03-09'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Brisbane'
+    AND tourney_level = 'ATP'
+    AND MATCH_ID in (
+        '2025_0339_104102',
+        '2025_0339_104322',
+        '2025_0339_104254',
+        '2025_0339_104226',
+        '2025_0339_104159',
+        '2025_0339_104130'
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Brisbane'
+    AND tourney_level = 'ATP'
+    AND round_match = '';
+UPDATE atp_simple
+SET round_match = 'Q3'
+WHERE tourney_name = 'Australian Open'
+    AND tourney_level = 'GS'
+    AND date_match = '2025-01-09';
+UPDATE atp_simple
+SET round_match = 'Q3'
+WHERE tourney_name = 'Australian Open'
+    AND tourney_level = 'GS'
+    AND MATCH_ID in (
+        '2025_0580_132350',
+        '2025_0580_132322',
+        '2025_0580_132254',
+        '2025_0580_132157',
+        '2025_0580_132130',
+        '2025_0580_132101'
+    );
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Australian Open'
+    AND tourney_level = 'GS'
+    AND MATCH_ID in (
+        "2025_0580_132225",
+        "2025_0580_132418",
+        "2025_0580_132447",
+        "2025_0580_132514",
+        "2025_0580_132542",
+        "2025_0580_132610",
+        "2025_0580_132639",
+        "2025_0580_132707",
+        "2025_0580_132735",
+        "2025_0580_132802",
+        "2025_0580_132830",
+        "2025_0580_132858",
+        "2025_0580_132926",
+        "2025_0580_132954",
+        "2025_0580_133022",
+        "2025_0580_133050",
+        "2025_0580_133119",
+        "2025_0580_133147",
+        "2025_0580_133215",
+        "2025_0580_133243",
+        "2025_0580_133311",
+        "2025_0580_133339",
+        "2025_0580_133407",
+        "2025_0580_133436",
+        "2025_0580_133504",
+        "2025_0580_133532",
+        "2025_0580_133600",
+        "2025_0580_133628",
+        "2025_0580_133657",
+        "2025_0580_133725",
+        "2025_0580_133753",
+        "2025_0580_133822",
+        "2025_0580_133850"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Australian Open'
+    AND tourney_level = 'GS'
+    AND round_match = '';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Tenerife 2'
+    AND date_match = '2025-02-10'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Tenerife 2'
+    AND date_match = '2025-02-09'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Punta Del Este'
+    AND date_match = '2025-01-20'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Punta Del Este'
+    AND date_match = '2025-01-19'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Nottingham 3'
+    AND date_match = '2025-01-06'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Nottingham 3'
+    AND date_match = '2025-01-05'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Thionville'
+    AND date_match = '2025-03-03'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Thionville'
+    AND date_match = '2025-03-02'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Cap Cana'
+    AND date_match = '2025-03-11'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Cap Cana'
+    AND date_match = '2025-03-10'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Rio de Janeiro'
+    AND date_match = '2025-02-16'
+    AND tourney_level = 'ATP';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Rio de Janeiro'
+    AND date_match = '2025-02-15'
+    AND tourney_level = 'ATP';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Abidjan 2'
+    AND date_match = '2025-04-21'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Abidjan 2'
+    AND date_match = '2025-04-20'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Cordoba 2'
+    AND date_match = '2025-03-03'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Cordoba 2'
+    AND date_match = '2025-03-02'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Hersonissos'
+    AND date_match = '2025-03-03'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Hersonissos'
+    AND date_match = '2025-03-02'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Hersonissos 2'
+    AND date_match = '2025-03-10'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Hersonissos 2'
+    AND date_match = '2025-03-09'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Abidjan'
+    AND date_match = '2025-04-14'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Abidjan'
+    AND date_match = '2025-04-13'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE tourney_name = 'Monza'
+    AND date_match = '2025-04-07'
+    AND tourney_level = 'CH';
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE tourney_name = 'Monza'
+    AND date_match = '2025-04-06'
+    AND tourney_level = 'CH';
 select *
 from atp_simple
-where round_match = ''
-    and date_match > '2025-05-01';
+WHERE round_match = ''
+    and date_match > '2025-01-01';
+DELETE FROM atp_simple
+WHERE tourney_name = 'Brazzaville';
