@@ -3795,10 +3795,10 @@ WHERE l_nac = 'World'
     AND l_player = 'Aleksandr Lobanov';
 select *
 from atp_simple
-where l_nac = 'World' -- chequear
+where w_nac is null -- chequear
 select *
 from atp_simple
-WHERE round_match = ''
+WHERE w_nac like 'Bel%'
     and date_match > '2025 -01 -01';
 select *
 from atp_simple

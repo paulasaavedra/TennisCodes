@@ -11,7 +11,7 @@ import numpy as np
 
 categoria = "atp"
 
-os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/")
+os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/ATP/")
 
 
 # Función para cargar un archivo CSV en un DataFrame y agregar una columna de identificación
@@ -4280,8 +4280,11 @@ df_part_l_5.replace([np.nan, pd.NA], None, inplace=True)
 
 # Corregir NACIONALIDADES
 
-players_without_nac_w = df_simple.loc[df_simple["W_NAC"].isna(), "W_PLAYER"]
+# Reemplaza "World" por NaN en las columnas W_NAC y L_NAC
+df_simple["W_NAC"] = df_simple["W_NAC"].replace("World", np.nan)
+df_simple["L_NAC"] = df_simple["L_NAC"].replace("World", np.nan)
 
+players_without_nac_w = df_simple.loc[df_simple["W_NAC"].isna(), "W_PLAYER"]
 players_without_nac_L = df_simple.loc[df_simple["L_NAC"].isna(), "L_PLAYER"]
 
 # Diccionario con jugadores y nacionalidades
@@ -4293,15 +4296,15 @@ nacionalidades = {
     "Pavel Kotov": "Russia",
     "Aslan Karatsev": "Russia",
     "Ivan Gakhov": "Russia",
-    "Ilya Ivashka": "Belgicaarus",
+    "Ilya Ivashka": "Belarus",
     "Alexey Vatutin": "Russia",
     "Alexey Zakharov": "Russia",
     "Alibek Kachmazov": "Russia",
     "Chun Hsin Tseng": "Taipei",
     "Dalibor Svrcina": "Czech Republic",
-    "Egor Germanyasimov": "Belgicaaruss",
+    "Egor Gerasimov": "Belarus",
     "Ergi Kirkin": "Turkey",
-    "Hugo Dellien": "Boliviaivia",
+    "Hugo Dellien": "Bolivia",
     "Marat Sharipov": "Russia",
     "Ray Ho": "Taipei",
     "Woobin Shin": "South Korea",
@@ -4315,7 +4318,7 @@ nacionalidades = {
     "Yu Hsiou Hsu": "Taipei",
     "Cem Ilkel": "Turkey",
     "Evgeny Karlovskiy": "Russia",
-    "Germanyard Campana Lee": "South Korea",
+    "Gerard Campana Lee": "South Korea",
     "Goncalo Oliveira": "Venezuela",
     "Hazem Naw": "Syria",
     "Jonas Forejtek": "Czech Republic",
@@ -4364,13 +4367,26 @@ nacionalidades = {
     "Cheik Pandzou Ekoume": "Congo",
     "Dominik Kellovsky": "Czech Republic",
     "Hamad Medjedovic": "Serbia",
-    "Felix AuGermany-Aliassime": "France",
+    "Felix Auger-Aliassime": "France",
     "Hiroki Moriya": "Japan",
     "Arthur Fery": "Great Britain",
     "Tommy Paul": "United States",
     "Casper Ruud": "Norway",
     "Rodrigo Pacheco Mendez": "Mexico",
     "Marcos Giron": "United States",
+    "Aleksandr Lobanov": "Russia",
+    "Kirill Kivattsev": "Russia",
+    "Erik Arutiunian": "Belarus",
+    "Semen Pankin": "Russia",
+    "Zsombor Piros": "Hungary",
+    "Yasutaka Uchiyama": "Japan",
+    "Yanki Erel": "Turkey",
+    "Yan Bai": "China",
+    "Stefano Travaglia": "Italy",
+    "Ben Shelton": "United States",
+    "Federico Arnaboldi": "Italy",
+    "Hugo Gaston": "France",
+    "Michael Mmoh": "United States",
 }
 
 
@@ -4394,7 +4410,11 @@ masters_1000 = [
     "Monte Carlo",
 ]
 
-df_simple.loc[df_simple["TOURNEY_NAME"].isin(masters_1000), "TOURNEY_LEVEL"] = "M1000"
+df_simple.loc[
+    df_simple["TOURNEY_NAME"].isin(masters_1000) & (df_simple["TOURNEY_LEVEL"] != "CH"),
+    "TOURNEY_LEVEL",
+] = "M1000"
+
 
 df_simple["W_PLAYER"] = df_simple["W_PLAYER"].str.replace("-", " ", regex=False)
 df_simple["L_PLAYER"] = df_simple["L_PLAYER"].str.replace("-", " ", regex=False)
@@ -4551,7 +4571,7 @@ for prefix in stats_prefixes:
 
 
 # %% #### cargar rankings
-
+"""
 
 # Ruta donde están los archivos CSV
 
@@ -4603,3 +4623,4 @@ for archivo in archivos:
     print(archivo_path)
     # Insertar los datos en la base de datos
     df.to_sql("atp_rankings", con=engine, if_exists="append", index=False)
+"""
