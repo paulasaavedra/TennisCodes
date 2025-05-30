@@ -11,7 +11,7 @@ import numpy as np
 
 categoria = "atp"
 
-os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/ATP/")
+os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/")
 
 
 # Función para cargar un archivo CSV en un DataFrame y agregar una columna de identificación
@@ -4387,6 +4387,39 @@ nacionalidades = {
     "Federico Arnaboldi": "Italy",
     "Hugo Gaston": "France",
     "Michael Mmoh": "United States",
+    "Brandon Nakashima": "United States",
+    "Lukas Klein": "Czech Republic",
+    "Ricardas Berankis": "Lithuania",
+    "Timofey Skatov": "Russia",
+    "Jesper De Jong": "Netherlands",
+    "Nicolas Mejia": "Colombia",
+    "Denis Yevseyev": "Kazakhstan",
+    "Vitaliy Sachko": "Ukraine",
+    "Arthur Bouquier": "France",
+    "Martin Damm": "Czech Republic",
+    "Matteo Gigante": "Italy",
+    "Gabriele Pennaforti": "Italy",
+    "Elmer Moller": "Denmark",
+    "Hugo Grenier": "France",
+    "Kaichi Uchida": "Japan",
+    "Jasza Szajrych": "Poland",
+    "James McCabe": "Australia",
+    "Gael Monfils": "France",
+    "Guido Andreozzi": "Argentina",
+    "Mikhail Kukushkin": "Kazakhstan",
+    "Brandon Holt": "United States",
+    "Laslo Djere": "Serbia",
+    "Harold Mayot": "France",
+    "Adrian Andreev": "Bulgaria",
+    "Andrea Pellegrino": "Italy",
+    "Kimmer Coppejans": "Belgium",
+    "George Loffhagen": "Great Britain",
+    "Alexander Blockx": "Belgium",
+    "Jordan Thompson": "Australia",
+    "Lilian Marmousez": "France",
+    "Sandro Kopp": "Austria",
+    "Orlando Luz": "Brazil",
+    "Enrico Dalla Valle": "Italy",
 }
 
 

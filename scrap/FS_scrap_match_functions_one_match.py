@@ -1717,7 +1717,7 @@ os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/")
 
 ides = "520"
 link_one_match = (
-    "https://www.flashscore.com/match/hQ9CXdac/#/match-summary/match-summary"
+    "https://www.flashscore.com/match/x2qmJU4F/#/match-summary/match-summary"
 )
 
 try:

@@ -56,7 +56,8 @@ remontados <- remontados[,.N,by=l_player]
 
 
 # A cinco sets 
-dbm <- dbm[best==5]
+
+dbm <- dbm[best == 5 & !(round_match %in% c('F', 'SF', 'QF'))]
 
 library(dplyr)
 library(stringr)
@@ -90,7 +91,7 @@ dbm <- dbm %>%
   )
 
 remontados <- dbm [Dado_vuelta=='SI']
-remontados <- remontados[,.N,by=l_player]
+#remontados <- remontados[,.N,by=l_player]
 
 remontadas_por_torneo <- remontados[,.N,by=c('year','tourney_name')]
 
@@ -100,10 +101,10 @@ roland_data <- remontadas_por_torneo %>%
   filter(tourney_name == "Roland Garros", year >= 2003)
 
 # Paso 2: Agregar 2025 manualmente
-roland_data <- bind_rows(
-  roland_data,
-  data.frame(year = '2025', tourney_name = "Roland Garros", N = 7)
-)
+#roland_data <- bind_rows(
+#  roland_data,
+#  data.frame(year = '2025', tourney_name = "Roland Garros", N = 7)
+#)
 # Paso 3: Ordenar por año por si no está ordenado
 roland_data <- roland_data %>%
   arrange(year)
