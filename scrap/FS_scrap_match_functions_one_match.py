@@ -83,6 +83,9 @@ def scrap_match(ides, URL):
         if "Qualification" in tourney_name:
             tourney_name = tourney_name.split(" - ")[0]
 
+        if tourney_name == "French Open":
+            tourney_name = "Roland Garros"
+
         country = breadcrumbs[2].find("img")["title"]
         surface = (
             breadcrumbs[2].find("span").text.split(", ")[1].split(" - ")[0].capitalize()
@@ -242,6 +245,9 @@ def scrap_match(ides, URL):
         tourney_name = breadcrumbs[2].find("span").text.split(", ")[0]
         if "Qualification" in tourney_name:
             tourney_name = tourney_name.split(" - ")[0]
+
+        if tourney_name == "French Open":
+            tourney_name = "Roland Garros"
         country = breadcrumbs[2].find("img")["title"]
         try:
             surface = (
@@ -1717,7 +1723,7 @@ os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/")
 
 ides = "520"
 link_one_match = (
-    "https://www.flashscore.com/match/x2qmJU4F/#/match-summary/match-summary"
+    "https://www.flashscore.com/match/t8RqcFwK/#/match-summary/match-summary"
 )
 
 try:

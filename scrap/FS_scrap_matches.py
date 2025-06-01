@@ -87,6 +87,10 @@ def scrap_match(URL, id, year_scrap):
         surface = (
             breadcrumbs[2].find("span").text.split(", ")[1].split(" - ")[0].capitalize()
         )
+
+        if tourney_name == "French Open":
+            tourney_name = "Roland Garros"
+
         round_match = breadcrumbs[2].find("span").text.split(" - ")[1]
 
         time_date = soup.find("div", class_="duelParticipant__startTime").text
@@ -242,6 +246,9 @@ def scrap_match(URL, id, year_scrap):
         tourney_name = breadcrumbs[2].find("span").text.split(", ")[0]
         if "Qualification" in tourney_name:
             tourney_name = tourney_name.split(" - ")[0]
+        if tourney_name == "French Open":
+            tourney_name = "Roland Garros"
+
         country = breadcrumbs[2].find("img")["title"]
         try:
             surface = (
