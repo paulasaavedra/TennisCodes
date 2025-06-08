@@ -208,7 +208,8 @@ def scrap_match(ides, URL):
         page_title = page_title.split(" | ")[1]
 
         h_player = page_title.split(" - ")[0]  # Dato
-        a_player = page_title.split(" - ")[-1]  # Dato
+        a_player = page_title.split(" - ")[-1]
+        # Dato
 
         winner_listLastName = soup.find(class_="fontExtraBold").text.split(" ")
         if len(winner_listLastName) > 2:
@@ -231,10 +232,7 @@ def scrap_match(ides, URL):
         else:
             winner_lastName = soup.find(class_="fontExtraBold").text.split(" ")[0]
             inicial = soup.find(class_="fontExtraBold").text.split(" ")[-1][0]
-            if (
-                winner_lastName == h_player.split(" ")[-1]
-                and inicial == h_player.split(" ")[0][0]
-            ):
+            if winner_lastName in h_player and inicial == h_player.split(" ")[0][0]:
                 winner = "home"
             else:
                 winner = "away"
@@ -1721,9 +1719,9 @@ def scrap_match(ides, URL):
 os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/")
 
 
-ides = "7015"
+ides = "520"
 link_one_match = (
-    "https://www.flashscore.com/match/x2oeN2QE/#/match-summary/match-summary"
+    "https://www.flashscore.com/match/tennis/MTFS0g9a/#/match-summary/match-summary"
 )
 
 try:

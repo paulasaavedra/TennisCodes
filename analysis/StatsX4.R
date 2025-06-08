@@ -1,20 +1,19 @@
 library(dplyr)
 library(tidyr)
 library(data.table)
+library(gridExtra)
+library(grid)
+library(gtable)
+library(png)
 
-# Filtramos dataset base
+# --- Parte 1: Preparar datos y calcular métricas ---
+
+# Filtrar dataset base
 dbm <- db[date_match > "2024-12-20" & tourney_name == 'Roland Garros']
-# db <- db[!round_match %in% c('Q1', 'Q2', 'Q3')]
 
-# Hacemos el merge con stats
+# Merge con stats
 dbm <- merge(dbm, db_stats_l_t, by = "match_id", all.x = TRUE)
 dbm <- merge(dbm, db_stats_w_t, by = "match_id", all.x = TRUE)
-
-# Jugadores que ganaron al menos un partido
-ganadores <- unique(dbm$w_player)
-perdedores <- unique(dbm$l_player)
-invictos <- setdiff(ganadores, perdedores)
-dbm <- dbm[w_player %in% invictos]
 
 # Función para extraer y renombrar columnas del ganador o perdedor
 extract_stats <- function(dbm, prefix, result_col = NULL) {
@@ -31,15 +30,14 @@ extract_stats <- function(dbm, prefix, result_col = NULL) {
 w_stats <- extract_stats(dbm, "w_t_", "winner")
 l_stats <- extract_stats(dbm, "l_t_", "winner")
 
-# Unir todo
+# Unir en formato largo
 long_stats <- rbind(w_stats, l_stats, fill = TRUE)
 
-
-# Convertimos a numérico por seguridad
+# Convertimos a numérico
 num_cols <- setdiff(names(long_stats), c("player", "nac", "result"))
 long_stats[, (num_cols) := lapply(.SD, as.numeric), .SDcols = num_cols]
 
-# Cálculos de métricas
+# Cálculo de métricas
 long_stats[, `:=`(
   pct_1st_serve_won = 100 * `1st_serve_points_won` / `1st_serve_points_played`,
   pct_2nd_serve_won = 100 * `2nd_serve_points_won` / `2nd_serve_points_played`,
@@ -55,6 +53,15 @@ long_stats[, `:=`(
   pct_net_points = `net_points_won_percentage`
 )]
 
+# Identificar jugadores invictos
+ganadores <- unique(dbm$w_player)
+perdedores <- unique(dbm$l_player)
+invictos <- setdiff(ganadores, perdedores)
+
+# Filtrar solo métricas de jugadores invictos
+long_stats <- long_stats[player %in% invictos]
+
+# Métricas a promediar
 metricas <- c(
   "pct_1st_serve_won", "pct_2nd_serve_won", "pct_aces_df",
   "pct_winners_ue", "pct_bp_saved", "pct_bp_converted",
@@ -63,17 +70,11 @@ metricas <- c(
   "pct_net_points"
 )
 
-# Promediar por jugador
+# Promediar métricas por jugador
 ranking <- long_stats[, lapply(.SD, mean, na.rm = TRUE), by = .(player, nac), .SDcols = metricas]
 
+# --- Parte 2: Crear imágenes individuales top5 para cada métrica ---
 
-
-library(gridExtra)
-library(grid)
-library(data.table)
-library(gtable)
-
-# Nombres amigables para las métricas
 nombres_amigables <- c(
   pct_1st_serve_won = "% Ptos Ganados 1° saque",
   pct_2nd_serve_won = "% Ptos Ganados 2° saque",
@@ -83,109 +84,130 @@ nombres_amigables <- c(
   pct_bp_converted = "% BP Convertidos",
   pct_return_1st = "% Ganados al resto 1° Saque",
   pct_return_2nd = "% Ganados al resto 2° Saque",
-  pct_total_points = "% Puntos Ganados",
   pct_total_points_serve = "% Ptos Ganados al Saque",
   pct_total_points_return = "% Ptos Ganados al Resto",
-  pct_net_points = "% Ptos Ganados en la red"
+  pct_net_points = "% Ptos Ganados en la red",
+  pct_total_points = "% Puntos Ganados"
 )
 
-# Crear tablas top 5
-top5_metricas <- lapply(metricas, function(m) {
-  ranking[order(-get(m))][1:5, .(Jugador = player, Valor = round(get(m), 2))]
-})
-names(top5_metricas) <- metricas
-
-# Carpeta para guardar imágenes
-dir.create("imagenes_top5_metricas", showWarnings = FALSE)
+dir.create("/Users/paula/Documents/TennisData/TennisCodes/Metricas", showWarnings = FALSE)
 
 for (metrica in metricas) {
-  tabla <- top5_metricas[[metrica]]
+  # Extraer top 5 jugadores o menos
+  top_n <- ranking[order(-get(metrica)), .(Jugador = player, Valor = round(get(metrica), 2))]
+  top_n <- top_n[1:min(5, .N)]
   
-  # Crear tableGrob sin filas de nombres (rows = NULL)
+  # Completar filas si hay menos de 5 jugadores
+  if (nrow(top_n) < 5) {
+    faltantes <- 5 - nrow(top_n)
+    relleno <- data.table(Jugador = rep("-", faltantes), Valor = rep("-", faltantes))
+    tabla <- rbind(top_n, relleno)
+  } else {
+    tabla <- top_n
+  }
+  
   tg <- tableGrob(tabla, rows = NULL)
   
-  # Eliminar líneas (bordes)
+  # Fondo del encabezado
+  idx_bg_col1 <- which(tg$layout$t == 1 & tg$layout$l == 1 & grepl("background|bg", tg$layout$name))
+  idx_bg_col2 <- which(tg$layout$t == 1 & tg$layout$l == 2 & grepl("background|bg", tg$layout$name))
+  if(length(idx_bg_col1) > 0) tg$grobs[[idx_bg_col1]]$gp$fill <- "#98b8d9"
+  if(length(idx_bg_col2) > 0) tg$grobs[[idx_bg_col2]]$gp$fill <- "#98b8d9"
+  
+  # Texto del encabezado
+  header_text_idx <- which(tg$layout$t == 1 & tg$layout$name == "colhead-fg")
+  if(length(header_text_idx) > 0) {
+    for(i in header_text_idx) {
+      tg$grobs[[i]]$gp <- gpar(col = "#004c72", fontface = "bold")
+    }
+  }
+  
+  # Estilo de texto por columnas
+  idx_col1 <- grep("col1", tg$layout$name)
+  for (i in idx_col1) {
+    tg$grobs[[i]]$just <- "right"
+    tg$grobs[[i]]$x <- unit(0.95, "npc")
+    tg$grobs[[i]]$gp <- gpar(col = "#004c72")
+  }
+  
+  idx_col2 <- grep("col2", tg$layout$name)
+  for (i in idx_col2) {
+    tg$grobs[[i]]$just <- "left"
+    tg$grobs[[i]]$x <- unit(0.05, "npc")
+    tg$grobs[[i]]$gp <- gpar(col = "#004c72")
+  }
+  
+  # Quitar líneas
   line_grobs <- grep("line", tg$layout$name)
   for (i in line_grobs) {
     tg$grobs[[i]] <- nullGrob()
   }
   
-  # Ajustar ancho fijo para columnas (ajustar valores según necesidad)
-  # Ejemplo: primera columna 400 pts, segunda 300 pts
+  # Ancho fijo
   tg$widths <- unit.c(unit(150, "pt"), unit(80, "pt"))
   
-  # Alinear texto: 
-  # Jugador (col 1) a la derecha
-  idx_col1 <- grep("col1", tg$layout$name)
-  for (i in idx_col1) {
-    tg$grobs[[i]]$just <- "right"
-    tg$grobs[[i]]$x <- unit(0.95, "npc")  # Ajusta la posición horizontal
-  }
+  # Añadir título
+  title <- textGrob(
+    nombres_amigables[metrica],
+    gp = gpar(fontsize = 16, fontface = "bold", col = "#004c72")
+  )
   
-  # Valor (col 2) a la izquierda
-  idx_col2 <- grep("col2", tg$layout$name)
-  for (i in idx_col2) {
-    tg$grobs[[i]]$just <- "left"
-    tg$grobs[[i]]$x <- unit(0.05, "npc")
-  }
-  
-  # Añadir fila título que abarca ambas columnas
-  title <- textGrob(nombres_amigables[metrica], gp = gpar(fontsize = 16, fontface = "bold"))
   tg <- gtable_add_rows(tg, heights = grobHeight(title) + unit(6, "mm"), pos = 0)
   tg <- gtable_add_grob(tg, title, t = 1, l = 1, r = ncol(tg))
   
-  # Guardar con tamaño fijo y alta resolución
+  # Guardar imagen
   png(
-    filename = file.path("imagenes_top5_metricas", paste0(metrica, "_top5.png")),
+    filename = file.path("/Users/paula/Documents/TennisData/TennisCodes/Metricas", paste0(metrica, "_top5.png")),
     width = 1000, height = 650, res = 300
   )
   grid.draw(tg)
   dev.off()
 }
 
-library(grid)
-library(png)
+# --- Parte 3: Función para combinar imágenes en mosaico 3x2 ---
 
-# Supongamos que quieres combinar estas 4 métricas (puedes cambiar nombres)
-metricas_a_combinar <- metricas[1:4]  # las primeras 4 como ejemplo
-
-# Leer las 4 imágenes ya generadas
-imgs <- lapply(metricas_a_combinar, function(m) {
-  img_path <- file.path("imagenes_top5_metricas", paste0(m, "_top5.png"))
-  readPNG(img_path)
-})
-
-# Crear archivo PNG para la combinación final
-png("imagenes_top5_metricas/combined_4_top5.png", width = 2000, height = 1400, res = 300)
-
-grid.newpage()
-
-# Definir viewport para cada cuadrante
-pushViewport(viewport(layout = grid.layout(2, 2)))
-
-# Función para colocar imagen en celda (fila, col)
-draw_img_in_cell <- function(img, row, col) {
-  print(
-    rasterGrob(img),
-    vp = viewport(layout.pos.row = row, layout.pos.col = col)
-  )
+combinar_metricas <- function(metrica_vector, nombre_salida, carpeta = "/Users/paula/Documents/TennisData/TennisCodes/Metricas") {
+  imgs <- lapply(metrica_vector, function(m) {
+    img_path <- file.path(carpeta, paste0(m, "_top5.png"))
+    readPNG(img_path)
+  })
+  
+  img_height_px <- 650
+  img_width_px <- 1000
+  combined_height <- img_height_px * 3
+  combined_width <- img_width_px * 2
+  
+  png(filename = file.path(carpeta, nombre_salida),
+      width = combined_width,
+      height = combined_height,
+      res = 300)
+  
+  grid.newpage()
+  pushViewport(viewport(layout = grid.layout(3, 2,
+                                             widths = unit(rep(1, 2), "null"),
+                                             heights = unit(rep(1, 3), "null"))))
+  
+  draw_img_in_cell <- function(img, row, col) {
+    grid.draw(rasterGrob(img, vp = viewport(layout.pos.row = row, layout.pos.col = col)))
+  }
+  
+  for (i in seq_along(imgs)) {
+    row <- ceiling(i / 2)
+    col <- ifelse(i %% 2 == 1, 1, 2)
+    draw_img_in_cell(imgs[[i]], row, col)
+  }
+  
+  # Líneas divisorias
+  grid.lines(x = unit(c(0, 1), "npc"), y = unit(c(2/3, 2/3), "npc"), gp = gpar(col = "#004c72", lwd = 2))
+  grid.lines(x = unit(c(0, 1), "npc"), y = unit(c(1/3, 1/3), "npc"), gp = gpar(col = "#004c72", lwd = 2))
+  grid.lines(x = unit(c(0.5, 0.5), "npc"), y = unit(c(0, 1), "npc"), gp = gpar(col = "#004c72", lwd = 2))
+  
+  dev.off()
 }
 
-# Dibujar cada imagen en un cuadrante 2x2
-for (i in seq_along(imgs)) {
-  row <- ifelse(i <= 2, 1, 2)
-  col <- ifelse(i %% 2 == 1, 1, 2)
-  draw_img_in_cell(imgs[[i]], row, col)
-}
+# --- Parte 4: Crear dos imágenes combinadas con 6 métricas cada una ---
 
-# Ahora dibujamos las líneas para separar cuadrantes:
+combinar_metricas(metricas[1:6], "metricas_1_6.png")
+combinar_metricas(metricas[7:12], "metricas_7_12.png")
 
-# Línea vertical (en mitad horizontal del canvas)
-grid.lines(x = unit(c(0.5, 0.5), "npc"), y = unit(c(0, 1), "npc"),
-           gp = gpar(col = "black", lwd = 2))
 
-# Línea horizontal (en mitad vertical del canvas)
-grid.lines(x = unit(c(0, 1), "npc"), y = unit(c(0.5, 0.5), "npc"),
-           gp = gpar(col = "black", lwd = 2))
-
-dev.off()

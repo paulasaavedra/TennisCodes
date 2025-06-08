@@ -90,6 +90,7 @@ def scrap_match(URL, id, year_scrap):
 
         if tourney_name == "French Open":
             tourney_name = "Roland Garros"
+            tourney_level = "GS"
 
         round_match = breadcrumbs[2].find("span").text.split(" - ")[1]
 
@@ -232,10 +233,7 @@ def scrap_match(URL, id, year_scrap):
         else:
             winner_lastName = soup.find(class_="fontExtraBold").text.split(" ")[0]
             inicial = soup.find(class_="fontExtraBold").text.split(" ")[-1][0]
-            if (
-                winner_lastName == h_player.split(" ")[-1]
-                and inicial == h_player.split(" ")[0][0]
-            ):
+            if winner_lastName in h_player and inicial == h_player.split(" ")[0][0]:
                 winner = "home"
             else:
                 winner = "away"
@@ -248,6 +246,7 @@ def scrap_match(URL, id, year_scrap):
             tourney_name = tourney_name.split(" - ")[0]
         if tourney_name == "French Open":
             tourney_name = "Roland Garros"
+            tourney_level = "GS"
 
         country = breadcrumbs[2].find("img")["title"]
         try:

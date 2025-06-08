@@ -11,7 +11,7 @@ import numpy as np
 
 categoria = "atp"
 
-os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/")
+os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/ATP/")
 
 
 # Función para cargar un archivo CSV en un DataFrame y agregar una columna de identificación
