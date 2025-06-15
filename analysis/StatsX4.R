@@ -15,6 +15,21 @@ dbm <- db[date_match > "2024-12-20" & tourney_name == 'Roland Garros']
 dbm <- merge(dbm, db_stats_l_t, by = "match_id", all.x = TRUE)
 dbm <- merge(dbm, db_stats_w_t, by = "match_id", all.x = TRUE)
 
+dbm <- merge(dbm, db_stats_l_1, by = "match_id", all.x = TRUE)
+dbm <- merge(dbm, db_stats_w_1, by = "match_id", all.x = TRUE)
+
+dbm <- merge(dbm, db_stats_l_2, by = "match_id", all.x = TRUE)
+dbm <- merge(dbm, db_stats_w_2, by = "match_id", all.x = TRUE)
+
+dbm <- merge(dbm, db_stats_l_3, by = "match_id", all.x = TRUE)
+dbm <- merge(dbm, db_stats_w_3, by = "match_id", all.x = TRUE)
+
+dbm <- merge(dbm, db_stats_l_4, by = "match_id", all.x = TRUE)
+dbm <- merge(dbm, db_stats_w_4, by = "match_id", all.x = TRUE)
+
+dbm <- merge(dbm, db_stats_l_5, by = "match_id", all.x = TRUE)
+dbm <- merge(dbm, db_stats_w_5, by = "match_id", all.x = TRUE)
+
 # Función para extraer y renombrar columnas del ganador o perdedor
 extract_stats <- function(dbm, prefix, result_col = NULL) {
   cols <- grep(paste0("^", prefix), names(dbm), value = TRUE)
@@ -71,7 +86,34 @@ metricas <- c(
 )
 
 # Promediar métricas por jugador
-ranking <- long_stats[, lapply(.SD, mean, na.rm = TRUE), by = .(player, nac), .SDcols = metricas]
+# ---- Cálculo combinado: métricas ponderadas y promediadas ----
+
+# 1. Calcular métricas que necesitan suma ponderada
+acumulados <- long_stats[, .(
+  nac = first(nac),
+  total_1st_serve_won = sum(`1st_serve_points_won`, na.rm = TRUE),
+  total_1st_serve_played = sum(`1st_serve_points_played`, na.rm = TRUE),
+  total_2nd_serve_won = sum(`2nd_serve_points_won`, na.rm = TRUE),
+  total_2nd_serve_played = sum(`2nd_serve_points_played`, na.rm = TRUE)
+), by = player]
+
+acumulados[, `:=`(
+  pct_1st_serve_won = 100 * total_1st_serve_won / total_1st_serve_played,
+  pct_2nd_serve_won = 100 * total_2nd_serve_won / total_2nd_serve_played
+)]
+
+# 2. Calcular métricas que sí se pueden promediar directamente
+otras_metricas <- long_stats[, lapply(.SD, mean, na.rm = TRUE), by = .(player), 
+                             .SDcols = setdiff(metricas, c("pct_1st_serve_won", "pct_2nd_serve_won"))]
+
+# 3. Unir todo en un único ranking
+ranking <- merge(
+  acumulados[, .(player, nac, pct_1st_serve_won, pct_2nd_serve_won)],
+  otras_metricas,
+  by = "player",
+  all.x = TRUE
+)
+
 
 # --- Parte 2: Crear imágenes individuales top5 para cada métrica ---
 
@@ -211,3 +253,4 @@ combinar_metricas(metricas[1:6], "metricas_1_6.png")
 combinar_metricas(metricas[7:12], "metricas_7_12.png")
 
 
+# --- 

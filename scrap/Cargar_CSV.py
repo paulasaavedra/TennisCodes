@@ -11,7 +11,7 @@ import numpy as np
 
 categoria = "atp"
 
-os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/ATP/")
+os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/")
 
 
 # Función para cargar un archivo CSV en un DataFrame y agregar una columna de identificación
@@ -4420,6 +4420,11 @@ nacionalidades = {
     "Sandro Kopp": "Austria",
     "Orlando Luz": "Brazil",
     "Enrico Dalla Valle": "Italy",
+    "Arthur Fils": "France",
+    "Robert Strombachs": "Germany",
+    "Patrick Kypson": "United States",
+    "Lukas Neumayer": "Austria",
+    "Yi Zhou": "China",
 }
 
 
@@ -4601,59 +4606,3 @@ for prefix in stats_prefixes:
         key = f"{prefix}_{suffix}"  # Clave en el diccionario
         table_name = f"{categoria}_{prefix}_{suffix}"  # Nombre de la tabla
         stats_dict[key].to_sql(table_name, con=engine, if_exists="append", index=False)
-
-
-# %% #### cargar rankings
-"""
-
-# Ruta donde están los archivos CSV
-
-ruta_rankings = "/Users/paula/Documents/TennisData/TennisData/ATP_ranking/rank_years/"
-
-# Obtener la lista de archivos CSV en la carpeta
-archivos = [
-    archivo for archivo in os.listdir(ruta_rankings) if archivo.endswith(".csv")
-]
-
-# Crear una lista para almacenar los DataFrames cargados
-list_df = []
-
-for archivo in archivos:
-    archivo_path = os.path.join(ruta_rankings, archivo)
-
-    # Leer el archivo CSV
-    df = pd.read_csv(archivo_path, low_memory=False)
-
-    # Agregar la columna PK_COLUMN
-    df["PK_COLUMN"] = df["date"].astype(str) + "_" + df["player_id"].astype(str)
-
-    # Renombrar las columnas
-    df.rename(
-        columns={
-            "PK_COLUMN": "PK_COLUMN",
-            "date": "DATE_RANK",
-            "rank": "RANK_POSITION",
-            "rank_change": "RANK_CHANGE",
-            "country": "COUNTRY",
-            "player_id": "PLAYER_ID",
-            "player": "PLAYER",
-            "age": "AGE",
-            "points": "POINTS",
-            "points_change": "POINTS_CHANGE",
-            "tourneyPlayed": "TOURNEY_PLAYED",
-            "dropping": "DROPPING",
-            "nextBest": "NEXT_BEST",
-        },
-        inplace=True,
-    )
-
-    # Reemplazar valores negativos en AGE por None
-    df.loc[df["AGE"] < 0, "AGE"] = None
-    df["POINTS"] = (
-        df["POINTS"].astype(str).str.replace(",", "").astype(float).astype("Int64")
-    )
-
-    print(archivo_path)
-    # Insertar los datos en la base de datos
-    df.to_sql("atp_rankings", con=engine, if_exists="append", index=False)
-"""

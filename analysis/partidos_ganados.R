@@ -224,3 +224,9 @@ for (col in names(tabla)[-1]) {
 
 # Mostrar tabla
 tabla_kbl
+
+
+
+
+
+
