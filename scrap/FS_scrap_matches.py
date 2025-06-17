@@ -1840,7 +1840,7 @@ for filename in [csv_files]:
             more_matches = False
 
         list_of_matches = tourney_to_matchs(link_df, more_matches)
-        list_of_matches = list_of_matches[:-34]
+        # list_of_matches = list_of_matches[:-42]
 
         contador_partidos = 1
 

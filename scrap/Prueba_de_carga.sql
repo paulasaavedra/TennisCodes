@@ -3773,12 +3773,25 @@ WHERE match_id IN (
         "2025_4940_191831",
         "2025_4940_191855"
     );
+
+UPDATE atp_simple
+SET best = 3
+WHERE TOURNEY_LEVEL IN ('CH', 'ATP', 'M1000')
+AND (best IS NULL OR best = 0);
+
+UPDATE atp_simple
+SET best = 5
+WHERE TOURNEY_LEVEL = 'GS'
+AND (best IS NULL OR best = 0);
+
+
 select *
 from atp_simple
 where l_nac is null -- chequear
 select *
 from atp_simple
-WHERE round_match = ''
+WHERE round_match = '';
+
 select *
 from atp_simple
-where tourney_name = 'Roland Garros'
+where best = 0;
