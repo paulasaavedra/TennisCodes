@@ -4402,3 +4402,4 @@ WHERE round_match = '';
 select *
 from atp_simple
 where best = 0;
+-- mysqldump -u root -p tennis_db > /Users/paula/Documents/TennisData/backups/tennis_db_$(date +%F).sql
