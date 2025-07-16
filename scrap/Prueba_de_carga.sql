@@ -4403,3 +4403,5 @@ select *
 from atp_simple
 where best = 0;
 -- mysqldump -u root -p tennis_db > /Users/paula/Documents/TennisData/backups/tennis_db_$(date +%F).sql
+SELECT *
+FROM atp_simple INTO OUTFILE '/Users/paula/Documents/TennisData/TennisData/database/atp_simple.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
