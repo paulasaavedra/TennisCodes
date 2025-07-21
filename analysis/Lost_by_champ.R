@@ -40,8 +40,7 @@ lose_by_year <- merge(
 lose_by_year$Perc <- lose_by_year$N / lose_by_year$total_losses *100
 
 
-######### considerando por año
-
+#### Considernando el total
 lose_by_year <- partidos_campeones [,.N,by=c('l_player','l_nac')]
 
 derrotas_totales <- dbm[, .(total_losses = .N), by = .( l_player)]
