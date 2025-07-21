@@ -1719,9 +1719,9 @@ def scrap_match(ides, URL):
 os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/")
 
 
-ides = "7480"
+ides = "877"
 link_one_match = (
-    "https://www.flashscore.com/match/lM2LLSk4/#/match-summary/match-summary"
+    "https://www.flashscore.com/match/W6qTsmfS/#/match-summary/match-summary"
 )
 
 try:

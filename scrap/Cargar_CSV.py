@@ -4430,6 +4430,11 @@ nacionalidades = {
     "Otto Virtanen": "Finland",
     "Hubert Hurkacz": "Poland",
     "Svyatoslav Gulin": "Russia",
+    "Norbert Gombos": "Slovakia",
+    "Yuta Shimizu": "Japan",
+    "Alastair Gray": "Great Britain",
+    "Toby Kodat": "United States",
+    "Lui Maxted": "Great Britain",
 }
 
 
