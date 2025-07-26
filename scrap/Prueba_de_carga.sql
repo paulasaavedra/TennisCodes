@@ -4704,6 +4704,7 @@ WHERE TOURNEY_LEVEL IN ('CH', 'ATP', 'M1000')
     AND (
         best IS NULL
         OR best = 0
+        OR best = 1
     );
 UPDATE atp_simple
 SET best = 5
@@ -4711,6 +4712,7 @@ WHERE TOURNEY_LEVEL = 'GS'
     AND (
         best IS NULL
         OR best = 0
+        OR best = 1
     );
 UPDATE atp_simple
 SET l_player = REPLACE(
