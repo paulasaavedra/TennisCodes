@@ -4435,6 +4435,8 @@ nacionalidades = {
     "Alastair Gray": "Great Britain",
     "Toby Kodat": "United States",
     "Lui Maxted": "Great Britain",
+    "Nicolas Alvarez Varona": "Spain",
+    "Aziz Dougaz": "Tunisia",
 }
 
 
