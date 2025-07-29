@@ -1,101 +1,73 @@
-UPDATE atp_simple
-SET round_match = 'Q2'
-WHERE match_id IN (
-"2025_0221_184532",
-"2025_0221_184556",
-"2025_0221_184621",
-"2025_0221_184645",
-"2025_0221_184709",
-"2025_0221_184732");
-
-UPDATE atp_simple
-SET round_match = 'Q1'
-WHERE match_id IN (
-"2025_0221_184756",
-"2025_0221_184820",
-"2025_0221_184844",
-"2025_0221_184909",
-"2025_0221_184932",
-"2025_0221_184956",
-"2025_0221_185020",
-"2025_0221_185044",
-"2025_0221_185108",
-"2025_0221_185136",
-"2025_0221_185200",
-"2025_0221_185224");
-
-UPDATE atp_simple
-SET round_match = 'Q2'
-WHERE match_id IN (
-"2025_0783_182547",
-"2025_0783_182611",
-"2025_0783_182635",
-"2025_0783_182659",
-"2025_0783_182722",
-"2025_0783_182746");
-UPDATE atp_simple
-SET round_match = 'Q1'
-WHERE match_id IN (
-"2025_0783_182810",
-"2025_0783_182834",
-"2025_0783_182858",
-"2025_0783_182921",
-"2025_0783_182945",
-"2025_0783_183009",
-"2025_0783_183033",
-"2025_0783_183056",
-"2025_0783_183120",
-"2025_0783_183144",
-"2025_0783_183206",
-"2025_0783_183231");
-
-UPDATE atp_simple
-SET round_match = 'Q2'
-WHERE match_id IN (
-"2025_2785_174615",
-"2025_2785_174639",
-"2025_2785_174703",
-"2025_2785_174727",
-"2025_2785_174751",
-"2025_2785_174814");
-UPDATE atp_simple
-SET round_match = 'Q1'
-WHERE match_id IN (
-"2025_2785_174838",
-"2025_2785_174902",
-"2025_2785_174926",
-"2025_2785_174949",
-"2025_2785_175013",
-"2025_2785_175037",
-"2025_2785_175101",
-"2025_2785_175125",
-"2025_2785_175149",
-"2025_2785_175213",
-"2025_2785_175236",
-"2025_2785_175300");
-
-UPDATE atp_simple
-SET round_match = 'Q2'
-WHERE match_id IN (
-"2025_2883_180508",
-"2025_2883_180621",
-"2025_2883_180645",
-"2025_2883_180732",
-"2025_2883_180756",
-"2025_2883_180820");
-
-UPDATE atp_simple
-SET round_match = 'Q1'
-WHERE match_id IN (
-"2025_2883_180844",
-"2025_2883_180907",
-"2025_2883_180931",
-"2025_2883_180955",
-"2025_2883_181019",
-"2025_2883_181042",
-"2025_2883_181106",
-"2025_2883_181130",
-"2025_2883_181154",
-"2025_2883_181217",
-"2025_2883_181241",
-"2025_2883_181305");
+"MATCH_ID","TOURNEY_LEVEL","TOURNEY_NAME","COUNTRY","SURFACE","ROUND_MATCH","DATE_MATCH","W_PLAYER","W_NAC","W_SEED","L_PLAYER","L_NAC","L_SEED","TIMESTART","SCORE","MATCH_STATUS","BEST","TIME_TOTAL","TIME_1S","TIME_2S","TIME_3S","TIME_4S","TIME_5S","COMENTS","WINNER"
+"2025_0221_184532","CH","Tampere","Finland","Clay","","2025-07-21","Hynek Barton","Czech Republic","3","Sebastian Dominko","Slovenia","","07:55","6-4 6-3","Finished",3,71,38,33,0,0,0,"","home"
+"2025_0221_184556","CH","Tampere","Finland","Clay","","2025-07-21","Nicolas Kicker","Argentina","6","Billy Suarez","United States","","07:45","6-2 6-1","Finished",3,74,39,35,0,0,0,"","home"
+"2025_0221_184621","CH","Tampere","Finland","Clay","","2025-07-21","Aristotelis Thanos","Greece","7","Milos Karol","Slovakia","4","07:10","6-2 3-6 6-1","Finished",3,118,34,44,40,0,0,"","away"
+"2025_0221_184645","CH","Tampere","Finland","Clay","","2025-07-21","Thomas Faurel","France","","Jelle Sels","Netherlands","2","06:10","7-5 6-2","Finished",3,94,58,36,0,0,0,"","away"
+"2025_0221_184709","CH","Tampere","Finland","Clay","","2025-07-21","Alex Molcan","Slovakia","5","Luca Castagnola","Italy","11","06:05","5-1","Finished / retired",3,27,27,0,0,0,0,"","home"
+"2025_0221_184732","CH","Tampere","Finland","Clay","","2025-07-21","Joao Lucas Reis Da Silva","Brazil","1","Olle Wallin","Sweden","9","06:05","6-2 6-4","Finished",3,73,30,43,0,0,0,"","home"
+"2025_0221_184756","CH","Tampere","Finland","Clay","","2025-07-20","Billy Suarez","United States","","Dragos Nicolae Cazacu","Romania","12","11:00","6-4 3-6 6-2","Finished",3,116,39,40,37,0,0,"","home"
+"2025_0221_184820","CH","Tampere","Finland","Clay","","2025-07-20","Aristotelis Thanos","Greece","7","Matteo Fondriest","Italy","","10:15","6-2 7(8)-6(6)","Finished",3,121,29,92,0,0,0,"","away"
+"2025_0221_184844","CH","Tampere","Finland","Clay","","2025-07-20","Sebastian Dominko","Slovenia","","Martin Krumich","Czech Republic","10","09:30","6-1 6-4","Finished",3,83,31,52,0,0,0,"","home"
+"2025_0221_184909","CH","Tampere","Finland","Clay","","2025-07-20","Milos Karol","Slovakia","4","Preston Brown","United States","","09:30","6-2 6-2","Finished",3,71,25,46,0,0,0,"","home"
+"2025_0221_184932","CH","Tampere","Finland","Clay","","2025-07-20","Thomas Faurel","France","","Dali Blanch","United States","8","08:20","6-0 7(7)-6(1)","Finished",3,97,22,75,0,0,0,"","home"
+"2025_0221_184956","CH","Tampere","Finland","Clay","","2025-07-20","Hynek Barton","Czech Republic","3","Hermanni Tiainen","Finland","WC","08:05","6-2 6-3","Finished",3,72,36,36,0,0,0,"","home"
+"2025_0221_185020","CH","Tampere","Finland","Clay","","2025-07-20","Nicolas Kicker","Argentina","6","Patrik Niklas Salminen","Finland","WC","08:00","6-3 6-2","Finished",3,78,33,45,0,0,0,"","home"
+"2025_0221_185044","CH","Tampere","Finland","Clay","","2025-07-20","Jelle Sels","Netherlands","2","Oskari Eerola","Finland","WC","06:35","6-2 6-2","Finished",3,73,29,44,0,0,0,"","home"
+"2025_0221_185108","CH","Tampere","Finland","Clay","","2025-07-20","Olle Wallin","Sweden","9","Kristjan Tamm","Estonia","","06:30","6-4 6-2","Finished",3,84,46,38,0,0,0,"","away"
+"2025_0221_185136","CH","Tampere","Finland","Clay","","2025-07-20","Luca Castagnola","Italy","11","Ivan Denisov","Russia","","05:10","4-6 6-4 6-4","Finished",3,177,47,60,70,0,0,"","away"
+"2025_0221_185200","CH","Tampere","Finland","Clay","","2025-07-20","Alex Molcan","Slovakia","5","Jiri Cizek","Czech Republic","","05:10","6-2 6-2","Finished",3,63,32,31,0,0,0,"","home"
+"2025_0221_185224","CH","Tampere","Finland","Clay","","2025-07-20","Joao Lucas Reis Da Silva","Brazil","1","Alan Wazny","Poland","WC","05:10","6-4 6-3","Finished",3,71,35,36,0,0,0,"","home"
+"2025_0783_182547","CH","Segovia","Spain","Hard","","2025-07-21","Robin Catry","France","","Kenny De Schepper","France","","08:05","6-2 6-1","Finished",3,63,35,28,0,0,0,"","away"
+"2025_0783_182611","CH","Segovia","Spain","Hard","","2025-07-21","Adria Soriano Barrera","Colombia","3","Olaf Pieczkowski","Poland","8","07:50","7(7)-6(4) 3-6 6-3","Finished",3,154,63,45,46,0,0,"","home"
+"2025_0783_182635","CH","Segovia","Spain","Hard","","2025-07-21","Max Wiskandt","Germany","6","Adil Kalyanpur","India","","06:20","7(7)-6(5) 6-1","Finished",3,86,54,32,0,0,0,"","home"
+"2025_0783_182659","CH","Segovia","Spain","Hard","","2025-07-21","Arthur Reymond","France","9","Alexandr Binda","Italy","5","05:10","6-1 6-4","Finished",3,53,21,32,0,0,0,"","away"
+"2025_0783_182722","CH","Segovia","Spain","Hard","","2025-07-21","John Echeverria","Spain","","Hayato Matsuoka","Japan","","05:10","7-5 7(9)-6(7)","Finished",3,151,66,85,0,0,0,"","away"
+"2025_0783_182746","CH","Segovia","Spain","Hard","","2025-07-21","Abedallah Shelbayh","Jordan","4","Bernardo Munk Mesa","Spain","","05:10","4-6 6-1 6-4","Finished",3,132,54,32,46,0,0,"","home"
+"2025_0783_182810","CH","Segovia","Spain","Hard","","2025-07-20","Kenny De Schepper","France","","Ignacio Carou","Uruguay","Alt","11:10","6-0 6-3","Finished",3,58,25,33,0,0,0,"","away"
+"2025_0783_182834","CH","Segovia","Spain","Hard","","2025-07-20","Robin Catry","France","","Alberto Barroso Campos","Spain","11","10:45","3-6 6-4 6-3","Finished",3,127,34,54,39,0,0,"","home"
+"2025_0783_182858","CH","Segovia","Spain","Hard","","2025-07-20","Adil Kalyanpur","India","Alt","Aleksandre Bakshi","Georgia","12","10:00","6-4 6-3","Finished",3,58,15,43,0,0,0,"","home"
+"2025_0783_182921","CH","Segovia","Spain","Hard","","2025-07-20","Max Wiskandt","Germany","6","Julio Cesar Porras","Argentina","","09:10","6-2 6-3","Finished",3,70,33,37,0,0,0,"","home"
+"2025_0783_182945","CH","Segovia","Spain","Hard","","2025-07-20","Olaf Pieczkowski","Poland","8","Zura Tkemaladze","Georgia","Alt","08:20","6-2 6-2","Finished",3,88,39,49,0,0,0,"","away"
+"2025_0783_183009","CH","Segovia","Spain","Hard","","2025-07-20","Adria Soriano Barrera","Colombia","3","Ivan Perez","Spain","WC","08:10","6-2 6(3)-7(7) 6-2","Finished",3,134,37,61,36,0,0,"","home"
+"2025_0783_183033","CH","Segovia","Spain","Hard","","2025-07-20","Abedallah Shelbayh","Jordan","4","David Poljak","Czech Republic","","07:45","6-2 6-3","Finished",3,79,37,42,0,0,0,"","home"
+"2025_0783_183056","CH","Segovia","Spain","Hard","","2025-07-20","Arthur Reymond","France","9","Rodrigo Duarte","Portugal","WC","07:10","6-1 6-3","Finished",3,57,20,37,0,0,0,"","away"
+"2025_0783_183120","CH","Segovia","Spain","Hard","","2025-07-20","Bernardo Munk Mesa","Spain","WC","Alex Martinez","Spain","7","06:30","7-5 3-2","Finished / retired",3,77,52,25,0,0,0,"","home"
+"2025_0783_183144","CH","Segovia","Spain","Hard","","2025-07-20","Hayato Matsuoka","Japan","","Luca Sanchez","France","Alt","05:55","6-0 6-3","Finished",3,58,22,36,0,0,0,"","away"
+"2025_0783_183206","CH","Segovia","Spain","Hard","","2025-07-20","Alexandr Binda","Italy","5","Pablo Masjuan Ginel","Spain","Alt","05:10","3-6 7-5 6-3","Finished",3,141,38,63,40,0,0,"","home"
+"2025_0783_183231","CH","Segovia","Spain","Hard","","2025-07-20","John Echeverria","Spain","","Alejo Sanchez Quilez","Spain","10","05:10","2-4","Finished / retired",3,53,53,0,0,0,0,"","home"
+"2025_2785_174615","CH","Zug","Switzerland","Clay","","2025-07-21","Jakub Paul","Switzerland","3","Buvaysar Gadamauri","Belgium","","10:10","7-5 6-4","Finished",3,89,49,40,0,0,0,"","home"
+"2025_2785_174639","CH","Zug","Switzerland","Clay","","2025-07-21","Maximilian Neuchrist","Austria","8","Genaro Alberto Olivieri","Argentina","2","09:50","7(7)-6(4) 4-6 6-3","Finished",3,154,65,47,42,0,0,"","away"
+"2025_2785_174703","CH","Zug","Switzerland","Clay","","2025-07-21","Remy Bertola","Switzerland","4","Ryan Nijboer","Netherlands","12","08:55","6-2 6-4","Finished",3,88,44,44,0,0,0,"","home"
+"2025_2785_174727","CH","Zug","Switzerland","Clay","","2025-07-21","Roman Andres Burruchaga","Argentina","1","Mariano Kestelboim","Argentina","9","06:40","6-1 6-2","Finished",3,71,33,38,0,0,0,"","home"
+"2025_2785_174751","CH","Zug","Switzerland","Clay","","2025-07-21","Stefanos Sakellaridis","Greece","6","Lukas Pokorny","Slovakia","7","06:40","4-6 7-5 6-3","Finished",3,113,34,50,29,0,0,"","home"
+"2025_2785_174814","CH","Zug","Switzerland","Clay","","2025-07-21","Petr Brunclik","Czech Republic","","Matthew Dellavedova","Australia","10","06:35","6-2 7(15)-6(13)","Finished",3,115,33,82,0,0,0,"","home"
+"2025_2785_174838","CH","Zug","Switzerland","Clay","","2025-07-20","Jakub Paul","Switzerland","3","Jeffrey Von der Schulenburg","Switzerland","WC","11:05","6-2 6-2","Finished",3,62,31,31,0,0,0,"","home"
+"2025_2785_174902","CH","Zug","Switzerland","Clay","","2025-07-20","Buvaysar Gadamauri","Belgium","","Evgeny Karlovskiy","Russia","11","10:40","6-3 3-6 7(7)-6(2)","Finished",3,118,27,32,59,0,0,"","home"
+"2025_2785_174926","CH","Zug","Switzerland","Clay","","2025-07-20","Genaro Alberto Olivieri","Argentina","2","Maxime Janvier","France","","10:00","7(7)-6(3) 7(7)-6(3)","Finished",3,106,41,65,0,0,0,"","home"
+"2025_2785_174949","CH","Zug","Switzerland","Clay","","2025-07-20","Maximilian Neuchrist","Austria","8","Francesco Forti","Italy","PR","09:00","6-4 6-4","Finished",3,78,33,45,0,0,0,"","away"
+"2025_2785_175013","CH","Zug","Switzerland","Clay","","2025-07-20","Remy Bertola","Switzerland","4","Aleksandr Braynin","Ukraine","","08:40","7-5 4-6 6-4","Finished",3,134,48,48,38,0,0,"","home"
+"2025_2785_175037","CH","Zug","Switzerland","Clay","","2025-07-20","Ryan Nijboer","Netherlands","12","Flynn Thomas","Switzerland","WC","08:30","6-2 6-4","Finished",3,72,30,42,0,0,0,"","away"
+"2025_2785_175101","CH","Zug","Switzerland","Clay","","2025-07-20","Lukas Pokorny","Slovakia","7","Ji Sung Nam","South Korea","","07:30","4-6 6-2 6-1","Finished",3,83,29,28,26,0,0,"","away"
+"2025_2785_175125","CH","Zug","Switzerland","Clay","","2025-07-20","Roman Andres Burruchaga","Argentina","1","Filippo Romano","Italy","","06:45","7(7)-6(1) 6-4","Finished",3,94,49,45,0,0,0,"","home"
+"2025_2785_175149","CH","Zug","Switzerland","Clay","","2025-07-20","Mariano Kestelboim","Argentina","9","Nikola Djosic","Switzerland","WC","06:35","7(7)-6(2) 6-2","Finished",3,97,59,38,0,0,0,"","away"
+"2025_2785_175213","CH","Zug","Switzerland","Clay","","2025-07-20","Matthew Dellavedova","Australia","10","Andrin Casanova","Switzerland","WC","05:10","6-3 6-4","Finished",3,84,40,44,0,0,0,"","away"
+"2025_2785_175236","CH","Zug","Switzerland","Clay","","2025-07-20","Stefanos Sakellaridis","Greece","6","Michiel De Krom","Netherlands","","05:10","6-1 6-2","Finished",3,68,26,42,0,0,0,"","home"
+"2025_2785_175300","CH","Zug","Switzerland","Clay","","2025-07-20","Petr Brunclik","Czech Republic","","Gonzalo Villanueva","Argentina","5","05:10","7(7)-6(5) 7-5","Finished",3,127,60,67,0,0,0,"","away"
+"2025_2883_180508","CH","Bloomfield Hills","United States","Hard","","2025-07-21","Garrett Johns","United States","6","Aidan Kim","United States","","16:00","3-6 6-2 7(7)-6(2)","Finished",3,141,41,32,68,0,0,"","home"
+"2025_2883_180621","CH","Bloomfield Hills","United States","Hard","","2025-07-21","Aidan Mayo","United States","3","Andre Ilagan","United States","9","13:35","6-3 4-6 6-4","Finished",3,132,35,56,41,0,0,"","home"
+"2025_2883_180645","CH","Bloomfield Hills","United States","Hard","","2025-07-21","Tung Lin Wu","Taipei","2","Spencer Johnson","United States","","13:25","6-2 6-2","Finished",3,68,41,27,0,0,0,"","home"
+"2025_2883_180732","CH","Bloomfield Hills","United States","Hard","","2025-07-21","Tsung Hao Huang","Taipei","","Andres Andrade","Ecuador","1","11:10","4-6 6-4 6-4","Finished",3,130,34,42,54,0,0,"","away"
+"2025_2883_180756","CH","Bloomfield Hills","United States","Hard","","2025-07-21","Arthur Fery","Great Britain","","Kaylan Bigun","United States","","11:10","5-7 6-4 6-2","Finished",3,117,42,41,34,0,0,"","away"
+"2025_2883_180820","CH","Bloomfield Hills","United States","Hard","","2025-07-21","Patrick Maloney","United States","4","Ryuki Matsuda","Japan","","11:10","6-3 6-4","Finished",3,85,39,46,0,0,0,"","home"
+"2025_2883_180844","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Aidan Kim","United States","Alt","Masamichi Imamura","Japan","12","17:25","6-3 2-0","Finished / retired",3,47,34,13,0,0,0,"","home"
+"2025_2883_180907","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Garrett Johns","United States","6","Yusuke Takahashi","Japan","","16:50","7(7)-6(3) 6-3","Finished",3,127,76,51,0,0,0,"","home"
+"2025_2883_180931","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Spencer Johnson","United States","WC","Hyeon Chung","South Korea","10","16:20","7-5 6-1","Finished",3,80,51,29,0,0,0,"","home"
+"2025_2883_180955","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Aidan Mayo","United States","3","Reese Stalder","United States","WC","16:05","6-4 6-1","Finished",3,66,37,29,0,0,0,"","home"
+"2025_2883_181019","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Tung Lin Wu","Taipei","2","Stefan Dostanic","United States","","15:15","6-4 6-3","Finished",3,81,46,35,0,0,0,"","home"
+"2025_2883_181042","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Andre Ilagan","United States","9","William Cooksey","United States","WC","14:50","6-1 6-3","Finished",3,72,28,44,0,0,0,"","away"
+"2025_2883_181106","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Ryuki Matsuda","Japan","","Christian Langmo","United States","7","14:05","7(7)-6(2) 6-3","Finished",3,103,54,49,0,0,0,"","home"
+"2025_2883_181130","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Arthur Fery","Great Britain","Alt","Kris van Wyk","South Africa","","13:20","6-4 7-5","Finished",3,94,34,60,0,0,0,"","away"
+"2025_2883_181154","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Patrick Maloney","United States","4","Joshua Sheehy","United States","Alt","12:50","6-4 7(7)-6(2)","Finished",3,101,38,63,0,0,0,"","home"
+"2025_2883_181217","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Andres Andrade","Ecuador","1","Jason Jung","Taiwan","PR","11:20","6-1 6-3","Finished",3,79,27,52,0,0,0,"","home"
+"2025_2883_181241","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Tsung Hao Huang","Taipei","","Hiroki Moriya","Japan","11","11:20","3-6 7(8)-6(6) 6-4","Finished",3,154,35,66,53,0,0,"","home"
+"2025_2883_181305","CH","Bloomfield Hills","United States","Hard","","2025-07-20","Kaylan Bigun","United States","WC","Naoki Nakagawa","Japan","5","11:20","6-4 7-5","Finished",3,101,36,65,0,0,0,"","away"
