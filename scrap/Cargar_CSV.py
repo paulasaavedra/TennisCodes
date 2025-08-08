@@ -4437,6 +4437,14 @@ nacionalidades = {
     "Lui Maxted": "Great Britain",
     "Nicolas Alvarez Varona": "Spain",
     "Aziz Dougaz": "Tunisia",
+    "Erasyl Bakhtiyar": "Kazakhstan",
+    "Martin Borisiouk": "Belarus",
+    "Bekkhan Atlangeriev": "Russia",
+    "Evgeny Philippov": "Russia",
+    "Saveliy Ivanov": "Russia",
+    "Ruslan Tiukaev": "Russia",
+    "Alex De Minaur": "Australia",
+    "Christopher O'Connell": "Australia",
 }
 
 
