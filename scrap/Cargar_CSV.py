@@ -11,7 +11,7 @@ import numpy as np
 
 categoria = "atp"
 
-os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/")
+os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/ATP/")
 
 
 # Función para cargar un archivo CSV en un DataFrame y agregar una columna de identificación
@@ -4445,6 +4445,16 @@ nacionalidades = {
     "Ruslan Tiukaev": "Russia",
     "Alex De Minaur": "Australia",
     "Christopher O'Connell": "Australia",
+    "Pedro Boscardin Dias": "Brazil",
+    "Marton Fucsovics": "Hungary",
+    "Gabriel Diallo": "Canada",
+    "Bernard Tomic": "Australia",
+    "Fausto Tabacco": "Italy",
+    "Mikael Ymer": "Sweden",
+    "Nishesh Basavareddy": "United States",
+    "Facundo Bagnis": "Argentina",
+    "Andrea Picchione": "Italy",
+    "Eric Vanshelboim": "Ucraine",
 }
 
 
