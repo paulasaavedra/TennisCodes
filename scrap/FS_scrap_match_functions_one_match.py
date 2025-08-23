@@ -75,7 +75,7 @@ def scrap_match(ides, URL):
         else:
             winner = "away"
 
-        breadcrumbs = soup.find_all("li", class_="wcl-breadcrumbItem_CiWQ7")
+        breadcrumbs = soup.find_all("li", class_="wcl-breadcrumbItem_8btmf")
 
         tourney_level = breadcrumbs[1].find("span").text.split(" - ")[0]
         tourney_name = breadcrumbs[2].find("span").text.split(", ")[0]
@@ -237,7 +237,7 @@ def scrap_match(ides, URL):
             else:
                 winner = "away"
 
-        breadcrumbs = soup.find_all("li", class_="wcl-breadcrumbItem_CiWQ7")
+        breadcrumbs = soup.find_all("li", class_="wcl-breadcrumbItem_8btmf")
 
         tourney_level = breadcrumbs[1].find("span").text.split(" - ")[0]
         tourney_name = breadcrumbs[2].find("span").text.split(", ")[0]
@@ -684,14 +684,14 @@ def scrap_match(ides, URL):
                 soup = BeautifulSoup(page_src, "lxml")
 
                 # Statistics overall
-                rows = soup.find_all("div", class_="wcl-row_OFViZ")
+                rows = soup.find_all("div", class_="wcl-row_2oCpS")
 
                 for row in rows:
-                    category = row.find("div", class_="wcl-category_ITphf")
+                    category = row.find("div", class_="wcl-category_Ydwqh")
 
                     # Valor local (puede tener strong solo o strong + span)
                     h_block = category.find(
-                        "div", class_="wcl-value_IuyQw wcl-homeValue_-iJBW"
+                        "div", class_="wcl-value_XJG99 wcl-homeValue_3Q-7P"
                     )
                     h_strong = h_block.find("strong").text.strip() if h_block else ""
                     h_span = (
@@ -702,13 +702,13 @@ def scrap_match(ides, URL):
                     h_list.append(f"{h_strong} {h_span}".strip())
 
                     # Nombre de la estadística
-                    t_block = category.find("div", class_="wcl-category_7qsgP")
+                    t_block = category.find("div", class_="wcl-category_Ydwqh")
                     t_text = t_block.find("strong").text.strip() if t_block else ""
                     t_list.append(t_text)
 
                     # Valor visitante (puede tener strong solo o strong + span)
                     a_block = category.find(
-                        "div", class_="wcl-value_IuyQw wcl-awayValue_rQvxs"
+                        "div", class_="wcl-value_XJG99 wcl-awayValue_Y-QR1"
                     )
                     a_strong = a_block.find("strong").text.strip() if a_block else ""
                     a_span = (
@@ -1719,9 +1719,9 @@ def scrap_match(ides, URL):
 os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/")
 
 
-ides = "439"
+ides = "3025"
 link_one_match = (
-    "https://www.flashscore.com/match/0OlWWVmA/#/match-summary/match-summary"
+    "https://www.flashscore.com/match/tennis/niJBSPhA/#/match-summary/match-summary"
 )
 
 try:
