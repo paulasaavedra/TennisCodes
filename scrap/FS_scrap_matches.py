@@ -704,7 +704,7 @@ def scrap_match(URL, id, year_scrap):
                     h_list.append(f"{h_strong} {h_span}".strip())
 
                     # Nombre de la estadística
-                    t_block = category.find("div", class_="wcl-category_Ydwqh")
+                    t_block = category.find("div", class_="wcl-category_6sT1J")
                     t_text = t_block.find("strong").text.strip() if t_block else ""
                     t_list.append(t_text)
 
@@ -1840,7 +1840,7 @@ for filename in [csv_files]:
             more_matches = False
 
         list_of_matches = tourney_to_matchs(link_df, more_matches)
-        # list_of_matches = list_of_matches[:-238]
+        # list_of_matches = list_of_matches[]
 
         contador_partidos = 1
 

@@ -5423,6 +5423,9 @@ UPDATE atp_simple
 SET TOURNEY_LEVEL = 'GS'
 WHERE TOURNEY_NAME = 'Wimbledon';
 UPDATE atp_simple
+SET TOURNEY_NAME = 'US Open'
+WHERE TOURNEY_NAME = 'Us Open';
+UPDATE atp_simple
 SET l_player = REPLACE(
         l_player,
         'Santiago Fa Rodriguez Taverna',
