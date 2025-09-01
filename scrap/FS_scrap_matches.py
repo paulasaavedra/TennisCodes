@@ -740,14 +740,14 @@ def scrap_match(URL, id, year_scrap):
                     driver.implicitly_wait(10)
 
                     soup = BeautifulSoup(driver.page_source, "lxml")
-                    rows = soup.find_all("div", class_="wcl-row_OFViZ")
+                    rows = soup.find_all("div", class_="wcl-row_2oCpS")
 
                     for row in rows:
-                        category = row.find("div", class_="wcl-category_ITphf")
+                        category = row.find("div", class_="wcl-category_Ydwqh")
 
                         # Valor local (puede tener strong solo o strong + span)
                         h_block = category.find(
-                            "div", class_="wcl-value_IuyQw wcl-homeValue_-iJBW"
+                            "div", class_="wcl-value_XJG99 wcl-homeValue_3Q-7P"
                         )
                         h_strong = (
                             h_block.find("strong").text.strip() if h_block else ""
@@ -760,13 +760,13 @@ def scrap_match(URL, id, year_scrap):
                         h_1list.append(f"{h_strong} {h_span}".strip())
 
                         # Nombre de la estadística
-                        t_block = category.find("div", class_="wcl-category_7qsgP")
+                        t_block = category.find("div", class_="wcl-category_6sT1J")
                         t_text = t_block.find("strong").text.strip() if t_block else ""
                         t_1list.append(t_text)
 
                         # Valor visitante (puede tener strong solo o strong + span)
                         a_block = category.find(
-                            "div", class_="wcl-value_IuyQw wcl-awayValue_rQvxs"
+                            "div", class_="wcl-value_XJG99 wcl-awayValue_Y-QR1"
                         )
                         a_strong = (
                             a_block.find("strong").text.strip() if a_block else ""
@@ -801,14 +801,14 @@ def scrap_match(URL, id, year_scrap):
                     driver.implicitly_wait(10)
 
                     soup = BeautifulSoup(driver.page_source, "lxml")
-                    rows = soup.find_all("div", class_="wcl-row_OFViZ")
+                    rows = soup.find_all("div", class_="wcl-row_2oCpS")
 
                     for row in rows:
-                        category = row.find("div", class_="wcl-category_ITphf")
+                        category = row.find("div", class_="wcl-category_Ydwqh")
 
                         # Valor local (puede tener strong solo o strong + span)
                         h_block = category.find(
-                            "div", class_="wcl-value_IuyQw wcl-homeValue_-iJBW"
+                            "div", class_="wcl-value_XJG99 wcl-homeValue_3Q-7P"
                         )
                         h_strong = (
                             h_block.find("strong").text.strip() if h_block else ""
@@ -821,13 +821,13 @@ def scrap_match(URL, id, year_scrap):
                         h_2list.append(f"{h_strong} {h_span}".strip())
 
                         # Nombre de la estadística
-                        t_block = category.find("div", class_="wcl-category_7qsgP")
+                        t_block = category.find("div", class_="wcl-category_6sT1J")
                         t_text = t_block.find("strong").text.strip() if t_block else ""
                         t_2list.append(t_text)
 
                         # Valor visitante (puede tener strong solo o strong + span)
                         a_block = category.find(
-                            "div", class_="wcl-value_IuyQw wcl-awayValue_rQvxs"
+                            "div", class_="wcl-value_XJG99 wcl-awayValue_Y-QR1"
                         )
                         a_strong = (
                             a_block.find("strong").text.strip() if a_block else ""
@@ -862,14 +862,14 @@ def scrap_match(URL, id, year_scrap):
                     driver.execute_script("arguments[0].click();", stats_button)
                     driver.implicitly_wait(10)
                     soup = BeautifulSoup(driver.page_source, "lxml")
-                    rows = soup.find_all("div", class_="wcl-row_OFViZ")
+                    rows = soup.find_all("div", class_="wcl-row_2oCpS")
 
                     for row in rows:
-                        category = row.find("div", class_="wcl-category_ITphf")
+                        category = row.find("div", class_="wcl-category_Ydwqh")
 
                         # Valor local (puede tener strong solo o strong + span)
                         h_block = category.find(
-                            "div", class_="wcl-value_IuyQw wcl-homeValue_-iJBW"
+                            "div", class_="wcl-value_XJG99 wcl-homeValue_3Q-7P"
                         )
                         h_strong = (
                             h_block.find("strong").text.strip() if h_block else ""
@@ -882,13 +882,13 @@ def scrap_match(URL, id, year_scrap):
                         h_3list.append(f"{h_strong} {h_span}".strip())
 
                         # Nombre de la estadística
-                        t_block = category.find("div", class_="wcl-category_7qsgP")
+                        t_block = category.find("div", class_="wcl-category_6sT1J")
                         t_text = t_block.find("strong").text.strip() if t_block else ""
                         t_3list.append(t_text)
 
                         # Valor visitante (puede tener strong solo o strong + span)
                         a_block = category.find(
-                            "div", class_="wcl-value_IuyQw wcl-awayValue_rQvxs"
+                            "div", class_="wcl-value_XJG99 wcl-awayValue_Y-QR1"
                         )
                         a_strong = (
                             a_block.find("strong").text.strip() if a_block else ""
@@ -924,14 +924,14 @@ def scrap_match(URL, id, year_scrap):
                     driver.implicitly_wait(10)
 
                     soup = BeautifulSoup(driver.page_source, "lxml")
-                    rows = soup.find_all("div", class_="wcl-row_OFViZ")
+                    rows = soup.find_all("div", class_="wcl-row_2oCpS")
 
                     for row in rows:
-                        category = row.find("div", class_="wcl-category_ITphf")
+                        category = row.find("div", class_="wcl-category_Ydwqh")
 
                         # Valor local (puede tener strong solo o strong + span)
                         h_block = category.find(
-                            "div", class_="wcl-value_IuyQw wcl-homeValue_-iJBW"
+                            "div", class_="wcl-value_XJG99 wcl-homeValue_3Q-7P"
                         )
                         h_strong = (
                             h_block.find("strong").text.strip() if h_block else ""
@@ -944,13 +944,13 @@ def scrap_match(URL, id, year_scrap):
                         h_4list.append(f"{h_strong} {h_span}".strip())
 
                         # Nombre de la estadística
-                        t_block = category.find("div", class_="wcl-category_7qsgP")
+                        t_block = category.find("div", class_="wcl-category_6sT1J")
                         t_text = t_block.find("strong").text.strip() if t_block else ""
                         t_4list.append(t_text)
 
                         # Valor visitante (puede tener strong solo o strong + span)
                         a_block = category.find(
-                            "div", class_="wcl-value_IuyQw wcl-awayValue_rQvxs"
+                            "div", class_="wcl-value_XJG99 wcl-awayValue_Y-QR1"
                         )
                         a_strong = (
                             a_block.find("strong").text.strip() if a_block else ""
@@ -986,14 +986,14 @@ def scrap_match(URL, id, year_scrap):
                     driver.implicitly_wait(10)
 
                     soup = BeautifulSoup(driver.page_source, "lxml")
-                    rows = soup.find_all("div", class_="wcl-row_OFViZ")
+                    rows = soup.find_all("div", class_="wcl-row_2oCpS")
 
                     for row in rows:
-                        category = row.find("div", class_="wcl-category_ITphf")
+                        category = row.find("div", class_="wcl-category_Ydwqh")
 
                         # Valor local (puede tener strong solo o strong + span)
                         h_block = category.find(
-                            "div", class_="wcl-value_IuyQw wcl-homeValue_-iJBW"
+                            "div", class_="wcl-value_XJG99 wcl-homeValue_3Q-7P"
                         )
                         h_strong = (
                             h_block.find("strong").text.strip() if h_block else ""
@@ -1006,13 +1006,13 @@ def scrap_match(URL, id, year_scrap):
                         h_5list.append(f"{h_strong} {h_span}".strip())
 
                         # Nombre de la estadística
-                        t_block = category.find("div", class_="wcl-category_7qsgP")
+                        t_block = category.find("div", class_="wcl-category_6sT1J")
                         t_text = t_block.find("strong").text.strip() if t_block else ""
                         t_5list.append(t_text)
 
                         # Valor visitante (puede tener strong solo o strong + span)
                         a_block = category.find(
-                            "div", class_="wcl-value_IuyQw wcl-awayValue_rQvxs"
+                            "div", class_="wcl-value_XJG99 wcl-awayValue_Y-QR1"
                         )
                         a_strong = (
                             a_block.find("strong").text.strip() if a_block else ""
@@ -1840,7 +1840,7 @@ for filename in [csv_files]:
             more_matches = False
 
         list_of_matches = tourney_to_matchs(link_df, more_matches)
-        # list_of_matches = list_of_matches[]
+        list_of_matches = list_of_matches[:-224]
 
         contador_partidos = 1
 

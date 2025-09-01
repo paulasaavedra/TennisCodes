@@ -8,6 +8,7 @@ Created on Wed Jan  3 12:45:58 2024
 import pandas as pd
 import os
 import numpy as np
+from datetime import datetime
 
 categoria = "atp"
 
@@ -4605,8 +4606,9 @@ for key, df in stats_dict.items():
     # Reemplaza todas las columnas cuyo nombre contiene 'MATCH_ID' por 'MATCH_ID'
     df.columns = [col if "MATCH_ID" not in col else "MATCH_ID" for col in df.columns]
 
-
+print("fin")
 ##### cargar a SQL
+
 
 from sqlalchemy import create_engine
 
