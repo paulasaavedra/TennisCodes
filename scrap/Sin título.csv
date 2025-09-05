@@ -1,124 +1,113 @@
-
-UPDATE atp_simple
-SET round_match = 'Q3'
-WHERE match_id IN (
-"2025_0560_121805",
-"2025_0560_121829",
-"2025_0560_121853",
-"2025_0560_121918",
-"2025_0560_121941",
-"2025_0560_122004",
-"2025_0560_122029",
-"2025_0560_122053",
-"2025_0560_122117",
-"2025_0560_122141",
-"2025_0560_122205",
-"2025_0560_122229",
-"2025_0560_122253",
-"2025_0560_122317",
-"2025_0560_122341",
-"2025_0560_122406");
-
-UPDATE atp_simple
-SET round_match = 'Q2'
-WHERE match_id IN (
-"2025_0560_122430",
-"2025_0560_122454",
-"2025_0560_122518",
-"2025_0560_122542",
-"2025_0560_122607",
-"2025_0560_122631",
-"2025_0560_122654",
-"2025_0560_122718",
-"2025_0560_122742",
-"2025_0560_122807",
-"2025_0560_122831",
-"2025_0560_122855",
-"2025_0560_122919",
-"2025_0560_122942",
-"2025_0560_123006",
-"2025_0560_123031",
-"2025_0560_123054",
-"2025_0560_123119",
-"2025_0560_123143",
-"2025_0560_123206",
-"2025_0560_123230",
-"2025_0560_123255",
-"2025_0560_123319",
-"2025_0560_123343",
-"2025_0560_123408",
-"2025_0560_123432",
-"2025_0560_123456",
-"2025_0560_123519",
-"2025_0560_123543",
-"2025_0560_123608",
-"2025_0560_123632",
-"2025_0560_123656");
-
-UPDATE atp_simple
-SET round_match = 'Q1'
-WHERE match_id IN (
-"2025_0560_123721",
-"2025_0560_123745",
-"2025_0560_123809",
-"2025_0560_123833",
-"2025_0560_123857",
-"2025_0560_123921",
-"2025_0560_123946",
-"2025_0560_124010",
-"2025_0560_124034",
-"2025_0560_124058",
-"2025_0560_124122",
-"2025_0560_124146",
-"2025_0560_124210",
-"2025_0560_124235",
-"2025_0560_124259",
-"2025_0560_124323",
-"2025_0560_124347",
-"2025_0560_124412",
-"2025_0560_124436",
-"2025_0560_124500",
-"2025_0560_124525",
-"2025_0560_124549",
-"2025_0560_124612",
-"2025_0560_124637",
-"2025_0560_124701",
-"2025_0560_124725",
-"2025_0560_124749",
-"2025_0560_124814",
-"2025_0560_124838",
-"2025_0560_124903",
-"2025_0560_124927",
-"2025_0560_124952",
-"2025_0560_125015",
-"2025_0560_125039",
-"2025_0560_125111",
-"2025_0560_125135",
-"2025_0560_125200",
-"2025_0560_125224",
-"2025_0560_125248",
-"2025_0560_125312",
-"2025_0560_125337",
-"2025_0560_125401",
-"2025_0560_125425",
-"2025_0560_125449",
-"2025_0560_125514",
-"2025_0560_125538",
-"2025_0560_125603",
-"2025_0560_125627",
-"2025_0560_125651",
-"2025_0560_125716",
-"2025_0560_125740",
-"2025_0560_125804",
-"2025_0560_125828",
-"2025_0560_125853",
-"2025_0560_125917",
-"2025_0560_125941",
-"2025_0560_130006",
-"2025_0560_130030",
-"2025_0560_130054",
-"2025_0560_130119",
-"2025_0560_130143",
-"2025_0560_130207",
-"2025_0560_130231",
-"2025_0560_142704");
+"MATCH_ID","TOURNEY_LEVEL","TOURNEY_NAME","COUNTRY","SURFACE","ROUND_MATCH","DATE_MATCH","W_PLAYER","W_NAC","W_SEED","L_PLAYER","L_NAC","L_SEED","TIMESTART","SCORE","MATCH_STATUS","BEST","TIME_TOTAL","TIME_1S","TIME_2S","TIME_3S","TIME_4S","TIME_5S","COMENTS","WINNER"
+"2025_0560_121805","ATP","US Open","United States","Hard","","2025-08-22","Ugo Blanchet","France","","Jaime Faria","Portugal","15","16:20","7-5 6-4","Finished",3,94,59,35,0,0,0,"","away"
+"2025_0560_121829","ATP","US Open","United States","Hard","","2025-08-22","Jerome Kym","Switzerland","","Yibing Wu","China","","16:05","6-3 6-2","Finished",3,67,33,34,0,0,0,"","home"
+"2025_0560_121853","ATP","US Open","United States","Hard","","2025-08-22","Shintaro Mochizuki","Japan","12","Daniel Elahi Galan","Colombia","32","15:15","6-4 6-4","Finished",3,94,48,46,0,0,0,"","home"
+"2025_0560_121918","ATP","US Open","United States","Hard","","2025-08-22","Dino Prizmic","Croatia","19","Jason Kubler","Australia","","14:55","6-3 4-6 6-1","Finished",3,145,52,63,30,0,0,"","away"
+"2025_0560_121941","ATP","US Open","United States","Hard","","2025-08-22","Zsombor Piros","Hungary","","James Duckworth","Australia","5","14:25","6-1 4-6 6-2","Finished",3,113,24,47,42,0,0,"","away"
+"2025_0560_122004","ATP","US Open","United States","Hard","","2025-08-22","Lloyd Harris","South Africa","","Daniel Merida Aguilar","Spain","","14:15","6-1 7(7)-6(2)","Finished",3,75,21,54,0,0,0,"","away"
+"2025_0560_122029","ATP","US Open","United States","Hard","","2025-08-22","Jesper De Jong","Netherlands","2","Mitchell Krueger","United States","","14:15","6-4 6-1","Finished",3,87,50,37,0,0,0,"","home"
+"2025_0560_122053","ATP","US Open","United States","Hard","","2025-08-22","Francesco Passaro","Italy","10","Henrique Rocha","Portugal","","14:10","7-5 6-3","Finished",3,98,49,49,0,0,0,"","home"
+"2025_0560_122117","ATP","US Open","United States","Hard","","2025-08-22","Chak Lam Coleman Wong","Hong Kong","","Billy Harris","United Kingdom","","14:10","6-3 6-4","Finished",3,77,34,43,0,0,0,"","home"
+"2025_0560_122141","ATP","US Open","United States","Hard","","2025-08-22","Zachary Svajda","United States","22","Marc Andrea Huesler","Switzerland","","14:05","6-3 6-2","Finished",3,73,33,40,0,0,0,"","away"
+"2025_0560_122205","ATP","US Open","United States","Hard","","2025-08-22","Jan Lennard Struff","Germany","31","Arthur Cazaux","France","1","12:10","7(7)-6(4) 6-3","Finished",3,109,57,52,0,0,0,"","away"
+"2025_0560_122229","ATP","US Open","United States","Hard","","2025-08-22","Ignacio Buse","Peru","29","Kimmer Coppejans","Belgium","","12:10","6-3 6-4","Finished",3,95,36,59,0,0,0,"","away"
+"2025_0560_122253","ATP","US Open","United States","Hard","","2025-08-22","Federico Agustin Gomez","Argentina","","Hugo Grenier","France","","12:10","6(5)-7(7) 7(7)-6(5) 6-2","Finished",3,178,61,63,54,0,0,"","home"
+"2025_0560_122317","ATP","US Open","United States","Hard","","2025-08-22","Leandro Riedi","Switzerland","","Garrett Johns","United States","","12:05","7(7)-6(5) 6-4","Finished",3,101,56,45,0,0,0,"","home"
+"2025_0560_122341","ATP","US Open","United States","Hard","","2025-08-22","Martin Damm","Czech Republic","","Yuta Shimizu","Japan","","12:05","7(12)-6(10) 6-4","Finished",3,101,57,44,0,0,0,"","away"
+"2025_0560_122406","ATP","US Open","United States","Hard","","2025-08-22","Pablo Llamas Ruiz","Spain","","Marco Trungelliti","Argentina","","12:05","3-6 6-1 6-2","Finished",3,107,37,31,39,0,0,"","away"
+"2025_0560_122430","ATP","US Open","United States","Hard","","2025-08-21","Yibing Wu","China","","Luca van Assche","France","","19:55","6-3 6-3","Finished",3,88,43,45,0,0,0,"","away"
+"2025_0560_122454","ATP","US Open","United States","Hard","","2025-08-21","Jerome Kym","Switzerland","","Michael Zheng","United States","","19:40","6-3 6-4","Finished",3,79,34,45,0,0,0,"","home"
+"2025_0560_122518","ATP","US Open","United States","Hard","","2025-08-21","Daniel Elahi Galan","Colombia","32","Patrick Maloney","United States","","19:20","6-4 6-2","Finished",3,87,50,37,0,0,0,"","away"
+"2025_0560_122542","ATP","US Open","United States","Hard","","2025-08-21","Ugo Blanchet","France","","Dmitry Popko","Kazakhstan","","18:30","6-3 6-4","Finished",3,91,42,49,0,0,0,"","home"
+"2025_0560_122607","ATP","US Open","United States","Hard","","2025-08-21","Francesco Passaro","Italy","10","Rodrigo Pacheco Mendez","Mexico","","17:50","4-6 7(7)-6(2) 6-4","Finished",3,139,42,54,43,0,0,"","home"
+"2025_0560_122631","ATP","US Open","United States","Hard","","2025-08-21","Jaime Faria","Portugal","15","Giulio Zeppieri","Italy","","17:40","7(7)-6(5) 7-5","Finished",3,113,60,53,0,0,0,"","home"
+"2025_0560_122654","ATP","US Open","United States","Hard","","2025-08-21","Daniel Merida Aguilar","Spain","","Titouan Droguet","France","","17:20","6-4 3-6 6-4","Finished",3,115,33,37,45,0,0,"","home"
+"2025_0560_122718","ATP","US Open","United States","Hard","","2025-08-21","Shintaro Mochizuki","Japan","12","Roman Andres Burruchaga","Argentina","","17:10","6-4 1-6 6-4","Finished",3,114,40,31,43,0,0,"","home"
+"2025_0560_122742","ATP","US Open","United States","Hard","","2025-08-21","Jason Kubler","Australia","","Kyrian Jacquet","France","","16:55","6-4 6-2","Finished",3,79,37,42,0,0,0,"","away"
+"2025_0560_122807","ATP","US Open","United States","Hard","","2025-08-21","Lloyd Harris","South Africa","","Fajing Sun","China","","16:40","6-2 6-2","Finished",3,74,38,36,0,0,0,"","away"
+"2025_0560_122831","ATP","US Open","United States","Hard","","2025-08-21","Billy Harris","United Kingdom","","Mikhail Kukushkin","Kazakhstan","","16:25","6(5)-7(7) 6-3 6-2","Finished",3,158,60,51,47,0,0,"","home"
+"2025_0560_122855","ATP","US Open","United States","Hard","","2025-08-21","Henrique Rocha","Portugal","","Bernard Tomic","Australia","","16:05","7(7)-6(4) 6-2","Finished",3,118,77,41,0,0,0,"","away"
+"2025_0560_122919","ATP","US Open","United States","Hard","","2025-08-21","Zachary Svajda","United States","22","Beibit Zhukayev","Kazakhstan","","16:05","6-3 7-5","Finished",3,86,35,51,0,0,0,"","away"
+"2025_0560_122942","ATP","US Open","United States","Hard","","2025-08-21","Jesper De Jong","Netherlands","2","Harold Mayot","France","","15:35","7(13)-6(11) 6(4)-7(7) 6-3","Finished",3,197,91,64,42,0,0,"","home"
+"2025_0560_123006","ATP","US Open","United States","Hard","","2025-08-21","Marc Andrea Huesler","Switzerland","","Nikoloz Basilashvili","Georgia","6","15:30","7(7)-6(4) 7-5","Finished",3,97,47,50,0,0,0,"","away"
+"2025_0560_123031","ATP","US Open","United States","Hard","","2025-08-21","Zsombor Piros","Hungary","","Thiago Agustin Tirante","Argentina","24","15:30","6-3 7(7)-6(3)","Finished",3,111,43,68,0,0,0,"","home"
+"2025_0560_123054","ATP","US Open","United States","Hard","","2025-08-21","James Duckworth","Australia","5","James McCabe","Australia","","15:15","7-5 5-7 7(10)-6(5)","Finished",3,171,38,58,75,0,0,"","home"
+"2025_0560_123119","ATP","US Open","United States","Hard","","2025-08-21","Mitchell Krueger","United States","","Andrea Collarini","Argentina","","15:15","7(7)-6(4) 7-5","Finished",3,116,61,55,0,0,0,"","home"
+"2025_0560_123143","ATP","US Open","United States","Hard","","2025-08-21","Chak Lam Coleman Wong","Hong Kong","","Matteo Gigante","Italy","16","15:05","4-6 6-3 7-5","Finished",3,136,49,35,52,0,0,"","away"
+"2025_0560_123206","ATP","US Open","United States","Hard","","2025-08-21","Jan Lennard Struff","Germany","31","Taro Daniel","Japan","","14:40","2-6 6-4 6-1","Finished",3,114,35,49,30,0,0,"","away"
+"2025_0560_123230","ATP","US Open","United States","Hard","","2025-08-21","Dino Prizmic","Croatia","19","Murphy Cassone","United States","","14:35","6-3 6-2","Finished",3,79,42,37,0,0,0,"","away"
+"2025_0560_123255","ATP","US Open","United States","Hard","","2025-08-21","Arthur Cazaux","France","1","Jay Clarke","United Kingdom","","14:35","6-3 6-4","Finished",3,96,45,51,0,0,0,"","home"
+"2025_0560_123319","ATP","US Open","United States","Hard","","2025-08-21","Marco Trungelliti","Argentina","","Cristian Garin","Chile","13","14:10","7(7)-6(3) 7-5","Finished",3,144,77,67,0,0,0,"","away"
+"2025_0560_123343","ATP","US Open","United States","Hard","","2025-08-21","Hugo Grenier","France","","Martin Landaluce","Spain","30","14:00","6-3 7(7)-6(3)","Finished",3,116,51,65,0,0,0,"","home"
+"2025_0560_123408","ATP","US Open","United States","Hard","","2025-08-21","Federico Agustin Gomez","Argentina","","Federico Cina","Italy","","13:45","6-3 2-6 7-5","Finished",3,114,27,41,46,0,0,"","home"
+"2025_0560_123432","ATP","US Open","United States","Hard","","2025-08-21","Pablo Llamas Ruiz","Spain","","Andres Martin","United States","","13:40","6-4 6-4","Finished",3,121,70,51,0,0,0,"","away"
+"2025_0560_123456","ATP","US Open","United States","Hard","","2025-08-21","Ignacio Buse","Peru","29","Rei Sakamoto","Japan","","12:10","6-4 4-6 6-4","Finished",3,132,38,46,48,0,0,"","away"
+"2025_0560_123519","ATP","US Open","United States","Hard","","2025-08-21","Kimmer Coppejans","Belgium","","Alexander Blockx","Belgium","11","12:05","7(7)-6(5)","Finished / retired",3,55,55,0,0,0,0,"","away"
+"2025_0560_123543","ATP","US Open","United States","Hard","","2025-08-21","Yuta Shimizu","Japan","","Juan Manuel Cerundolo","Argentina","4","12:05","7(7)-6(5) 7-5","Finished",3,119,59,60,0,0,0,"","away"
+"2025_0560_123608","ATP","US Open","United States","Hard","","2025-08-21","Garrett Johns","United States","","Oliver Crawford","United Kingdom","","12:05","7(7)-6(4) 6-3","Finished",3,110,68,42,0,0,0,"","away"
+"2025_0560_123632","ATP","US Open","United States","Hard","","2025-08-21","Martin Damm","Czech Republic","","Benjamin Hassan","Lebanon","","12:05","7-5 7(7)-6(5)","Finished",3,97,50,47,0,0,0,"","home"
+"2025_0560_123656","ATP","US Open","United States","Hard","","2025-08-21","Leandro Riedi","Switzerland","","Otto Virtanen","Finland","9","12:05","7(10)-6(8) 6-4","Finished",3,89,51,38,0,0,0,"","away"
+"2025_0560_123721","ATP","US Open","United States","Hard","","2025-08-19","Ignacio Buse","Peru","29","Lukas Neumayer","Austria","","19:45","7(7)-6(2) 6(5)-7(7) 6-1","Finished",3,157,58,63,36,0,0,"","away"
+"2025_0560_123745","ATP","US Open","United States","Hard","","2025-08-19","Rei Sakamoto","Japan","","Tyler Zink","United States","WC","19:45","4-6 7-5 7(10)-6(8)","Finished",3,173,45,72,56,0,0,"","away"
+"2025_0560_123809","ATP","US Open","United States","Hard","","2025-08-19","Alexander Blockx","Belgium","11","Joao Lucas Reis Da Silva","Brazil","","19:40","6-2 6-1","Finished",3,60,29,31,0,0,0,"","home"
+"2025_0560_123833","ATP","US Open","United States","Hard","","2025-08-19","Martin Damm","Czech Republic","WC","Stefano Travaglia","Italy","","19:25","6-3 6-2","Finished",3,77,45,32,0,0,0,"","home"
+"2025_0560_123857","ATP","US Open","United States","Hard","","2025-08-19","Benjamin Hassan","Lebanon","","Tomas Barrios Vera","Chile","20","19:25","6-2 7(7)-6(3)","Finished",3,90,27,63,0,0,0,"","home"
+"2025_0560_123921","ATP","US Open","United States","Hard","","2025-08-19","Kimmer Coppejans","Belgium","","Alex Barrena","Argentina","","19:15","6-4 6(4)-7(7) 6-3","Finished",3,156,36,81,39,0,0,"","away"
+"2025_0560_123946","ATP","US Open","United States","Hard","","2025-08-19","Titouan Droguet","France","","Alibek Kachmazov","Russia","","18:50","6-1 4-2","Finished / retired",3,55,21,34,0,0,0,"","home"
+"2025_0560_124010","ATP","US Open","United States","Hard","","2025-08-19","Daniel Merida Aguilar","Spain","","Dalibor Svrcina","Czech Republic","8","18:15","1-6 6-3 7-5","Finished",3,121,31,42,48,0,0,"","away"
+"2025_0560_124034","ATP","US Open","United States","Hard","","2025-08-19","Bernard Tomic","Australia","","Patrick Kypson","United States","","17:20","6-4 6-4","Finished",3,86,35,51,0,0,0,"","away"
+"2025_0560_124058","ATP","US Open","United States","Hard","","2025-08-19","Juan Manuel Cerundolo","Argentina","4","Calvin Hemery","France","","16:50","6-4 6-3","Finished",3,92,51,41,0,0,0,"","home"
+"2025_0560_124122","ATP","US Open","United States","Hard","","2025-08-19","Henrique Rocha","Portugal","","Pierre Hugues Herbert","France","23","16:50","6-4 6(1)-7(7) 6-4","Finished",3,159,39,64,56,0,0,"","home"
+"2025_0560_124146","ATP","US Open","United States","Hard","","2025-08-19","Yuta Shimizu","Japan","","Sho Shimabukuro","Japan","","16:45","6(3)-7(7) 6-3 6-3","Finished",3,137,52,38,47,0,0,"","home"
+"2025_0560_124210","ATP","US Open","United States","Hard","","2025-08-19","Garrett Johns","United States","WC","Colton Smith","United States","27","16:15","6-3 6-3","Finished",3,77,34,43,0,0,0,"","home"
+"2025_0560_124235","ATP","US Open","United States","Hard","","2025-08-19","Thiago Agustin Tirante","Argentina","24","Jack Kennedy","United States","WC","15:50","6-4 6-4","Finished",3,101,51,50,0,0,0,"","away"
+"2025_0560_124259","ATP","US Open","United States","Hard","","2025-08-19","Zsombor Piros","Hungary","","Arthur Bouquier","France","","15:30","7-5 7(7)-6(2)","Finished",3,88,38,50,0,0,0,"","away"
+"2025_0560_124323","ATP","US Open","United States","Hard","","2025-08-19","Oliver Crawford","United Kingdom","","Alex Bolt","Australia","","15:25","5-7 6-4 6-4","Finished",3,144,45,50,49,0,0,"","away"
+"2025_0560_124347","ATP","US Open","United States","Hard","","2025-08-19","Michael Zheng","United States","WC","Yasutaka Uchiyama","Japan","","14:25","6-2 6-3","Finished",3,69,28,41,0,0,0,"","home"
+"2025_0560_124412","ATP","US Open","United States","Hard","","2025-08-19","Leandro Riedi","Switzerland","","Luka Pavlovic","France","","14:20","6-2 7(7)-6(3)","Finished",3,98,33,65,0,0,0,"","away"
+"2025_0560_124436","ATP","US Open","United States","Hard","","2025-08-19","Kyrian Jacquet","France","","Liam Draxl","Canada","7","14:10","7-5 6-2","Finished",3,79,46,33,0,0,0,"","away"
+"2025_0560_124500","ATP","US Open","United States","Hard","","2025-08-19","Otto Virtanen","Finland","9","Benjamin Willwerth","United States","WC","13:50","6(5)-7(7) 6-3 6-2","Finished",3,108,47,30,31,0,0,"","home"
+"2025_0560_124525","ATP","US Open","United States","Hard","","2025-08-19","Jason Kubler","Australia","","George Loffhagen","Great Britain","","13:30","6-4 7-5","Finished",3,100,40,60,0,0,0,"","home"
+"2025_0560_124549","ATP","US Open","United States","Hard","","2025-08-19","Jerome Kym","Switzerland","","Carlos Taberner","Spain","3","13:30","7(7)-6(2) 6-1","Finished",3,94,60,34,0,0,0,"","away"
+"2025_0560_124612","ATP","US Open","United States","Hard","","2025-08-19","Luca van Assche","France","","Dusan Lajovic","Serbia","","12:15","6-3 6-1","Finished",3,69,36,33,0,0,0,"","away"
+"2025_0560_124637","ATP","US Open","United States","Hard","","2025-08-19","Giulio Zeppieri","Italy","","Hady Habib","Lebanon","","12:15","4-6 7(9)-6(7) 7-5","Finished",3,154,32,64,58,0,0,"","home"
+"2025_0560_124701","ATP","US Open","United States","Hard","","2025-08-19","Roman Andres Burruchaga","Argentina","","Justin Engel","Germany","","12:10","3-6 6-3 7-5","Finished",3,128,37,33,58,0,0,"","home"
+"2025_0560_124725","ATP","US Open","United States","Hard","","2025-08-19","Zachary Svajda","United States","22","August Holmgren","Denmark","","12:10","6-2 7(7)-6(1)","Finished",3,87,33,54,0,0,0,"","away"
+"2025_0560_124749","ATP","US Open","United States","Hard","","2025-08-19","Shintaro Mochizuki","Japan","12","Jurij Rodionov","Austria","","12:10","6-2 4-6 6-2","Finished",3,116,34,47,35,0,0,"","home"
+"2025_0560_124814","ATP","US Open","United States","Hard","","2025-08-19","Mitchell Krueger","United States","","Santiago Rodriguez Taverna","Argentina","","12:10","6-3 5-7 6-1","Finished",3,119,30,48,41,0,0,"","away"
+"2025_0560_124838","ATP","US Open","United States","Hard","","2025-08-19","Yibing Wu","China","","Juan Pablo Ficovich","Argentina","17","12:10","6-3 6-3","Finished",3,69,35,34,0,0,0,"","home"
+"2025_0560_124903","ATP","US Open","United States","Hard","","2025-08-19","Beibit Zhukayev","Kazakhstan","","Jack Pinnington Jones","United Kingdom","","12:10","3-6 7(8)-6(6) 7(14)-6(12)","Finished",3,215,46,77,92,0,0,"","home"
+"2025_0560_124927","ATP","US Open","United States","Hard","","2025-08-19","Andrea Collarini","Argentina","Alt","Jan Choinski","United Kingdom","","12:05","7(7)-6(4) 6-4","Finished",3,109,61,48,0,0,0,"","away"
+"2025_0560_124952","ATP","US Open","United States","Hard","","2025-08-19","Jaime Faria","Portugal","15","Rio Noguchi","Japan","","12:05","3-6 6-4 6-3","Finished",3,112,40,39,33,0,0,"","home"
+"2025_0560_125015","ATP","US Open","United States","Hard","","2025-08-18","Francesco Passaro","Italy","10","Yu Hsiou Hsu","Taipei","","20:10","6-3 1-6 6-4","Finished",3,115,40,28,47,0,0,"","home"
+"2025_0560_125039","ATP","US Open","United States","Hard","","2025-08-18","Rodrigo Pacheco Mendez","Mexico","","Sascha Gueymard Wayenburg","France","","19:40","6(2)-7(7) 6-3 6-1","Finished",3,138,59,36,43,0,0,"","away"
+"2025_0560_125111","ATP","US Open","United States","Hard","","2025-08-18","Dino Prizmic","Croatia","19","Alexis Galarneau","Canada","","19:25","7(9)-6(7) 6-1","Finished",3,103,70,33,0,0,0,"","away"
+"2025_0560_125135","ATP","US Open","United States","Hard","","2025-08-18","Dmitry Popko","Kazakhstan","","Thiago Seyboth Wild","Brazil","26","19:05","7(7)-6(4) 6-3","Finished",3,101,59,42,0,0,0,"","home"
+"2025_0560_125200","ATP","US Open","United States","Hard","","2025-08-18","Murphy Cassone","United States","","Thiago Monteiro","Brazil","","19:00","6-3 5-7 7-5","Finished",3,137,28,52,57,0,0,"","home"
+"2025_0560_125224","ATP","US Open","United States","Hard","","2025-08-18","Lloyd Harris","South Africa","","Daniel Evans","United Kingdom","18","19:00","6-4 3-6 7-5","Finished",3,159,49,45,65,0,0,"","home"
+"2025_0560_125248","ATP","US Open","United States","Hard","","2025-08-18","James McCabe","Australia","","Francesco Maestrelli","Italy","","18:15","6-3 6(2)-7(7) 6-4","Finished",3,163,32,74,57,0,0,"","away"
+"2025_0560_125312","ATP","US Open","United States","Hard","","2025-08-18","Daniel Elahi Galan","Colombia","32","Guy Den Ouden","Netherlands","","17:20","6-1 7-5","Finished",3,88,30,58,0,0,0,"","away"
+"2025_0560_125337","ATP","US Open","United States","Hard","","2025-08-18","James Duckworth","Australia","5","Facundo Bagnis","Argentina","","17:20","6-4 6-2","Finished",3,84,44,40,0,0,0,"","home"
+"2025_0560_125401","ATP","US Open","United States","Hard","","2025-08-18","Patrick Maloney","United States","WC","Elias Ymer","Sweden","","17:15","6-3 7(7)-6(3)","Finished",3,92,35,57,0,0,0,"","home"
+"2025_0560_125425","ATP","US Open","United States","Hard","","2025-08-18","Ugo Blanchet","France","","Borna Gojo","Croatia","","16:40","7(7)-6(2) 3-6 6-3","Finished",3,126,43,38,45,0,0,"","away"
+"2025_0560_125449","ATP","US Open","United States","Hard","","2025-08-18","Jay Clarke","United Kingdom","","Jack Satterfield","United States","WC","16:30","7(7)-6(5) 6-1","Finished",3,96,58,38,0,0,0,"","home"
+"2025_0560_125514","ATP","US Open","United States","Hard","","2025-08-18","Nikoloz Basilashvili","Georgia","6","Gauthier Onclin","Belgium","","16:20","7(8)-6(6) 5-7 6-1","Finished",3,168,70,62,36,0,0,"","home"
+"2025_0560_125538","ATP","US Open","United States","Hard","","2025-08-18","Jan Lennard Struff","Germany","31","Clement Chidekh","France","","15:55","6-4 6-1","Finished",3,70,45,25,0,0,0,"","away"
+"2025_0560_125603","ATP","US Open","United States","Hard","","2025-08-18","Arthur Cazaux","France","1","Mark Lajal","Estonia","","15:40","6-4 6-1","Finished",3,67,42,25,0,0,0,"","home"
+"2025_0560_125627","ATP","US Open","United States","Hard","","2025-08-18","Marc Andrea Huesler","Switzerland","","Stefano Napolitano","Italy","","15:25","6-3 6(2)-7(7) 6-4","Finished",3,145,37,60,48,0,0,"","home"
+"2025_0560_125651","ATP","US Open","United States","Hard","","2025-08-18","Taro Daniel","Japan","","Vitaliy Sachko","Ukraine","","15:05","6-1 7-5","Finished",3,74,23,51,0,0,0,"","home"
+"2025_0560_125716","ATP","US Open","United States","Hard","","2025-08-18","Federico Agustin Gomez","Argentina","","Lukas Klein","Czech Republic","14","14:05","6-2 6-4","Finished",3,70,26,44,0,0,0,"","away"
+"2025_0560_125740","ATP","US Open","United States","Hard","","2025-08-18","Federico Cina","Italy","","Dominic Stricker","Switzerland","","13:55","6-2 6-2","Finished",3,59,28,31,0,0,0,"","away"
+"2025_0560_125804","ATP","US Open","United States","Hard","","2025-08-18","Cristian Garin","Chile","13","Yosuke Watanuki","Japan","","13:45","6-4 6-4","Finished",3,89,39,50,0,0,0,"","home"
+"2025_0560_125828","ATP","US Open","United States","Hard","","2025-08-18","Harold Mayot","France","","Johannus Monday","United Kingdom","","13:40","7-5 6-3","Finished",3,91,48,43,0,0,0,"","away"
+"2025_0560_125853","ATP","US Open","United States","Hard","","2025-08-18","Marco Trungelliti","Argentina","","Christopher Eubanks","United States","","13:40","7-5 3-6 6-3","Finished",3,154,52,47,55,0,0,"","home"
+"2025_0560_125917","ATP","US Open","United States","Hard","","2025-08-18","Mikhail Kukushkin","Kazakhstan","","Andrea Pellegrino","Italy","28","13:35","7(7)-6(4) 6-3","Finished",3,99,63,36,0,0,0,"","home"
+"2025_0560_125941","ATP","US Open","United States","Hard","","2025-08-18","Billy Harris","United Kingdom","","James Kent Trotter","Japan","","13:30","3-6 6-1 6-2","Finished",3,107,32,32,43,0,0,"","away"
+"2025_0560_130006","ATP","US Open","United States","Hard","","2025-08-18","Jesper De Jong","Netherlands","2","Vilius Gaubas","Lithuania","","13:25","6-3 6-4","Finished",3,105,51,54,0,0,0,"","home"
+"2025_0560_130030","ATP","US Open","United States","Hard","","2025-08-18","Matteo Gigante","Italy","16","Edas Butvilas","Lithuania","","12:05","3-6 6-4 6-2","Finished",3,113,35,43,35,0,0,"","home"
+"2025_0560_130054","ATP","US Open","United States","Hard","","2025-08-18","Hugo Grenier","France","","Omar Jasika","Australia","","12:05","6(3)-7(7) 6-3 6-3","Finished",3,184,73,51,60,0,0,"","home"
+"2025_0560_130119","ATP","US Open","United States","Hard","","2025-08-18","Pablo Llamas Ruiz","Spain","","Yannick Hanfmann","Germany","21","12:05","1-6 6-3 6-4","Finished",3,123,32,41,50,0,0,"","home"
+"2025_0560_130143","ATP","US Open","United States","Hard","","2025-08-18","Andres Martin","United States","WC","Viktor Durasovic","Norway","","12:05","6-2 6-3","Finished",3,65,31,34,0,0,0,"","home"
+"2025_0560_130207","ATP","US Open","United States","Hard","","2025-08-18","Chak Lam Coleman Wong","Hong Kong","","Chris Rodesch","Luxembourg","","12:05","6-4 6-2","Finished",3,66,30,36,0,0,0,"","away"
+"2025_0560_130231","ATP","US Open","United States","Hard","","2025-08-18","Martin Landaluce","Spain","30","Clement Tabur","France","","12:05","6-4 6-4","Finished",3,93,48,45,0,0,0,"","away"
+"2025_0560_142704","ATP","US Open","United States","Hard","","2025-08-18","Fajing Sun","China","","Pol Martin Tiffon","Spain","","19:35","3-6 7(7)-6(5) 4-1","Finished / retired",3,143,36,69,39,0,0,"","away"
