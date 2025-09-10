@@ -12,7 +12,7 @@ from datetime import datetime
 
 categoria = "atp"
 
-os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/")
+os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/ATP/")
 
 
 # Función para cargar un archivo CSV en un DataFrame y agregar una columna de identificación
@@ -4456,6 +4456,14 @@ nacionalidades = {
     "Facundo Bagnis": "Argentina",
     "Andrea Picchione": "Italy",
     "Eric Vanshelboim": "Ucraine",
+    "Zizou Bergs": "Belgium",
+    "Ivan Nedelko": "Russia",
+    "Kaito Uesugi": "Japan",
+    "David Poljak": "Czech Republic",
+    "Jack Draper": "Great Britain",
+    "Alvaro Guillen Meza": "Ecuador",
+    "Jake Delaney": "Australia",
+    "Gabi Adrian Boitan": "Romania",
 }
 
 

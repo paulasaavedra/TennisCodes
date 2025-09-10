@@ -9,6 +9,7 @@ import pandas as pd
 import time
 import glob
 import os
+import re
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
@@ -65,15 +66,50 @@ def scrap_match(URL, id, year_scrap):
 
     if status == "Walkover" or status == "WO" or status == "W/O":
         page_title = driver.title
-        page_title = page_title.split(" | ")[1]
-        h_player = page_title.split(" - ")[0]  # Dato
-        a_player = page_title.split(" - ")[-1]  # Dato
         anotations = ""
-        winner = soup.find(class_="duelParticipant__home")
-        if winner.find(class_="winner-ico") != None:
-            winner = "home"
+        # 2ª parte del título
+        players_part = page_title.split(" | ")[1]
+
+        # Quitamos todo lo que sigue a la fecha (dd/mm/yyyy)
+        players_only = re.split(r"\d{2}/\d{2}/\d{4}", players_part)[0].strip()
+
+        # Ahora dividimos los jugadores
+        h_player, a_player = players_only.split(" v ")
+        winner_listLastName = (
+            soup.find(class_="duelParticipant--winner").text.split(".")[0].split(" ")
+        )
+        if len(winner_listLastName) > 2:
+            winner_lastName = soup.find(class_="fontExtraBold").text.split(" ")[0]
+            posible_lastname = soup.find(class_="fontExtraBold").text.split(" ")[1]
+            if (
+                posible_lastname[-1] == "."
+                and posible_lastname[0] == h_player[0]
+                and winner_lastName == h_player.split(" ")[-1]
+            ):
+                winner = "home"
+            elif (
+                posible_lastname[-1] != "."
+                and posible_lastname in h_player.split(" ")
+                and winner_lastName in h_player.split(" ")
+            ):
+                winner = "home"
+            else:
+                winner = "away"
         else:
-            winner = "away"
+            winner_lastName = (
+                soup.find(class_="duelParticipant--winner")
+                .text.split(".")[0]
+                .split(" ")
+            )[0]
+            inicial = (
+                soup.find(class_="duelParticipant--winner")
+                .text.split(".")[0]
+                .split(" ")
+            )[-1]
+            if winner_lastName in h_player and inicial == h_player.split(" ")[0][0]:
+                winner = "home"
+            else:
+                winner = "away"
 
         breadcrumbs = soup.find_all("li", class_="wcl-breadcrumbItem_8btmf")
 
@@ -83,15 +119,13 @@ def scrap_match(URL, id, year_scrap):
         if "Qualification" in tourney_name:
             tourney_name = tourney_name.split(" - ")[0]
 
+        if tourney_name == "French Open":
+            tourney_name = "Roland Garros"
+
         country = breadcrumbs[2].find("img")["title"]
         surface = (
             breadcrumbs[2].find("span").text.split(", ")[1].split(" - ")[0].capitalize()
         )
-
-        if tourney_name == "French Open":
-            tourney_name = "Roland Garros"
-            tourney_level = "GS"
-
         round_match = breadcrumbs[2].find("span").text.split(" - ")[1]
 
         time_date = soup.find("div", class_="duelParticipant__startTime").text
@@ -207,11 +241,15 @@ def scrap_match(URL, id, year_scrap):
             ]
     else:
         page_title = driver.title
-        page_title = page_title.split(" | ")[1]
 
-        h_player = page_title.split(" - ")[0]  # Dato
-        a_player = page_title.split(" - ")[-1]  # Dato
+        # 2ª parte del título
+        players_part = page_title.split(" | ")[1]
 
+        # Quitamos todo lo que sigue a la fecha (dd/mm/yyyy)
+        players_only = re.split(r"\d{2}/\d{2}/\d{4}", players_part)[0].strip()
+
+        # Ahora dividimos los jugadores
+        h_player, a_player = players_only.split(" v ")
         winner_listLastName = soup.find(class_="fontExtraBold").text.split(" ")
         if len(winner_listLastName) > 2:
             winner_lastName = soup.find(class_="fontExtraBold").text.split(" ")[0]
@@ -1840,7 +1878,7 @@ for filename in [csv_files]:
             more_matches = False
 
         list_of_matches = tourney_to_matchs(link_df, more_matches)
-        list_of_matches = list_of_matches[:-236]
+        # list_of_matches = list_of_matches[:-3]
 
         contador_partidos = 1
 
