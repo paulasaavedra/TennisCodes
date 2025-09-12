@@ -2,7 +2,7 @@ library(dplyr)
 library(tidyr)
 library(data.table)
 
-dbm <- db[tourney_level != 'CH']
+dbm <- db[tourney_level == 'CH']
 dbm <- dbm[match_status != 'Walkover']
 dbm <- dbm[!round_match %in% c('Q1', 'Q2', 'Q3')]
 
