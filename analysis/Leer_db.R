@@ -146,3 +146,7 @@ db <- db_complete
 rm(db_complete, rank, players_database, players_subset)
 rm(required_cols, ruta_csv, con)
 gc()       # libera memoria de forma explícita
+
+
+# Exporta toda la tabla
+# write.csv(db, "matches_raw.csv", row.names = FALSE)
