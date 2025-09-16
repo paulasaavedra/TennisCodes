@@ -149,4 +149,4 @@ gc()       # libera memoria de forma explícita
 
 
 # Exporta toda la tabla
-# write.csv(db, "matches_raw.csv", row.names = FALSE)
+write.csv(db, "matches_raw.csv", row.names = FALSE)
