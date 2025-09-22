@@ -4464,6 +4464,11 @@ nacionalidades = {
     "Alvaro Guillen Meza": "Ecuador",
     "Jake Delaney": "Australia",
     "Gabi Adrian Boitan": "Romania",
+    "Lukas Pokorny": "Slovakia",
+    "Andrea Collarini": "Argentina",
+    "Stan Wawrinka": "Switzerland",
+    "Matthew Donald": "Czech Republic",
+    "Dan Added": "France",
 }
 
 
