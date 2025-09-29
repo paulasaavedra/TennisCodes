@@ -249,31 +249,29 @@ def scrap_match(ides, URL):
 
         # Ahora dividimos los jugadores
         h_player, a_player = players_only.split(" v ")
-        winner_listLastName = soup.find(class_="fontExtraBold").text.split(" ")
-        if len(winner_listLastName) > 2:
-            winner_lastName = soup.find(class_="fontExtraBold").text.split(" ")[0]
-            posible_lastname = soup.find(class_="fontExtraBold").text.split(" ")[1]
-            if (
-                posible_lastname[-1] == "."
-                and posible_lastname[0] == h_player[0]
-                and winner_lastName == h_player.split(" ")[-1]
-            ):
-                winner = "home"
-            elif (
-                posible_lastname[-1] != "."
-                and posible_lastname in h_player.split(" ")
-                and winner_lastName in h_player.split(" ")
-            ):
-                winner = "home"
-            else:
-                winner = "away"
+
+        # Extraer texto del ganador y limpiar basura
+        raw_text = soup.find(class_="duelParticipant--winner").get_text(strip=True)
+        clean_text = raw_text.replace("Advancing to next round", "").strip()
+        clean_text = clean_text.split("ATP")[0]
+
+        # Dividir en palabras
+        parts = clean_text.split()
+
+        if len(parts) > 1 and parts[1].endswith("."):
+            # Caso con inicial, ej: "M. Donald"
+            winner_initial = parts[1][0]  # "M"
+            winner_lastName = parts[0]  # "Donald"
         else:
-            winner_lastName = soup.find(class_="fontExtraBold").text.split(" ")[0]
-            inicial = soup.find(class_="fontExtraBold").text.split(" ")[-1][0]
-            if winner_lastName in h_player and inicial == h_player.split(" ")[0][0]:
-                winner = "home"
-            else:
-                winner = "away"
+            # Caso nombre completo, ej: "Novak Djokovic"
+            winner_initial = parts[0][0]  # "N"
+            winner_lastName = parts[-1]  # "Djokovic"
+
+        # Comparar contra jugadores
+        if winner_lastName in h_player and winner_initial == h_player.split(" ")[0][0]:
+            winner = "home"
+        else:
+            winner = "away"
 
         breadcrumbs = soup.find_all("li", class_="wcl-breadcrumbItem_8btmf")
 
@@ -281,9 +279,10 @@ def scrap_match(ides, URL):
         tourney_name = breadcrumbs[2].find("span").text.split(", ")[0]
         if "Qualification" in tourney_name:
             tourney_name = tourney_name.split(" - ")[0]
-
         if tourney_name == "French Open":
             tourney_name = "Roland Garros"
+            tourney_level = "GS"
+
         country = breadcrumbs[2].find("img")["title"]
         try:
             surface = (
@@ -293,11 +292,11 @@ def scrap_match(ides, URL):
                 .split(" - ")[0]
                 .capitalize()
             )
-        except:
+        except Exception:
             surface = ""
         try:
             round_match = breadcrumbs[2].find("span").text.split(" - ")[1]
-        except:
+        except Exception:
             round_match = ""
         """ 
         title = soup.find(class_='tournamentHeader__country').text  

@@ -148,5 +148,16 @@ rm(required_cols, ruta_csv, con)
 gc()       # libera memoria de forma explícita
 
 
-# Exporta toda la tabla
-write.csv(db, "matches_raw.csv", row.names = FALSE)
+# Definimos la ruta base
+ruta <- "/Users/paula/Documents/TennisData/TennisData/database/"
+
+# 1. Guardar el CSV
+write.csv(db, file.path(ruta, "matches_raw.csv"), row.names = FALSE)
+
+# 2. Comprimirlo en un ZIP
+zip(file.path(ruta, "matches_raw.zip"), 
+    files = file.path(ruta, "matches_raw.csv"))
+
+# 3. (opcional) borrar el CSV original si solo querés el ZIP
+file.remove(file.path(ruta, "matches_raw.csv"))
+
