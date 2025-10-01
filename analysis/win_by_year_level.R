@@ -17,9 +17,9 @@ dbm[, id := as.character(id)]
 dbm[, year := as.integer(year)]
 
 # Ganados por jugador y año
-ganados <- dbm[w_nac == 'Argentina', .N, by = .(year, tourney_level, Jugador = w_player)]
+ganados <- dbm[, .N, by = .(year, tourney_level, Jugador = w_player)]
 # Perdidos por jugador y año
-perdidos <- dbm[l_nac == 'Argentina', .N, by = .(year, tourney_level, Jugador = l_player)]
+perdidos <- dbm[, .N, by = .(year, tourney_level, Jugador = l_player)]
 
 # Renombrar columnas
 setnames(ganados, "N", "Ganados")
