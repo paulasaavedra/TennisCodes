@@ -1,20 +1,13 @@
-
-UPDATE atp_simple
-SET round_match = 'Q2'
-WHERE match_id IN (
-"2025_0329_213348",
-"2025_0329_213418",
-"2025_0329_213442",
-"2025_0329_213505");
-
-UPDATE atp_simple
-SET round_match = 'Q1'
-WHERE match_id IN (
-"2025_0329_213529",
-"2025_0329_213554",
-"2025_0329_213618",
-"2025_0329_213642",
-"2025_0329_213707",
-"2025_0329_213731",
-"2025_0329_213754",
-"2025_0329_213828");
+"MATCH_ID","TOURNEY_LEVEL","TOURNEY_NAME","COUNTRY","SURFACE","ROUND_MATCH","DATE_MATCH","W_PLAYER","W_NAC","W_SEED","L_PLAYER","L_NAC","L_SEED","TIMESTART","SCORE","MATCH_STATUS","BEST","TIME_TOTAL","TIME_1S","TIME_2S","TIME_3S","TIME_4S","TIME_5S","COMENTS","WINNER"
+"2025_0329_213348","ATP","Tokyo","Japan","Hard","","2025-09-23","Marton Fucsovics","Hungary","1","Matteo Arnaldi","Italy","5","02:15","7-5 6-2","Finished",3,100,63,37,0,0,0,"","home"
+"2025_0329_213418","ATP","Tokyo","Japan","Hard","","2025-09-23","Sho Shimabukuro","Japan","","Juan Manuel Cerundolo","Argentina","4","01:25","6-4 6-3","Finished",3,81,42,39,0,0,0,"","away"
+"2025_0329_213442","ATP","Tokyo","Japan","Hard","","2025-09-22","Ethan Quinn","United States","7","Mattia Bellucci","Italy","2","23:10","4-6 6-4 7-5","Finished",3,167,48,47,72,0,0,"","away"
+"2025_0329_213505","ATP","Tokyo","Japan","Hard","","2025-09-22","Aleksandar Vukic","Australia","","Rei Sakamoto","Japan","","23:10","6-4 7(7)-6(5)","Finished",3,114,45,69,0,0,0,"","home"
+"2025_0329_213529","ATP","Tokyo","Japan","Hard","","2025-09-22","Matteo Arnaldi","Italy","5","Luca Nardi","Italy","","03:25","6-0 6(4)-7(7) 6-3","Finished",3,139,28,72,39,0,0,"","away"
+"2025_0329_213554","ATP","Tokyo","Japan","Hard","","2025-09-22","Sho Shimabukuro","Japan","WC","Mariano Navone","Argentina","8","02:30","6-2 6-3","Finished",3,80,36,44,0,0,0,"","home"
+"2025_0329_213618","ATP","Tokyo","Japan","Hard","","2025-09-22","Rei Sakamoto","Japan","WC","Adam Walton","Australia","6","02:15","6-2 6-4","Finished",3,85,41,44,0,0,0,"","home"
+"2025_0329_213642","ATP","Tokyo","Japan","Hard","","2025-09-22","Aleksandar Vukic","Australia","","Aleksandar Kovacevic","United States","3","01:10","6-4 6(4)-7(7) 6-2","Finished",3,120,36,54,30,0,0,"","away"
+"2025_0329_213707","ATP","Tokyo","Japan","Hard","","2025-09-22","Juan Manuel Cerundolo","Argentina","4","Rio Noguchi","Japan","Alt","01:00","6-3 6-2","Finished",3,67,34,33,0,0,0,"","home"
+"2025_0329_213731","ATP","Tokyo","Japan","Hard","","2025-09-21","Mattia Bellucci","Italy","2","Yasutaka Uchiyama","Japan","WC","23:10","7(7)-6(5) 5-7 7-5","Finished",3,169,63,55,51,0,0,"","home"
+"2025_0329_213754","ATP","Tokyo","Japan","Hard","","2025-09-21","Marton Fucsovics","Hungary","1","Filip Misolic","Austria","","23:10","6-3 6-1","Finished",3,57,31,26,0,0,0,"","home"
+"2025_0329_213828","ATP","Tokyo","Japan","Hard","","2025-09-21","Ethan Quinn","United States","7","Yuta Shimizu","Japan","Alt","23:10","7(7)-6(4) 6-4","Finished",3,94,54,40,0,0,0,"","away"
