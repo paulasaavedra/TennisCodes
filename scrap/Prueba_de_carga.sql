@@ -6267,6 +6267,9 @@ WHERE TOURNEY_LEVEL IN ('CH', 'ATP', 'M1000')
         OR best = 1
     );
 UPDATE atp_simple
+SET TOURNEY_LEVEL = 'M1000'
+WHERE TOURNEY_NAME = 'Toronto';
+UPDATE atp_simple
 SET best = 5
 WHERE TOURNEY_LEVEL = 'GS'
     AND (
