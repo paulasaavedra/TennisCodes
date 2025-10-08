@@ -17,9 +17,9 @@ dbm[, id := as.character(id)]
 dbm[, year := as.integer(year)]
 
 # Ganados por jugador y año
-ganados <- dbm[, .N, by = .(year, tourney_level, Jugador = w_player)]
+ganados <- dbm[w_nac == 'Argentina', .N, by = .(year, tourney_level, Jugador = w_player)]
 # Perdidos por jugador y año
-perdidos <- dbm[, .N, by = .(year, tourney_level, Jugador = l_player)]
+perdidos <- dbm[l_nac == 'Argentina', .N, by = .(year, tourney_level, Jugador = l_player)]
 
 # Renombrar columnas
 setnames(ganados, "N", "Ganados")
@@ -50,3 +50,7 @@ win_by_year_level <- dcast(
 
 # Columna de total de Ganados por jugador
 win_by_year_level[, Total := rowSums(.SD), .SDcols = setdiff(colnames(win_by_year_level), c("year","Jugador"))]
+
+
+# Obtener el registro con el Total máximo por cada Jugador:
+win_max <- win_by_year_level[, .SD[which.max(Total)], by = Jugador]

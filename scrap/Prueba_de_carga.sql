@@ -6409,6 +6409,58 @@ WHERE match_id IN (
         "2025_7913_202731"
     );
 UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE match_id IN (
+        "2025_2991_172228",
+        "2025_2991_172253",
+        "2025_2991_172318",
+        "2025_2991_172342",
+        "2025_2991_172406",
+        "2025_2991_172430"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE match_id IN (
+        "2025_2991_172455",
+        "2025_2991_172520",
+        "2025_2991_172544",
+        "2025_2991_172609",
+        "2025_2991_172634",
+        "2025_2991_172658",
+        "2025_2991_172723",
+        "2025_2991_172747",
+        "2025_2991_172812",
+        "2025_2991_172836",
+        "2025_2991_172901",
+        "2025_2991_172925"
+    );
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE match_id IN (
+        "2025_9475_175728",
+        "2025_9475_175753",
+        "2025_9475_175842",
+        "2025_9475_175906",
+        "2025_9475_175931",
+        "2025_9475_175955"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE match_id IN (
+        "2025_9475_180020",
+        "2025_9475_180044",
+        "2025_9475_180107",
+        "2025_9475_180131",
+        "2025_9475_180156",
+        "2025_9475_180221",
+        "2025_9475_180245",
+        "2025_9475_180308",
+        "2025_9475_180332",
+        "2025_9475_180357",
+        "2025_9475_180422",
+        "2025_9475_180447"
+    );
+UPDATE atp_simple
 SET best = 3
 WHERE TOURNEY_LEVEL IN ('CH', 'ATP', 'M1000')
     AND (
@@ -6453,6 +6505,20 @@ SET w_player = REPLACE(
         'Santiago Rodriguez Taverna'
     )
 WHERE w_player LIKE '%Santiago Fa Rodriguez Taverna%';
+UPDATE atp_simple
+SET w_nac = REPLACE(
+        w_nac,
+        'Czechia',
+        'Czech Republic'
+    )
+WHERE w_nac LIKE '%Czechia%';
+UPDATE atp_simple
+SET l_nac = REPLACE(
+        l_nac,
+        'Czechia',
+        'Czech Republic'
+    )
+WHERE l_nac LIKE '%Czechia%';
 -----------------
 select *
 from atp_simple
