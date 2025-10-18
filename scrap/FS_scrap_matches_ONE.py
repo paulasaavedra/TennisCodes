@@ -1749,8 +1749,8 @@ os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/")
 
 
 # Definí los 3 parámetros directamente
-one_match = "https://www.flashscore.com/match/WMgZ4hhl/#/match-summary/match-summary"  # ejemplo de link de partido
-id_tourney = "9475"  # id del torneo
+one_match = "https://www.flashscore.com/match/zBplqdV1/#/match-summary/match-summary"  # ejemplo de link de partido
+id_tourney = "3025"  # id del torneo
 year_scrap = "2025"  # año que quieras
 
 try:
