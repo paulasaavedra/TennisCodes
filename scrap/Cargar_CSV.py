@@ -4473,6 +4473,9 @@ nacionalidades = {
     "Alejandro Moro Canas": "Spain",
     "Joao Lucas Reis Da Silva": "Brazil",
     "Dimitar Kuzmanov": "Bulgaria",
+    "Nikolay Sysoev": "Russia",
+    "Mikalai Haliak": "Belarus",
+    "Aoran Wang": "China",
 }
 
 
