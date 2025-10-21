@@ -40,3 +40,6 @@ setorder(res_nat, -diff)
 # Resultado final con nacionalidad del jugador
 res_nat_final <- res_nat[, .(player, player_nat, nat_rival, wins, losses, diff)]
 
+one_player <- res_nat_final[player == 'Daniil Medvedev']
+total_losses <- sum(one_player$losses, na.rm = TRUE)
+

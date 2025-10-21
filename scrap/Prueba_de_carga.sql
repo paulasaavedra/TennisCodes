@@ -6824,6 +6824,26 @@ WHERE match_id IN (
         "2025_9410_193529"
     );
 UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE match_id IN (
+        "2025_0747_203911",
+        "2025_0747_203936",
+        "2025_0747_203959",
+        "2025_0747_204024"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE match_id IN (
+        "2025_0747_204048",
+        "2025_0747_204113",
+        "2025_0747_204137",
+        "2025_0747_204201",
+        "2025_0747_204224",
+        "2025_0747_204248",
+        "2025_0747_204313",
+        "2025_0747_204337"
+    );
+UPDATE atp_simple
 SET best = 3
 WHERE TOURNEY_LEVEL IN ('CH', 'ATP', 'M1000')
     AND (
@@ -6899,7 +6919,7 @@ WHERE w_player LIKE 'Felix Auger Aliassime';
 -----------------
 select *
 from atp_simple
-where w_nac is null -- chequear
+where l_nac is null -- chequear
 select *
 from atp_simple
 WHERE round_match = '';
