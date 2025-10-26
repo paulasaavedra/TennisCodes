@@ -4476,6 +4476,10 @@ nacionalidades = {
     "Nikolay Sysoev": "Russia",
     "Mikalai Haliak": "Belarus",
     "Aoran Wang": "China",
+    "Alexander Zverev": "Germany",
+    "Tallon Griekspoor": "Netherlands",
+    "Daniil Glinka": "Estonia",
+    "Joao Fonseca": "Brazil",
 }
 
 
