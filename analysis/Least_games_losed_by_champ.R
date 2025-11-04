@@ -6,7 +6,7 @@ library(stringr)
 # 0. Filtrado inicial: eliminar challengers y walkovers
 dbm <- db[tourney_level != 'CH']
 dbm <- dbm[match_status != 'Walkover']
-dbm <- dbm[tourney_level == 'GS']
+dbm <- dbm[tourney_level == 'M1000']
 
 # 1. Separar año e ID del match_id
 dbm[, match_id := sub("_\\d+$", "", match_id)]
