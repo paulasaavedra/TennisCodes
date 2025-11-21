@@ -4484,6 +4484,10 @@ nacionalidades = {
     "Grigor Dimitrov": "Bulgaria",
     "Reilly Opelka": "United States",
     "Yaroslav Demin": "Russia",
+    "Johannes Ingildsen": "Denmark",
+    "Jacob Bradshaw": "New Zealand",
+    "Gonzalo Villanueva": "Argentina",
+    "Scott Jones": "Australia",
 }
 
 
