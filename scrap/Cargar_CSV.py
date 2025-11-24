@@ -4488,6 +4488,10 @@ nacionalidades = {
     "Jacob Bradshaw": "New Zealand",
     "Gonzalo Villanueva": "Argentina",
     "Scott Jones": "Australia",
+    "Tai Sach": "Australia",
+    "Blake Ellis": "Australia",
+    "Daniil Ostapenkov": "Belarus",
+    "Nikolai Barsukov": "Germany",
 }
 
 
