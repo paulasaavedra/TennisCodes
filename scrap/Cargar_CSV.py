@@ -12,7 +12,7 @@ from datetime import datetime
 
 categoria = "atp"
 
-os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/ATP/")
+os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/2025/")
 
 
 # Función para cargar un archivo CSV en un DataFrame y agregar una columna de identificación
@@ -4497,7 +4497,13 @@ nacionalidades = {
     "Sergey Betov": "Belarus",
     "Mark Kaufman": "Russia",
     "Artur Kukasian": "Russia",
-    "Marc Andre Huesler": "Switzerland",
+    "Marc Andrea Huesler": "Switzerland",
+    "Alafia Ayeni": "United States",
+    "Timofei Derepasko": "Russia",
+    "Leo Vithoontien": "Japan",
+    "Brandon Walkin": "Australia",
+    "Ivan Gretskiy": "Belarus",
+    "Alexey Aleshchev": "Russia",
 }
 
 
@@ -4680,3 +4686,5 @@ for prefix in stats_prefixes:
         key = f"{prefix}_{suffix}"  # Clave en el diccionario
         table_name = f"{categoria}_{prefix}_{suffix}"  # Nombre de la tabla
         stats_dict[key].to_sql(table_name, con=engine, if_exists="append", index=False)
+
+# %%

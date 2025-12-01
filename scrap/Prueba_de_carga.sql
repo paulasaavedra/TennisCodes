@@ -7672,6 +7672,152 @@ WHERE match_id IN (
         "2025_3009_105414"
     );
 UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE match_id IN (
+        "2025_2829_084246",
+        "2025_2829_211504",
+        "2025_2829_211536",
+        "2025_2829_211600",
+        "2025_2829_211625",
+        "2025_2829_211649"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE match_id IN (
+        "2025_2829_211713",
+        "2025_2829_211736",
+        "2025_2829_211801",
+        "2025_2829_211824"
+    );
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE match_id IN (
+        "2025_3041_215156",
+        "2025_3041_215220",
+        "2025_3041_215244",
+        "2025_3041_215308",
+        "2025_3041_215333",
+        "2025_3041_215356"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE match_id IN (
+        "2025_3041_215420",
+        "2025_3041_215444",
+        "2025_3041_215508",
+        "2025_3041_215532",
+        "2025_3041_215557",
+        "2025_3041_215619",
+        "2025_3041_215643",
+        "2025_3041_215708",
+        "2025_3041_215732",
+        "2025_3041_215756",
+        "2025_3041_215821",
+        "2025_3041_215845"
+    );
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE match_id IN (
+        "2025_3043_145842",
+        "2025_3043_230356",
+        "2025_3043_230419",
+        "2025_3043_230443",
+        "2025_3043_230507",
+        "2025_3043_230532"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE match_id IN (
+        "2025_3043_230555",
+        "2025_3043_230619",
+        "2025_3043_230643",
+        "2025_3043_230715",
+        "2025_3043_230739",
+        "2025_3043_230804",
+        "2025_3043_230828"
+    );
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE match_id IN (
+        "2025_3045_224404",
+        "2025_3045_224428",
+        "2025_3045_224452",
+        "2025_3045_224516",
+        "2025_3045_224541",
+        "2025_3045_224604"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE match_id IN (
+        "2025_3045_224628",
+        "2025_3045_224652",
+        "2025_3045_224716",
+        "2025_3045_224740",
+        "2025_3045_224804",
+        "2025_3045_224828",
+        "2025_3045_224853",
+        "2025_3045_224917",
+        "2025_3045_224941",
+        "2025_3045_225005",
+        "2025_3045_225029",
+        "2025_3045_225053"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE match_id IN ("2025_3051_223025", "2025_3051_223049");
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE match_id IN (
+        "2025_7586_145205",
+        "2025_7586_221143",
+        "2025_7586_221207",
+        "2025_7586_221231",
+        "2025_7586_221255",
+        "2025_7586_221319"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE match_id IN (
+        "2025_7586_221343",
+        "2025_7586_221408",
+        "2025_7586_221432",
+        "2025_7586_221456",
+        "2025_7586_221520",
+        "2025_7586_221545",
+        "2025_7586_221609",
+        "2025_7586_221633",
+        "2025_7586_221657",
+        "2025_7586_221721",
+        "2025_7586_221729",
+        "2025_7586_221809"
+    );
+UPDATE atp_simple
+SET round_match = 'Q2'
+WHERE match_id IN (
+        "2025_8312_213125",
+        "2025_8312_213149",
+        "2025_8312_213213",
+        "2025_8312_213237",
+        "2025_8312_213302",
+        "2025_8312_213326"
+    );
+UPDATE atp_simple
+SET round_match = 'Q1'
+WHERE match_id IN (
+        "2025_8312_213350",
+        "2025_8312_213414",
+        "2025_8312_213438",
+        "2025_8312_213502",
+        "2025_8312_213527",
+        "2025_8312_213551",
+        "2025_8312_213615",
+        "2025_8312_213639",
+        "2025_8312_213702",
+        "2025_8312_213726",
+        "2025_8312_213750",
+        "2025_8312_213814"
+    );
+UPDATE atp_simple
 SET best = 3
 WHERE TOURNEY_LEVEL IN ('CH', 'ATP', 'M1000')
     AND (
@@ -7747,7 +7893,7 @@ WHERE w_player LIKE 'Felix Auger Aliassime';
 -----------------
 select *
 from atp_simple
-where w_nac is null -- chequear
+where l_nac is null -- chequear
 select *
 from atp_simple
 WHERE round_match = '';
@@ -7758,17 +7904,17 @@ where best = 0;
 SELECT *
 FROM atp_simple INTO OUTFILE '/Users/paula/Documents/TennisData/TennisData/database/atp_simple.csv' FIELDS TERMINATED BY ',' ENCLOSED BY '"' LINES TERMINATED BY '\n';
 update atp_simple
-set w_nac = 'Russia'
+set l_nac = 'Russia'
 where match_id = "2025_2955_222128";
 update atp_simple
-set l_nac = 'Russia'
-where match_id = "2025_3039_224607";
-update atp_simple
-set w_nac = 'Belarus'
+set l_nac = 'Belarus'
 where match_id = "2025_3039_224631";
 update atp_simple
 set l_nac = 'Russia'
-where match_id = "2025_3039_224720";
+where match_id = "2025_3051_222403";
 update atp_simple
-set l_nac = 'Switzerland'
-where match_id = "2025_7397_145259";
+set l_nac = 'Russia'
+where match_id = "2025_3051_222604";
+update atp_simple
+set l_nac = 'Russia'
+where match_id = "2025_3051_222715";
