@@ -94,7 +94,10 @@ def scrap_match(URL, id, year_scrap):
             winner_lastName = parts[-1]  # "Djokovic"
 
         # Comparar contra jugadores
-        if winner_lastName in h_player and winner_initial == h_player.split(" ")[0][0]:
+        if winner_lastName in h_player and (
+            winner_initial == h_player.split(" ")[0][0]
+            or winner_initial == h_player.split(" ")[1][0]
+        ):
             winner = "home"
         else:
             winner = "away"
@@ -257,7 +260,10 @@ def scrap_match(URL, id, year_scrap):
             winner_lastName = parts[-1]  # "Djokovic"
 
         # Comparar contra jugadores
-        if winner_lastName in h_player and winner_initial == h_player.split(" ")[0][0]:
+        if winner_lastName in h_player and (
+            winner_initial == h_player.split(" ")[0][0]
+            or winner_initial == h_player.split(" ")[1][0]
+        ):
             winner = "home"
         else:
             winner = "away"
@@ -1749,7 +1755,7 @@ os.chdir("/Users/paula/Documents/TennisData/TennisData/FS_matches/")
 
 
 # Definí los 3 parámetros directamente
-one_match = "https://www.flashscore.com/match/OSSeziWp/#/match-summary/match-summary"  # ejemplo de link de partido
+one_match = "https://www.flashscore.com/match/nRmAxQt4/#/match-summary/match-summary"  # ejemplo de link de partido
 id_tourney = "3043"  # id del torneo
 year_scrap = "2025"  # año que quieras
 

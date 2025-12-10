@@ -4,7 +4,7 @@ library(data.table)
 
 dbm <- db
 dbm <- dbm[match_status != 'Walkover']
-#dbm <- dbm [round_match != 'Q1' & round_match != 'Q2' & round_match != 'Q3']
+dbm <- dbm [round_match != 'Q1' & round_match != 'Q2' & round_match != 'Q3']
 
 # Limpia match_id y separa en year + id
 dbm[, match_id := sub("_\\d+$", "", match_id)]
@@ -17,9 +17,9 @@ dbm[, id := as.character(id)]
 dbm[, year := as.integer(year)]
 
 # Ganados por jugador y año
-ganados <- dbm[w_nac == 'Argentina', .N, by = .(year, tourney_level, Jugador = w_player)]
+ganados <- dbm[, .N, by = .(year, tourney_level, Jugador = w_player)]
 # Perdidos por jugador y año
-perdidos <- dbm[l_nac == 'Argentina', .N, by = .(year, tourney_level, Jugador = l_player)]
+perdidos <- dbm[, .N, by = .(year, tourney_level, Jugador = l_player)]
 
 # Renombrar columnas
 setnames(ganados, "N", "Ganados")
@@ -54,3 +54,25 @@ win_by_year_level[, Total := rowSums(.SD), .SDcols = setdiff(colnames(win_by_yea
 
 # Obtener el registro con el Total máximo por cada Jugador:
 win_max <- win_by_year_level[, .SD[which.max(Total)], by = Jugador]
+
+# ==================================================================================================
+# BUSCAR JUGADORES QUE EN SU DEBUT EN CIERTA CATEGORIA CONSIGUIERON CIERTA CANTIDAD DE TRIUNFOS
+# ==================================================================================================
+
+# En este caso para obtener los que mas partidos CH ganaron en su debut en CH
+
+library(data.table)
+
+# Asegurar que tienes un data.table
+dt <- as.data.table(win_by_year_level)
+
+# Ordenar por jugador y año
+setorder(dt, Jugador, year)
+
+# Para cada jugador obtener su primer año con CH > 0
+primer_ch <- dt[CH > 0, .SD[1], by = Jugador]
+
+# Para cada jugador obtener su primer año con ATP > 0
+primer_ATP <- dt[ATP > 0, .SD[1], by = Jugador]
+
+

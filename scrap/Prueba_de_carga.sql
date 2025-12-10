@@ -7851,6 +7851,20 @@ WHERE TOURNEY_NAME = 'Us Open';
 UPDATE atp_simple
 SET l_player = REPLACE(
         l_player,
+        'Chak Lam Coleman Wong',
+        'Coleman Wong'
+    )
+WHERE l_player LIKE '%Chak Lam Coleman Wong%';
+UPDATE atp_simple
+SET w_player = REPLACE(
+        w_player,
+        'Chak Lam Coleman Wong',
+        'Coleman Wong'
+    )
+WHERE w_player LIKE '%Chak Lam Coleman Wong%';
+UPDATE atp_simple
+SET l_player = REPLACE(
+        l_player,
         'Santiago Fa Rodriguez Taverna',
         'Santiago Rodriguez Taverna'
     )
